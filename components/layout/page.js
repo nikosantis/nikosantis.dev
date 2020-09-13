@@ -52,26 +52,6 @@ export default function Page ({ title, description, image, children }) {
               -webkit-tap-highlight-color: transparent;
             }
           }
-          ul[class],
-          ol[class] {
-            padding: 0;
-          }
-          body,
-          h1,
-          h2,
-          h3,
-          h4,
-          p,
-          ul[class],
-          ol[class],
-          li,
-          figure,
-          figcaption,
-          blockquote,
-          dl,
-          dd {
-            margin: 0;
-          }
           html {
             scroll-behavior: smooth;
           }
@@ -82,6 +62,10 @@ export default function Page ({ title, description, image, children }) {
             width: 100vw;
             min-height: 100vh;
             transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
+            margin: 0;
+          }
+          h1, h2, h3 {
+            margin: 0;
           }
           h1,
           h2,
@@ -144,10 +128,6 @@ export default function Page ({ title, description, image, children }) {
           ul,
           ol {
             list-style: none;
-          }
-          ul[class],
-          ol[class] {
-            padding: 0;
           }
           a[role='button'] {
             -webkit-user-select: none;

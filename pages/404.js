@@ -1,26 +1,38 @@
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import Page from 'components/layout/page'
 import Main from 'components/main'
 import Container from 'components/container'
+import ButtonLink from 'components/button-link'
 
-export default function Contact () {
+export default function Custom404 () {
   return (
     <Page
-      title='¿Quieres contactarme? | Nikolas Santis, Desarrollador JavaScript'
+      title='404 | Error'
     >
       <Main>
         <Container>
           <div className='wrapper'>
-            <div className='contacto'>
-              <h1>
-                ¿Quieres contactarme?
-              </h1>
+            <div className='intro'>
+              <h1>404</h1>
+              <p>
+                Ouch 😱, esta página no existe.
+              </p>
+              <p>
+                Mejor que vuelvas al inicio
+              </p>
+              <br />
+              <ButtonLink href='/'>
+                Volver
+              </ButtonLink>
             </div>
           </div>
         </Container>
       </Main>
+
       <style jsx>
         {`
-          .contacto {
+          .intro {
             padding: 45px 0;
           }
           .wrapper {

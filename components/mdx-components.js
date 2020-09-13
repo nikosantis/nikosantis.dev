@@ -1,3 +1,5 @@
+import NativeLink from 'next/link'
+
 function H1 ({ children, id }) {
   return (
     <h1 id={id}>
@@ -11,6 +13,45 @@ function H1 ({ children, id }) {
         `}
       </style>
     </h1>
+  )
+}
+
+function Ul ({ children }) {
+  return (
+    <ul>
+      {children}
+      <style jsx>
+        {`
+          ul {
+            list-style: none;
+            margin-bottom: 2rem;
+          }
+        `}
+      </style>
+    </ul>
+  )
+}
+
+function Li ({ children }) {
+  return (
+    <li>
+      {children}
+      <style jsx>{`
+        li {
+          margin-bottom: 0.35rem;
+          font-size: 1.125rem;
+          font-weight: 300;
+          :before {
+            content: '-';
+            display: inline-block;
+            color: #6d6d6d;
+            position: absolute;
+            margin-left: -25px;
+          }
+        }
+    `}
+      </style>
+    </li>
   )
 }
 
@@ -36,6 +77,79 @@ function P ({ children }) {
         `}
       </style>
     </p>
+  )
+}
+
+function GenericLink (props) {
+  if (props.href.startsWith('/') && !props.href.startsWith('/docs')) {
+    return <InternalLink {...props} />
+  }
+
+  if (props.href.includes('@') || props.href.startsWith('#')) {
+    return <AnchorLink {...props} />
+  }
+
+  return <ExternalLink {...props} />
+}
+
+function InternalLink ({ href, children, error = false }) {
+  return (
+    <NativeLink href={href}>
+      <a>
+        {children}
+
+        <style jsx>
+          {`
+            a {
+              text-decoration: ${error ? 'underline' : 'none'};
+              font-size: inherit;
+            }
+            a:hover {
+              text-decoration: none;
+            }
+          `}
+        </style>
+      </a>
+    </NativeLink>
+  )
+}
+
+function AnchorLink ({ href, onClick, children }) {
+  return (
+    <a href={href} onClick={onClick}>
+      {children}
+
+      <style jsx>
+        {`
+          a {
+            color: inherit;
+            font-size: inherit;
+            border-bottom: 1px dotted;
+          }
+          a:hover {
+            color: gray;
+            text-decoration: none;
+          }
+        `}
+      </style>
+    </a>
+  )
+}
+
+function ExternalLink ({ href, children }) {
+  return (
+    <a href={href} target='_blank' rel='noopener noreferrer'>
+      {children}
+
+      <style jsx>
+        {`
+          a {
+            text-decoration: none;
+            font-size: inherit;
+          }
+        `}
+      </style>
+    </a>
   )
 }
 
@@ -145,6 +259,25 @@ function Code ({ children, syntax }) {
   )
 }
 
+function Blockquote ({ children }) {
+  return (
+    <blockquote>
+      {children}
+      <style jsx>
+        {`
+          blockquote {
+            font-style: italic;
+            margin: 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--ns-light-gray);
+            transition: border-color .1s ease-in-out ;
+          }
+        `}
+      </style>
+    </blockquote>
+  )
+}
+
 function Hr () {
   return (
     <div>
@@ -164,7 +297,11 @@ function Hr () {
 
 export const components = {
   h1: H1,
+  ul: Ul,
+  li: Li,
   code: Code,
   p: P,
+  a: GenericLink,
+  blockquote: Blockquote,
   hr: Hr
 }

@@ -37,14 +37,6 @@ function Navbar ({ isOpen }) {
                 Blog
               </a>
             </Link>
-            <Link href='/contacto'>
-              <a className={cx('link', {
-                active: router.pathname === '/contacto'
-              })}
-              >
-                Contacto
-              </a>
-            </Link>
           </div>
         </Container>
         <style jsx>
@@ -69,6 +61,7 @@ function Navbar ({ isOpen }) {
             transition: background 0.2s ease;
             text-transform: uppercase;
             color: var(--ns-navbar-link);
+            border-radius: 8px;
             & :hover {
               background: var(--ns-light);
               color: var(--ns-navbar-link-hover);

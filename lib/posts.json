@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "slug": "/blog/como-usar-standard-en-next",
+      "date": "Marzo 9, 2020",
+      "title": "¿Cómo usar Standard en Next?"
+    },
+    {
       "slug": "/blog/que-es-la-agilidad",
       "date": "Febrero 3, 2020",
       "title": "¿Qué es la Agilidad?"

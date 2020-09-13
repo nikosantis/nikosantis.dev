@@ -9,11 +9,13 @@ export default css.global`
     --ns-gray: #666666;
     --ns-light-gray: #dedede;
     --ns-selection: rgba(0, 0, 0, 0.99);
-    --ns-header: 80px;
+    --ns-header: 77px;
     --ns-navbar-link: rgba(0,0,0,.5);
     --ns-navbar-link-hover: rgba(0,0,0,.9);
     --ns-footer: 70px;
     --ns-blue-link: #0074de;
+    --ns-button-link: rgba(0,0,0,.9);
+    --ns-button-link-hover: rgba(0,0,0,.7);
 
     /* Fonts */
     --font-sans: "Roboto", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
