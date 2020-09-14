@@ -14,8 +14,8 @@ export default css.global`
     --ns-navbar-link-hover: rgba(0,0,0,.9);
     --ns-footer: 70px;
     --ns-blue-link: #0074de;
-    --ns-button-link: rgba(0,0,0,.9);
-    --ns-button-link-hover: rgba(0,0,0,.7);
+    --ns-button-link: #1C1E21;
+    --ns-button-link-hover: rgba(28, 30, 33, 0.7);
 
     /* Fonts */
     --font-sans: "Roboto", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
@@ -33,5 +33,7 @@ export default css.global`
     --ns-light: #3E4042;
     --ns-navbar-link: rgba(255,255,255,.5);
     --ns-navbar-link-hover: rgba(255,255,255,.9);
+    --ns-button-link: #ffffff;
+    --ns-button-link-hover: rgba(255, 255, 255, 0.7);
   }
 `
