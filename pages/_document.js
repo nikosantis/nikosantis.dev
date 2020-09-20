@@ -11,6 +11,7 @@ class MyDocument extends Document {
     return (
       <Html lang='es'>
         <Head>
+          <meta charSet='utf-8' />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}

@@ -11,7 +11,7 @@ export default function About ({ children }) {
         <Container>
           <header>
             <figure className='photo'>
-              <img src='/images/nikolas-santis.png' alt='Nikolas Santis' />
+              <img src='/images/nikolas-santis.png?webp' alt='Nikolas Santis' />
             </figure>
             <div className='title'>
               <h1>

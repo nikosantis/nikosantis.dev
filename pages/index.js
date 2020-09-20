@@ -4,7 +4,7 @@ import Container from 'components/container'
 import { posts } from 'lib/posts'
 import Link from 'next/link'
 
-export default function Home () {
+export default function Home ({ myPosts }) {
   return (
     <Page>
       <Main>
@@ -22,7 +22,7 @@ export default function Home () {
             </div>
             <div className='posts'>
               {
-                posts.map(post => (
+                myPosts.map(post => (
                   <Link href={post.slug} key={post.slug}>
                     <a className='post-link'>
                       <div className='post'>
@@ -79,4 +79,12 @@ export default function Home () {
       </Main>
     </Page>
   )
+}
+
+export function getStaticProps () {
+  return {
+    props: {
+      myPosts: [...posts]
+    }
+  }
 }
