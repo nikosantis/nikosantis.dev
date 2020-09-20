@@ -160,7 +160,7 @@ function Code ({ children, syntax }) {
       <style jsx>
         {`
           pre {
-            background: #1d1f21;
+            background: var(--ns-code);
             color: #f8f8f2;
             white-space: pre;
             overflow: auto;

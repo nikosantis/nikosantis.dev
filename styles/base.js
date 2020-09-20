@@ -16,6 +16,7 @@ export default css.global`
     --ns-blue-link: #0074de;
     --ns-button-link: #1C1E21;
     --ns-button-link-hover: rgba(28, 30, 33, 0.7);
+    --ns-code: #1d1f21;
 
     /* Fonts */
     --font-sans: "Roboto", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
@@ -35,5 +36,6 @@ export default css.global`
     --ns-navbar-link-hover: rgba(255,255,255,.9);
     --ns-button-link: #ffffff;
     --ns-button-link-hover: rgba(255, 255, 255, 0.7);
+    --ns-code: #1a1a1a;
   }
 `

@@ -1,4 +1,6 @@
 export const meta = {
   title: '¿Cómo usar Standard en Next?',
-  date: 'Marzo 9, 2020'
+  description: 'Si alguna vez escuchaste, leíste o usaste Standardjs, te comparto una manera de cómo implementarlo en un proyecto con Nextjs.',
+  date: 'Marzo 9, 2020',
+  image: '/images/posts/como-usar-standard-en-next/como-usar-standard-en-next.png'
 }

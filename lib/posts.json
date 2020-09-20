@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "slug": "/blog/formatos-nativos-de-javascript-para-fechas",
+      "date": "Marzo 18, 2020",
+      "title": "Formatos Nativos de JavaScript para fechas"
+    },
+    {
       "slug": "/blog/como-usar-standard-en-next",
       "date": "Marzo 9, 2020",
       "title": "¿Cómo usar Standard en Next?"

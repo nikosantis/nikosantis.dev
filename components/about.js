@@ -31,11 +31,16 @@ export default function About ({ children }) {
       <style jsx>
         {`
           header {
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 25px 0;
             margin-bottom: 20px;
+            flex-direction: column;
+            @media (min-width: 768px) {
+              flex-direction: row;
+            }
           }
           .photo {
             width: 100px;
@@ -56,10 +61,17 @@ export default function About ({ children }) {
             }
           }
           .title {
-            margin-left: 25px;
+            text-align: center;
+            @media (min-width: 768px) {
+              text-align: left;
+              margin-left: 25px;
+            }
             h1 {
               margin: 0;
-              font-size: 2rem;
+              font-size: 1.5rem;
+              @media (min-width: 992px) {
+                font-size: 2rem;
+                }
               span {
                 font-size: 1.25rem;
                 @media (min-width: 992px) {

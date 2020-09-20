@@ -1,0 +1,152 @@
+import { LayoutPost } from 'components/layout/post'
+import { meta } from '_posts/formatos-nativos-de-javascript-para-fechas'
+
+export default LayoutPost({ ...meta })
+
+Por mucho tiempo, para manejar fechas, horas y sus formatos he sido un usuario de **moment.js** y tú?
+
+Bueno, también de **date-fns** 😬.
+
+Las fechas en muchas ocasiones, han sido un dolor de cabeza, con los formatos y todo eso. Pero también lo son los tamaños de las librerías.
+
+No te quiero asustar, pero te invito a que veas por ti: [Bundle Phobia de Moment.js](https://bundlephobia.com/result?p=moment@2.28.0 "Bundle Phobia de Moment.js")
+
+Te podrás dar cuenta que en su última versión, el peso de moment es de 280.9kB minimizado y con gzip es de 70.4kB. Eso es muchísimo.
+
+Muchas veces, el instalar moment para un simple formateo de fecha, es innecesario, aunque si no tienes otra forma de hacerlo, es innevitable.
+
+> Si bien, hoy por hoy, uso **Luxon** (69.7kB minimizado y 20.5kB gzip), que es de los mismos creadores de Moment, mucho más pequeño, sencilla de usar y una dependencia que recomiendo muchísimo. Así que si estás entre la espada y la pared para combatir con las fechas, usa Luxon.
+
+Cuando nació moment, era porque necesitábamos una forma de poder manejar las fechas, horas, días, tiempo, que en JavaScript no teníamos, o mejor dicho, JavaScript no lo tenía tan desarrollado de manera nativa. Habían ciertos métodos, pero no estaban maduros. No obstante, hoy JavaScript está mucho más avanzado y es eso que quiero mostrarte.
+
+Me refiero a los métodos **toLocaleDateString**, **toLocaleTimeString** y **toLocaleString**.
+
+La [compatibilidad en navegadores](https://caniuse.com/date-tolocaledatestring "compatibilidad en navegadores") de estos métodos es bastante buena.
+
+Si bien, estos tres métodos podrían ser casi iguales, tienen ciertas diferencias que veremos al final, pero lo primero que me gustaría decir, es que, el lenguaje construye realidades, y en el caso de estos métodos, podríamos entenderlos en base a sus nombres.
+
+Estos métodos reciben dos argumentos opcionales: el "locales" y las "opciones".
+
+```jsx
+date.nombreDelMétodo(locales, options)
+```
+
+Una prueba básica nos daría esto:
+
+```js
+const date = new Date('05/18/2020')
+console.log(date.toLocaleDateString())
+// 5/18/2020
+console.log(date.toLocaleTimeString())
+// 12:00:00 AM
+console.log(date.toLocaleString())
+// 5/18/2020, 12:00:00 AM
+```
+
+El primer argumento, **locales**, es la configuración regional. Puede ser una etiqueta BCP-47 como string o un array de etiquetas del idioma específico. (un BCP qué? mejor revisa [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Intl "aquí")). Un ejemplo podría ser: "es-CL", que indicaría el lenguaje español usado en Chile.
+
+Si no se entrega el primer argumento (undefined), tomará por defecto la configuración predeterminada de la aplicación, el navegador, etc.
+
+El segundo argumento, **options**, es un objeto que puede incluir varias opciones.
+
+Para **toLocaleDateString** tenemos weekday, month, year y day. Si no se usa options, estas opciones son undefined. Al mismo tiempo, cada una de estas opciones, tiene opciones internas.
+
+- weekday: narrow, short y long
+- year: numeric y 2-digit
+- month: numeric, 2-digit, narrow, short y long
+- day: numeric y 2-digit
+
+```js
+const date = new Date('05/18/2020')
+const options = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}
+console.log(date.toLocaleDateString('es-CL', options))
+// lunes, 18 de mayo de 2020
+```
+
+Para el caso de **toLocaleTimeString**, que hace referencia a la hora, las opciones son timeZone, hour12, hour, minute, second.
+
+- timeZone: el nombre como string de cada zona, ej: America/Santiago
+- hour12: true o false
+- hour: numeric, 2-digit
+- minute: numeric, 2-digit
+- second: numeric, 2-digit
+
+```js
+const date = new Date('05/18/2020')
+const options = {
+  timeZone: 'America/Santiago',
+  hour12: true,
+  hour: 'numeric',
+  minute: '2-digit',
+  second: '2-digit'
+}
+console.log(date.toLocaleTimeString('es-CL', options))
+// 0:00:00 a. m.
+```
+
+Finalmente, para el caso de **toLocaleString**, como es una combinación de ambas anteriores, las opciones que utilice son las que indicarán también que resultado tendré al ingresar los argumentos.
+
+```js
+const date = new Date('05/18/2020')
+const options = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'America/Santiago',
+  hour12: true,
+  hour: 'numeric',
+  minute: '2-digit',
+  second: '2-digit'
+}
+console.log(date.toLocaleString('es-CL', options))
+// lunes, 18 de mayo de 2020 0:00:00 a. m.
+```
+
+Bueno, así vamos entendiendo que podrían haber muchas combinaciones posibles que podrían servir.
+
+Por ejemplo:
+
+```js
+const date = new Date('05/18/2020')
+const options = {
+  month: 'short',
+  day: 'numeric'
+}
+console.log(date.toLocaleDateString('es-CL', options))
+// 18 may.
+```
+
+```js
+const date = new Date('05/18/2020')
+const options = {
+  month: 'long'
+}
+console.log(date.toLocaleDateString('es-CL', options))
+// mayo
+```
+
+```js
+const date = new Date('05/18/2020')
+const options = {
+  hour12: true,
+  hour: '2-digit'
+}
+console.log(date.toLocaleTimeString('es-CL', options))
+// 00 a. m.
+```
+
+En fin, hay varias opciones que puedes usar dependiendo de tus necesidades.
+
+Si bien es cierto, estas múltiples combinaciones posibles, pueden hacer más sencillo el manejo de fechas y horas, ten en cuenta, lo mencionado antes, *compatibilidad*.
+
+No obstante, si el cambio es muy grande desde moment a los métodos nativos, la mejor transición sería con Luxon.
+
+Espero que este pequeño post sobre algunos métodos nativos para el manejo de fechas y horas, te haya sido útil.
+
+Gracias por leer 😀.

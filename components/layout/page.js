@@ -22,7 +22,7 @@ export default function Page ({ title, description, image, children }) {
         <meta name='twitter:creator' content='@nikosantise' />
         <meta
           property='og:image'
-          content={image || '/images/nikosantis.png'}
+          content={image || '/images/nikosantis-dev.png'}
         />
       </Head>
       <Header />
