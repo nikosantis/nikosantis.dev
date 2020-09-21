@@ -4,12 +4,14 @@ import Container from 'components/container'
 import ButtonLink from 'components/button-link'
 import { FiArrowLeft } from 'react-icons/fi'
 
-export const LayoutPost = ({ title, description, image, date }) => ({ children }) => {
+export const LayoutPost = ({ title, description, image, date, url }) => ({ children }) => {
   return (
     <Page
       title={`${title} | Nikolas Santis, Desarrollador JavaScript`}
       description={description}
       image={image}
+      ogUrl={`https://nikosantis.dev/blog/${url}`}
+      ogType='article'
     >
       <Main>
         <Container>

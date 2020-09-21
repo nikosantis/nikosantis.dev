@@ -2,5 +2,6 @@ export const meta = {
   title: '¿Qué es la agilidad?',
   description: 'La agilidad es un tema muy recurrente en la actualidad, aunque viene de mucho más tiempo atrás. He querido hacer pequeña aproximación a lo que es la agilidad y cómo nos relacionamos con ella.',
   date: 'Febrero 3, 2020',
-  image: '/images/posts/que-es-la-agilidad/que-es-la-agilidad.png'
+  image: '/images/posts/que-es-la-agilidad/que-es-la-agilidad.png',
+  url: 'que-es-la-agilidad'
 }

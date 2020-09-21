@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from 'components/header'
 import Footer from 'components/footer'
 
-export default function Page ({ title, description, image, children }) {
+export default function Page ({ title, description, image, ogUrl, ogType, children }) {
   return (
     <div className='page'>
       <Head>
@@ -13,6 +13,8 @@ export default function Page ({ title, description, image, children }) {
         />
         <meta property='og:title' content={title || 'Nikolas Santis | Desarrollador JavaScript'} />
         <meta property='og:site_name' content='Nikolas Santis | Desarrollador JavaScript' />
+        <meta property='og:url' content={ogUrl || 'https://nikosantis.dev/'} />
+        <meta property='og:type' content={ogType || 'website'} />
         <meta
           property='og:description'
           content='Soy Nikolas Santis, Desarrollador JavaScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'
