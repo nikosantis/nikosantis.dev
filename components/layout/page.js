@@ -18,7 +18,7 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
         <meta property='og:locale' content='es_CL' />
         <meta
           property='og:description'
-          content='Soy Nikolas Santis, Desarrollador JavaScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'
+          content={description || 'Soy Nikolas Santis, Desarrollador JavaScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'}
         />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site' content='@nikosantise' />

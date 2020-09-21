@@ -4,10 +4,12 @@ import Container from 'components/container'
 import { posts } from 'lib/posts'
 import Link from 'next/link'
 
-export default function Home ({ myPosts }) {
+export default function Blog ({ myPosts }) {
   return (
     <Page
       title='Mi Blog | Nikolas Santis, Desarrollador JavaScript'
+      ogUrl='https://nikosantis.dev/blog'
+      description='Mi Blog. Aquí encontrarás artículos sobre JavaScript, React, Nextjs, Jamstack, Node, Serverless y más cosas.'
     >
       <Main>
         <Container>
