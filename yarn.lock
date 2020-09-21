@@ -1045,6 +1045,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@corex/deepmerge@^2.4.6":
+  version "2.4.9"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.4.9.tgz#01ef7aafabb28f09eb7335de3ca0b2b8357850f6"
+  integrity sha512-8AvpyLGK5EsX3PgxPUmVLm8YIIIBnRSImMisWIJF9JLAFgswhFsMqaI+BO4rKNJPU75eBx+Tyuh/ds7GpB+xZQ==
+
 "@eslint/eslintrc@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.1.3.tgz#7d1a2b2358552cc04834c0979bd4275362e37085"
@@ -4802,6 +4807,13 @@ next-optimized-images@^2.6.2:
     img-loader "^3.0.1"
     raw-loader "^2.0.0"
     url-loader "^1.1.2"
+
+next-sitemap@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-1.2.4.tgz#6f4b94563da26133f265920ab9779c15e49639eb"
+  integrity sha512-Dpitr8mdRpdpEj7iE/3llrAw/uHK0UB6zf68FX3Zxlt5DvdxzwtXzbQc8s6V6DPtOvwfctj5LXvQr+C4NEpImw==
+  dependencies:
+    "@corex/deepmerge" "^2.4.6"
 
 next-tick@~1.0.0:
   version "1.0.0"
