@@ -7,10 +7,10 @@ import { FiArrowLeft } from 'react-icons/fi'
 export const LayoutPost = ({ title, description, image, date, url }) => ({ children }) => {
   return (
     <Page
-      title={`${title} | Nikolas Santis, Desarrollador JavaScript`}
+      title={`${title} | Mi Blog`}
       description={description}
       image={image}
-      ogUrl={`https://nikosantis.dev/blog/${url}`}
+      ogUrl={`blog/${url}`}
       ogType='article'
     >
       <Main>
