@@ -25,7 +25,7 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
         <meta name='twitter:creator' content='@nikosantise' />
         <meta
           property='og:image'
-          content={image || '/images/nikosantis-dev.png'}
+          content={image || 'https://nikosantis.dev/images/nikosantis-dev.png'}
         />
       </Head>
       <Header />
