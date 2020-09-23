@@ -113,7 +113,7 @@ function P ({ children }) {
 }
 
 function GenericLink (props) {
-  if (props.href.startsWith('/') && !props.href.startsWith('/docs')) {
+  if (props.href.startsWith('/') && !props.href.startsWith('/blog')) {
     return <InternalLink {...props} />
   }
 
@@ -135,6 +135,10 @@ function InternalLink ({ href, children, error = false }) {
             a {
               text-decoration: ${error ? 'underline' : 'none'};
               font-size: inherit;
+              overflow-wrap: break-word;
+              word-wrap: break-word;
+              word-break: break-all;
+              hyphens: auto;
             }
             a:hover {
               text-decoration: none;
@@ -157,6 +161,10 @@ function AnchorLink ({ href, onClick, children }) {
             color: inherit;
             font-size: inherit;
             border-bottom: 1px dotted;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-all;
+            hyphens: auto;
           }
           a:hover {
             color: gray;
@@ -178,6 +186,10 @@ function ExternalLink ({ href, children }) {
           a {
             text-decoration: none;
             font-size: inherit;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-all;
+            hyphens: auto;
           }
         `}
       </style>
