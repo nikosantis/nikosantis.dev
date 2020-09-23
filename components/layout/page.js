@@ -24,12 +24,21 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
           property='og:description'
           content={description || 'Soy Nikolas Santis, Desarrollador JavaScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'}
         />
+        <meta
+          name='image'
+          property='og:image'
+          content={image || 'https://nikosantis.dev/images/nikosantis-dev.png'}
+        />
+        <meta name='twitter:title' content={title || 'Nikolas Santis | Desarrollador JavaScript'} />
+        <meta
+          name='twitter:description'
+          content={description || 'Soy Nikolas Santis, Desarrollador JavaScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'}
+        />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site' content='@nikosantise' />
         <meta name='twitter:creator' content='@nikosantise' />
         <meta
-          name='image'
-          property='og:image'
+          name='twitter:image'
           content={image || 'https://nikosantis.dev/images/nikosantis-dev.png'}
         />
       </Head>
