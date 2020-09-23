@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "slug": "/blog/la-nueva-transformacion-jsx",
+      "slug": "/blog/la-nueva-transformacion-jsx-de-react",
       "date": "Septiembre 23, 2020",
       "dateForISO": "9/23/2020",
       "title": "La nueva transformación JSX"
