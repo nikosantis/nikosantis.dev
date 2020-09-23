@@ -15,13 +15,13 @@ Junto con el lanzamiento de React 17, el equipo de react quiere hacer algunas me
 
 La actualización a la nueva transformación es completamente opcional, pero tiene algunos beneficios:
 
-- Con la nueva transformación, se puede usar **JSX sin importar Reac**t.
+- Con la nueva transformación, se puede usar **JSX sin importar React**.
 - Dependiendo de la configuración, la salida compilada puede **mejorar ligeramente el tamaño del bundle**.
 - Permitirá mejoras futuras que **reduzcan la cantidad de conceptos** que se necesita para aprender React.
 
 **Esta actualización no cambiará la sintaxis JSX y no es necesaria.** La antigua transformación JSX seguirá funcionando como de costumbre y no hay planes para quitarle el soporte.
 
-React 17 RC (Release Candidate) ya incluye soporte para la nueva transformación, así que ¡hay que probarlo!. Para que sea más fácil de adoptar, después del lanzamiento de React 17, también planean respaldar su soporte a React 16.x, React 15.x y React 14.x.
+React 17 RC (Release Candidate) ya incluye soporte para la nueva transformación, así que ¡hay que probarlo!. Para que sea más fácil de adoptar, después del lanzamiento de React 17, también planean respaldar su soporte a React 16.x, React 15.x y React 0.14.x.
 
 Veamos más de cerca las diferencias entre la transformación antigua y la nueva.
 
@@ -125,6 +125,8 @@ yarn upgrade @babel/core @babel/plugin-transform-react-jsx
 ```
 
 Si se está usando `@babel/preset-react`:
+
+Para usuarios NPM
 
 ```bash
 npm update @babel/core @babel/preset-react
