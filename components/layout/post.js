@@ -9,7 +9,7 @@ export const LayoutPost = ({ title, description, image, date, dateForISO, url })
     <Page
       title={`${title} | Mi Blog`}
       description={description}
-      image={image}
+      image={`https://nikosantis.dev/images/posts/${image}`}
       ogUrl={`blog/${url}`}
       ogType='article'
     >
