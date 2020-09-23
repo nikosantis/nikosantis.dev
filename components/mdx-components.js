@@ -209,7 +209,7 @@ function Code ({ children, syntax }) {
       </style>
       <style global jsx>
         {`
-        .token.comment,
+          .token.comment,
           .token.prolog,
           .token.doctype,
           .token.cdata {

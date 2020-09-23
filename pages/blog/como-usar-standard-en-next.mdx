@@ -42,21 +42,21 @@ Pero bueno, no te voy a enseñar sobre Standard, sino más bien, te mostraré c�
 
 Lo primero que debes hacer es iniciar un proyecto con Create Next App.
 
-```
+```bash
 npx create-next-app
 ```
 
 Inmediamente, la terminal que uses, te preguntará por el nombre de tu proyecto:
 
-```
+```bash
 ? What is your project named?
 ```
 
 Aunque si quieres evitar este paso, puedes usar
 
-````
+```bash
 npx create-next-app mi-nueva-app
-````
+```
 
 Es decir, puedes poner el nombre de tu proyecto desde antes.
 
@@ -70,13 +70,13 @@ Next
 
 Por lo que si no quisieras usar create-next-app puedes instalar tu mismo en tu proyecto con Yarn o NPM ya inicializado.
 
-```
+```bash
 yarn add react react-dom next
 ```
 
 o
 
-```
+```bash
 npm install react react-dom next
 ```
 
@@ -96,13 +96,13 @@ Vamos a usar las reglas de standard para react: eslint-config-standard-react
 
 Siguiendo la documentación, nos indica que debemos instalar todo esto como dependencias de desarrollo:
 
-```
+```bash
 yarn add -D eslint babel-eslint eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react
 ```
 
 o
 
-```
+```bash
 npm install -D eslint babel-eslint eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react
 ```
 
@@ -115,7 +115,7 @@ Standard soporta las ultimas características de ECMAscript, ES8 (ES2017) incluy
 
 No obstante, si quieres usar características experimentales de javaScript, babel-eslint es quien te ayuda, pero, Babel ha actualizado esta dependencia a otra nueva que es:
 
-```
+```bash
 @babel/eslint-parser
 ```
 
@@ -147,7 +147,7 @@ Todo te saldrá con muchas líneas rojas de errores debajo del ejemplo básico q
 
 El error es este:
 
-```
+```jsx
 'React' must be in scope when using JSX eslint(react/react-in-jsx-scope)
 ```
 
@@ -155,7 +155,7 @@ Esto es, porque en Next, no es necesario importar React en cada componente (algo
 
 Si quieres ver con más detalles los errores, te recomiendo instalar la extensión (si es que usas VSCODE, que es mi otra recomendación), [Error Lens.](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens "Error Lens")
 
-```
+```jsx
 import React from 'react'
 ```
 
@@ -190,7 +190,7 @@ export default function Title ({ className, children }) {
 
 Oppss!! 😱 otro error!!!
 
-```
+```jsx
 'children' is missing in props validation eslint(react/prop-types)
 ```
 
@@ -224,7 +224,7 @@ Primero debes iniciar un proyecto Next o también, en un proyecto que ya esté a
 
 Luego debes instalar las dependencias de desarrollo de standard para react.
 
-```
+```bash
 yarn add -D eslint babel-eslint eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react
 ```
 
@@ -258,7 +258,7 @@ Puedes encontrar este ejemplo en mi **[github](https://github.com/nikosantis/nex
 
 Te recomiendo agregar otro plugin de eslint para ayudarte con los hooks de React.
 
-```
+```bash
 yarn add -D eslint-plugin-react-hooks
 ```
 
