@@ -13,6 +13,7 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
         />
         <meta property='og:title' content={title || 'Nikolas Santis | Desarrollador JavaScript'} />
         <meta property='og:site_name' content='Nikolas Santis | Desarrollador JavaScript' />
+        <meta name='author' content='Nikolas Santis' />
         <meta
           property='og:url'
           content={ogUrl ? `https://nikosantis.dev/${ogUrl}` : 'https://nikosantis.dev/'}
@@ -27,6 +28,7 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
         <meta name='twitter:site' content='@nikosantise' />
         <meta name='twitter:creator' content='@nikosantise' />
         <meta
+          name='image'
           property='og:image'
           content={image || 'https://nikosantis.dev/images/nikosantis-dev.png'}
         />
