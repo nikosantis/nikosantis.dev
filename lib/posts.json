@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "slug": "/blog/la-nueva-transformacion-jsx",
+      "date": "Septiembre 23, 2020",
+      "dateForISO": "9/23/2020",
+      "title": "La nueva transformación JSX"
+    },
+    {
       "slug": "/blog/se-viene-react-v17",
       "date": "Agosto 10, 2020",
       "dateForISO": "08/10/2020",
