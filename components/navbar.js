@@ -62,6 +62,7 @@ function Navbar ({ isOpen }) {
             text-transform: uppercase;
             color: var(--ns-navbar-link);
             border-radius: 8px;
+            font-weight: 500;
             & :hover {
               background: var(--ns-light);
               color: var(--ns-navbar-link-hover);

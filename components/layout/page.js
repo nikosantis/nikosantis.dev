@@ -43,63 +43,55 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
           }
         `}
       </style>
-      <style global jsx>
+      <style jsx global>
         {`
+          html {
+            -webkit-text-size-adjust: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            touch-action: manipulation;
+            font-feature-settings: 'case' 1, 'rlig' 1, 'calt' 0;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
           *,
           *::before,
           *::after {
             box-sizing: border-box;
           }
-          a {
-            -webkit-tap-highlight-color: transparent;
-          }
-          @media (any-hover: hover) {
-            a:hover {
-              -webkit-tap-highlight-color: transparent;
-            }
-          }
-          html {
-            scroll-behavior: smooth;
-          }
           body {
             font-family: var(--font-sans);
-            background: var(--ns-bg);
-            color: var(--ns-fg);
-            width: 100vw;
+            min-width: 320px;
             min-height: 100vh;
             transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
             margin: 0;
+            font-size: 1rem;
+            direction: ltr;
+            font-feature-settings: 'kern';
+            text-rendering: optimizeLegibility;
+            scroll-behavior: smooth;
           }
-          h1, h2, h3 {
-            margin: 0;
+          html,
+          body {
+            background: var(--ns-bg);
+            color: var(--ns-fg);
+          }
+          ::selection {
+            text-shadow: none;
+            background: var(--ns-selection);
+            color: var(--ns-bg);
+          }
+          [role='grid']:focus {
+            outline: none;
+          }
+          svg {
+            text-rendering: optimizeLegibility;
           }
           h1,
           h2,
-          h3,
-          h4,
-          h5,
-          h6 {
-            font-family: var(--font-sans);
-            font-weight: 600;
-            line-height: 1.75;
-          }
-          h1 {
-            font-size: 2.25rem;
-            font-weight: 600;
-            line-height: 1.25;
-            letter-spacing: -0.89px;
-          }
-          h2 {
-            font-size: 2rem;
-            letter-spacing: -0.69px;
-          }
           h3 {
-            font-size: 1.5rem;
-            letter-spacing: -0.47px;
-          }
-          h4 {
-            font-size: 1.25rem;
-            letter-spacing: -0.33px;
+            margin: 0;
           }
           p a,
           a {
@@ -115,17 +107,20 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
           a:focus {
             color: var(--ns-gray);
           }
+          a {
+            -webkit-tap-highlight-color: transparent;
+          }
+          @media (any-hover: hover) {
+            a:hover {
+              -webkit-tap-highlight-color: transparent;
+            }
+          }
           button {
             border: none;
             padding: 0;
             margin: 0;
             line-height: inherit;
             font-size: inherit;
-          }
-          ::selection {
-            text-shadow: none;
-            background: var(--ns-selection);
-            color: var(--ns-bg);
           }
           pre,
           code {
@@ -142,7 +137,6 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
             -khtml-user-select: none;
             user-select: none;
           }
-          .no-tap-highlight,
           a {
             -webkit-touch-callout: none;
             -ms-touch-action: pan-y;

@@ -29,7 +29,7 @@ export default function Home ({ myPosts }) {
                         <h2>
                           {post.title}
                         </h2>
-                        <time dateTime={new Date(post.date).toISOString()}>{post.date}</time>
+                        <time dateTime={new Date(post.dateForISO).toISOString()}>{post.date}</time>
                       </div>
                     </a>
                   </Link>
@@ -70,6 +70,7 @@ export default function Home ({ myPosts }) {
             .post {
               padding: 10px;
               transition: background 0.2s ease;
+              margin-bottom: 8px;
               h2 {
                 font-size: 1.5rem;
               }

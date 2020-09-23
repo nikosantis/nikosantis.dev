@@ -4,7 +4,7 @@ import Container from 'components/container'
 import ButtonLink from 'components/button-link'
 import { FiArrowLeft } from 'react-icons/fi'
 
-export const LayoutPost = ({ title, description, image, date, url }) => ({ children }) => {
+export const LayoutPost = ({ title, description, image, date, dateForISO, url }) => ({ children }) => {
   return (
     <Page
       title={`${title} | Mi Blog`}
@@ -20,7 +20,7 @@ export const LayoutPost = ({ title, description, image, date, url }) => ({ child
               <h1>
                 {title}
               </h1>
-              <time dateTime={new Date(date).toISOString()}>
+              <time dateTime={new Date(dateForISO).toISOString()}>
                 {date}
               </time>
             </header>
@@ -45,6 +45,8 @@ export const LayoutPost = ({ title, description, image, date, url }) => ({ child
           }
           h1 {
             margin-bottom: 15px;
+            margin-top: 0;
+            font-size: 2rem;
           }
           footer {
             padding: 25px 0;

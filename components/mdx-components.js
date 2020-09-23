@@ -16,6 +16,38 @@ function H1 ({ children, id }) {
   )
 }
 
+function H2 ({ children, id }) {
+  return (
+    <h2 id={id}>
+      {children}
+      <style jsx>
+        {`
+          h2 {
+            margin-top: 2rem;
+            font-size: 1.875rem;
+          }
+        `}
+      </style>
+    </h2>
+  )
+}
+
+function H3 ({ children, id }) {
+  return (
+    <h3 id={id}>
+      {children}
+      <style jsx>
+        {`
+          h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+          }
+        `}
+      </style>
+    </h3>
+  )
+}
+
 function Ul ({ children }) {
   return (
     <ul>
@@ -297,6 +329,8 @@ function Hr () {
 
 export const components = {
   h1: H1,
+  h2: H2,
+  h3: H3,
   ul: Ul,
   li: Li,
   code: Code,
