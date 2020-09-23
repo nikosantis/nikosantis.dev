@@ -113,7 +113,7 @@ function P ({ children }) {
 }
 
 function GenericLink (props) {
-  if (props.href.startsWith('/') && !props.href.startsWith('/blog')) {
+  if (props.href.startsWith('/')) {
     return <InternalLink {...props} />
   }
 
