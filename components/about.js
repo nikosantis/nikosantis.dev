@@ -5,7 +5,7 @@ import Container from 'components/container'
 export default function About ({ children }) {
   return (
     <Page
-      title='Soy Nikolas Santis | Desarrollador JavaScript'
+      title='Soy Nikolas Santis | Desarrollador JavaScript y TypeScript'
       ogUrl='sobre-mi'
     >
       <Main>
@@ -19,7 +19,7 @@ export default function About ({ children }) {
                 Mi nombre es Nikolas Santis
                 <br />
                 <span>
-                  y soy desarrollador JavaScript
+                  y soy desarrollador JavaScript y TypeScript
                 </span>
               </h1>
             </div>

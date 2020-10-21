@@ -16,8 +16,8 @@ export default function Home ({ myPosts }) {
                 <br /> y este es mi blog
               </h1>
               <p>
-                Soy desarrollador JavaScript de software, web y mobile.
-                Comparto mi experiencia con artículos sobre JavaScript, React, Nextjs, Jamstack, Node, Serverless y más.
+                Soy desarrollador JavaScript y TypeScript de software, web y mobile.
+                Comparto mi experiencia con artículos sobre JavaScript, TypeScript, React, Nextjs, Jamstack, Node, Serverless y más.
               </p>
             </div>
             <div className='posts'>

@@ -6,10 +6,10 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
   return (
     <div className='page'>
       <Head>
-        <title>{title || 'Nikolas Santis | Desarrollador JavaScript'}</title>
+        <title>{title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'}</title>
         <meta
           name='description'
-          content={description || 'Soy Nikolas Santis, Desarrollador JavaScript de Software, Web y Mobile.  Este es mi Blog. Santiago, Chile 2020.'}
+          content={description || 'Soy Nikolas Santis, Desarrollador JavaScript y TypeScript de Software, Web y Mobile.  Este es mi Blog. Santiago, Chile 2020.'}
         />
         <meta property='og:title' content={title || 'Nikolas Santis | Desarrollador JavaScript'} />
         <meta property='og:site_name' content='Nikolas Santis | Desarrollador JavaScript' />
@@ -22,17 +22,17 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
         <meta property='og:locale' content='es_ES' />
         <meta
           property='og:description'
-          content={description || 'Soy Nikolas Santis, Desarrollador JavaScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'}
+          content={description || 'Soy Nikolas Santis, Desarrollador JavaScript y TypeScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'}
         />
         <meta
           name='image'
           property='og:image'
           content={image || 'https://nikosantis.dev/images/nikosantis-dev.png'}
         />
-        <meta name='twitter:title' content={title || 'Nikolas Santis | Desarrollador JavaScript'} />
+        <meta name='twitter:title' content={title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'} />
         <meta
           name='twitter:description'
-          content={description || 'Soy Nikolas Santis, Desarrollador JavaScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'}
+          content={description || 'Soy Nikolas Santis, Desarrollador JavaScript y TypeScript de Software, Web y Mobile. Este es mi Blog Santiago, Chile 2020.'}
         />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site' content='@nikosantise' />
