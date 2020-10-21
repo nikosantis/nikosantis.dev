@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "slug": "/blog/react-17-ya-esta-aqui",
+      "date": "Octubre 20, 2020",
+      "dateForISO": "10/20/2020",
+      "title": "React v17.0 ya está aquí"
+    },
+    {
       "slug": "/blog/la-nueva-transformacion-jsx-de-react",
       "date": "Septiembre 23, 2020",
       "dateForISO": "9/23/2020",
