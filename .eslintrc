@@ -4,8 +4,15 @@
     "es2020": true,
     "node": true
   },
-  "extends": ["standard", "standard-react"],
-  "plugins": ["react-hooks"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "extends": ["standard", "standard-react", "plugin:react/recommended"],
+  "plugins": ["react", "react-hooks"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",

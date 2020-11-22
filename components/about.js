@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Page from 'components/layout/page'
 import Main from 'components/main'
 import Container from 'components/container'
@@ -11,9 +12,9 @@ export default function About ({ children }) {
       <Main>
         <Container>
           <header>
-            <figure className='photo'>
-              <img src='/images/nikolas-santis.png?webp' alt='Nikolas Santis' />
-            </figure>
+            <div className='photo'>
+              <Image src='/images/nikolas-santis.png' alt='Nikolas Santis' layout="fill" objectFit='contain' />
+            </div>
             <div className='title'>
               <h1>
                 Mi nombre es Nikolas Santis
@@ -47,19 +48,15 @@ export default function About ({ children }) {
             width: 100px;
             height: 100px;
             border-radius: 50%;
+            overflow: hidden;
+            position: relative;
             @media (min-width: 992px) {
               width: 150px;
               height: 150px;
             }
           }
-          img {
-            width: 100px;
-            height: 100px;
+          .image {
             border-radius: 50%;
-            @media (min-width: 992px) {
-              width: 150px;
-              height: 150px;
-            }
           }
           .title {
             text-align: center;
@@ -72,15 +69,12 @@ export default function About ({ children }) {
               font-size: 1.5rem;
               @media (min-width: 992px) {
                 font-size: 2rem;
-                }
+              }
               span {
                 font-size: 1.25rem;
                 @media (min-width: 992px) {
                   font-size: 1.5rem;
                 }
-              }
-              @media (min-width: 992px) {
-                font-size: 2.25rem;
               }
             }
           }
