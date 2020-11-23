@@ -4,7 +4,7 @@ import Container from 'components/container'
 import ButtonLink from 'components/button-link'
 import { FiArrowLeft } from 'react-icons/fi'
 
-export const LayoutPost = ({ title, description, image, date, dateForISO, url }) => ({ children }) => {
+export default function LayoutPost ({ title, description, image, date, dateForISO, url, children }) {
   return (
     <Page
       title={`${title} | Mi Blog`}

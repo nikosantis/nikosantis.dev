@@ -1,7 +1,5 @@
-import { LayoutPost } from 'components/layout/post'
+import LayoutPost from 'components/layout/post'
 import { meta } from '_posts/la-nueva-transformacion-jsx-de-react'
-
-export default LayoutPost({ ...meta })
 
 Siguiendo con el post anterior de React 17, lo vuelvo a decir: No contiene nuevas funciones. No obstante, hay algo importante que han anunciado ayer 22 de septiembre el equipo de React:
 
@@ -253,3 +251,5 @@ Bueno, este era más corto que el anterior.
 Se vienen grandes cosas en React 17 ⚛️ 😱!!!
 
 Fuente: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html (inglés)
+
+export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>

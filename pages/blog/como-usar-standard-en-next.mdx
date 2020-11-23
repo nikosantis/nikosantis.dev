@@ -1,7 +1,5 @@
-import { LayoutPost } from 'components/layout/post'
+import LayoutPost from 'components/layout/post'
 import { meta } from '_posts/como-usar-standard-en-next'
-
-export default LayoutPost({ ...meta })
 
 **Standard** qué 🤨???
 
@@ -284,3 +282,5 @@ Y el archivo de configuración debería quedar así:
 ```
 
 Y listo 😀!!!
+
+export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>

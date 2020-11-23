@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "slug": "/blog/nextjs-10",
+      "date": "Octubre 27, 2020",
+      "dateForISO": "10/27/2020",
+      "title": "Lanzamiento de Next.js 10"
+    },
+    {
       "slug": "/blog/react-17-ya-esta-aqui",
       "date": "Octubre 20, 2020",
       "dateForISO": "10/20/2020",

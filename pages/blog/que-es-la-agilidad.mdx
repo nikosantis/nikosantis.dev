@@ -1,7 +1,5 @@
-import { LayoutPost } from 'components/layout/post'
+import LayoutPost from 'components/layout/post'
 import { meta } from '_posts/que-es-la-agilidad'
-
-export default LayoutPost({ ...meta })
 
 Era muy extraño hace unos años atrás cuando veía la palabra *agile* en muchos lados.
 Claramente, con el "clásico inglés 🧐" que uno cree tener, deduje que se refería a agilidad.
@@ -94,3 +92,5 @@ Para terminar, te dejo los principios del manifiesto ágil:
 - La simplicidad, o el arte de maximizar la cantidad de trabajo no realizado, es esencial.
 - Las mejores arquitecturas, requisitos y diseños emergen de equipos auto-organizados.
 - A intervalos regulares el equipo reflexiona sobre cómo ser más efectivo para a continuación ajustar y perfeccionar su comportamiento en consecuencia.
+
+export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>

@@ -1,7 +1,5 @@
-import { LayoutPost } from 'components/layout/post'
+import LayoutPost from 'components/layout/post'
 import { meta } from '_posts/se-viene-react-v17'
-
-export default LayoutPost({ ...meta })
 
 Hoy se ha publicado en el blog oficial de React el primer Release Candidate para React 17, luego de dos años y medio desde el último release importante (ha pasado bastante no?).
 
@@ -281,3 +279,5 @@ También se ha proporcionado compilaciones UMD de React a través de una CDN:
 Uff que largo.
 
 Fuente: https://reactjs.org/blog/2020/08/10/react-v17-rc.html (inglés)
+
+export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>

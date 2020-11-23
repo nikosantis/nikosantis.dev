@@ -1,8 +1,5 @@
-import { LayoutPost } from 'components/layout/post'
+import LayoutPost from 'components/layout/post'
 import { meta } from '_posts/react-17-ya-esta-aqui'
-
-export default LayoutPost({ ...meta })
-
 
 Hoy, 20 de octubre del 2020, ha sido lanzado React 17.
 
@@ -99,3 +96,5 @@ También se ha proporcionado compilaciones UMD de React a través de una CDN:
 Muchas gracias por leer.
 
 Fuente: https://reactjs.org/blog/2020/10/20/react-v17.html
+
+export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>

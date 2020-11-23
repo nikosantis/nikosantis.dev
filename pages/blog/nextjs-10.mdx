@@ -1,0 +1,437 @@
+import LayoutPost from 'components/layout/post'
+import { meta } from '_posts/nextjs-10'
+
+Hoy 27 de octubre 2020, ha sido lanzado Next.js 10, con grandes noticias, las cuales debo decir, son bastante importantes.
+
+Dentro de las cosas que trae esta nueva versión son:
+
+- **Componente de `<Imagen />` y optimización automática de imagen:** para optimizar automáticamente las imágenes con el nuevo componente `next/image`.
+- **Enrutamiento con Internacionalización:** ahora se puede internacionalizar de manera sencilla Nextj.sj con primitivas integradas.
+- **Next.js Analytics:** medir y actuar sobre el rendimiento de un usuario real.
+- **Next.js Commerce:** kit de inicio, todo en uno, para sitios ecommerce de alto rendimiento.
+- **Soporte para [React 17](/blog/react-17-ya-esta-aqui "React 17"):** soporte para la última versión de React 17 es totalmente compatible con Next.js.
+- **Fast refresh de getStaticProps / getServerSideProps:** fast refresh de propiedades al editar métodos de obtención de datos.
+- **Fast refresh para MDX:** cuando se usa `@next/mdx`, el fast refresh ahora se aprovecha para aplicar cambios sin recargar la página completa.
+- **Importación de CSS de componentes de React de terceros:** ahora se admite la importación de CSS necesaria para los componentes de NPM.
+- **Resolución automática de href:** la propiedad `as` ya no es necesaria en `next/link`.
+- **@next/codemod CLI:** permite un acceso más fácil a todos los codificadores de Next.js.
+- **Bloqueo fallback de getStaticPaths:** esperar un pre render al generar nuevas páginas estáticas en lugar de entregar una página de respaldo estática.
+
+## Componente de `<Imagen />` y optimización automática de imagen:
+
+El objetivo del equipo de Next.js es mejorar dos cosas: la experiencia de quienes desarrollan y la experiencia de usuarios.
+
+Este año ya se ha invertido mucho en la experiencia del desarrollo como en la mejora del rendimiento de todas las aplicaciones Next.js. Se han centrado en reducir la cantidad de JavaScript que debe cargar el navegador.
+
+Se han introducido más de **20 funciones nuevas** que mejoran el rendimiento y la experiencia de desarrollo. Al mismo tiempo, el tamaño de JavaScript del núcleo de Next.js se ha **reducido en un 16%**.
+
+En enero, el equipo de Next.js ha presentado la mejor estrategia de división de código JavaScript de su clase en colaboración con el equipo de **Google Chrome**.
+
+Por ejemplo, Barnebys vio una **disminución del 23% en el tamaño de la aplicación**, y Sumup tuvo una **disminución del 70% en el tamaño de paquete de JavaScript más grande**. Estas mejoras se lograron **sin cambiar ningún código** en sus aplicaciones Next.js.
+
+Las empresas adoptaron esta nueva estrategia automáticamente de manera simple actualizando Nextj.js a la última versión.
+
+### Imágenes en la web
+
+Si bien, el enfoque de Next.js en reducir la cantidad de JavaScript que el navegador tiene que cargar ha valido la pena, la web no es solo JavaScript: también es markup e imágenes.
+
+Las imágenes ocupan el 50% del total de bytes en las páginas web.
+
+Las imágenes tienen un gran impacto en el Largest Contentful Paint, ya que a menudo son el elemento visible más grande cuando se carga una página. El Largest Contentful Paint es un elemento fundamental de la Web que Google utilizará en su clasificación de búsqueda [muy pronto](https://webmasters.googleblog.com/2020/05/evaluating-page-experience.html "muy pronto").
+
+La mitad de todas las imágenes tiene un tamaño superior a un megabyte, lo que significa que no están optimizadas para mostrarse en la web.
+
+Hoy en día, los usuarios navegan por la web usando sus teléfonos, tablets y computadoras portátiles, sin embargo, las imágenes siguen siendo una talla única. Por ejemplo: los sitios cargan una imagen de 2000x2000 pixeles, pero los teléfonos solo la muestran como 100x100 pixeles.
+
+Además, el 30% de las imágenes de las páginas web están fuera del initial viewport, lo que significa que el navegador carga imágenes que el usuario no ve hasta que se desplaza hacia abajo en la página.
+
+Las imágenes a menudo no tienen una propiedad `width` y `height`, lo que hace que salten cuando se carga la página. Esto perjudica al Core Web Vital de Cumulative Layout Shift.
+
+El 99,7% de las imágenes de los sitios web no utilizan formatos de imagen modernos como WebP.
+
+Para utilizar imágenes en páginas web de manera eficaz, se deben considerar muchos aspectos: tamaño, peso, carga diferida y formatos de imagen modernos.
+
+Al desarrollar se deben configurar herramientas de compilación complicadas para optimizar las imágenes; sin embargo, esas herramientas generalmente no cubren las imágenes enviadas por el usuario que provienen de una fuente de datos externa, lo que hace imposible optimizar todas las imágenes.
+
+Esta tarea de desarrollo imposible conduce invevitablemente a una experiencia frustrante para el usuario final.
+
+### Componente de Imagen Next.js
+
+Con esta nueva versión se anuncia la solución de Next.js para imágenes de alto rendimiento en la web: el componente de imagen Next.js y la optimización automática de imágenes.
+
+En su forma más básica, el componente de imagen Next.js es solo un reemplazo directo del elemento HTML `<img>`, desarrollado para la web moderna.
+
+```html
+<img src="src/profile-picture.jpg" width="400" height="400" alt="Profile Picture">
+```
+
+```jsx
+<Image src="src/profile-picture.jpg" width="400" height="400" alt="Profile Picture">
+```
+
+El equipo de Google Chrome ayudó a crear este componente React para mejorar el rendimiento de la página al hacer que las mejores prácticas sean las predeterminadas.
+
+Cuando se usa el componente `next/image`, las imágenes se carga automáticamente, lo que significa que solo se procesan cuando el usuario está cerca de ver la imagen. Esto evita cargar ese 30% de las imágenes fuera del initial viewport.
+
+Se aplican las dimensiones de la imagen, lo que permite a los navegadores representar inmediatamente el espacio necesario para la imagen en lugar de que salte cuando se carga, lo que evita cambios de diseño.
+
+Si bien `width` y `height` en el elemento HTML `<img>` pueden causar problemas con diseños responsivos, este no es el caso cuando se usa `next/image`. Cuando se utiliza `next/image`, la imagen response automáticamente en función de la relación de aspecto del formato proporcionado `width` y `height`.
+
+Ahora se puede marcar imágenes que están en la initial viewport, lo que permite que Next.js precargue automáticamente estas imágenes. La carga previa de imágenes en initial viewport ha mostrado mejoras en Largest Contentful Paint hasta en un 50%.
+
+### Optimización automática de imágenes
+
+Incluso con estas mejoras en comparación con el elemento HTML `<img>`, sigue existiendo un problema importante. La imagen de 2000x2000 px se envía a teléfonos que generan una imagen más pequeña.
+
+Con Next.js 10 también se está resolviendo este problema. El componente `next/image` generará automáticamente tamaños más pequeños a través de la optimización de imagen incorporada.
+
+La optimización de imagen incorporada sirve automáticamente las imágenes en formatos de imagen modernos como WebP, que es aproximadamente un 30% más pequeño que JPEG, si el navegador lo admite. También permite que Next.js adopte automáticamente **futuros** formatos de imagen y los sirva a navegadores que admitan esos formatos.
+
+La optimización de imagen funciona con cualquier fuente de imagen. Incluso si las imágenes provienen de una fuente de datos externa, como un CMS o CDN.
+
+### Conclusión
+
+El nuevo componente `next/image` y la Optimización automática de imágenes son nuevas y poderosas primitivas que mejorarán enormemente la experiencia del usuario.
+
+El componente `next/image` maneja la carga diferida automática, la precarga de imágenes críticas, el tamaño correcto en todos los dispositivos y admite automáticamente formatos modernos. Estas características funcionan con imágenes de cualquier fuente.
+
+## Enrutamiento con Internacionalización
+
+Este año, varias empresas y miembros de la comunidad ayudaron al equipo de Next.js a comprender la importancia de la internacionalización.
+
+Por ejemplo, aprendieron que el 72% de los consumidores es más probable que permanezcan en su sitio web si ha sido traducido y el 55% de los consumidores dijeron que solo compran en sitios de ecommerce en su idioma nativo.
+
+Si planeas salir al mercado en un país diferente, internacionalizar tu proyecto es fundamental para el éxito.
+
+La internacionalización de un proyecto tiene dos pilares principales: Traducciones y Enrutamiento.
+
+Muchas bibliotecas React preparan aplicaciones para traducir, pero la mayoría espera que maneje el enrutamiento manualmente, y por lo general, solo funciona con una estrtegia de renderizado.
+
+Es por eso que, como parte de Next.js 10, se está lanzando soporte integrado para enrutamiento internacionalizado y detección de idiomas.
+
+Este soporte integrado para enrutamiento internacionalizado admite la estrategia híbrida de Next.js, por lo que se puede elegir entre generación estática o server side render por página.
+
+Next.js 10 admite las dos estrategias de enrutamiento más comunes: enrutamiento de subruta y enrutamiento de dominio.
+
+Para ambas estrategias, se debe configurar las configuraciones regionales en Next.js config.
+
+```js
+// next.config.js
+module.exports = {
+	i18n: {
+		locales: ['en', 'es'],
+		defaultLocale: 'es'
+	}
+}
+```
+
+Las configuraciones regionales son los identificadores de configuración regional de UTS, un formato estandarizado para definir configuraciones regionales.
+
+En general, un identificador de configuración regional se compone de un idioma, región, separado por un guión: `lenguaje-region-script`. La región y el script son opcionales. Un ejemplo:
+
+- `es-ES`: Español como se habla en España.
+- `es-CL`: Español como se habla en Chile.
+- `en-US`: Inglés como se habla en los Estados Unidos.
+- `nl-NL`: Holandés como se habla en los Países Bajos.
+- `nl`: Holandés, sin región específica.
+
+Una vez configuradas las configuraciones regionales, puede elegir el enrutamiento de dominio o subruta.
+
+### Enrutamiento de subrutas
+
+El enrutamiento de subrutas coloca la configuración regional en la URL. Esto permite que todos los idiomas vivan en un solo dominio.
+
+Por ejemplo, puede insertar la configuración regional en la URL como: `es/blog` y `en/blog`.
+
+### Enrutamiento de dominio
+
+El enrutamiento de dominio le permite asignar una configuración regional a un dominio de nivel superior. Por ejemplo, `ejemplo.cl` se puede asignar a la configuración regional `cl` y `example.com` se puede asignar a la configuración regional `en`.
+
+El enrutamiento de dominios requiere una configuración adicional para saber cómo enrutar dominios:
+
+```js
+// next.config.js
+module.exports = {
+	i18n: {
+		locales: ['es', 'en'],
+		domains: [
+			{
+				domain: 'example.com',
+				defaultLocale: 'en'
+			},
+			{
+				domain: 'ejemplo.cl',
+				defaultLocale: 'es'
+			}
+		]
+	}
+}
+```
+
+### Detección de idioma
+
+Next.js 10 tiene detección de idioma incorporado en la ruta `'/'` basada en el encabezado `Accept-Language`, que todos los navegadores modernos admiten. Las configuraciones regionales coincidirán con el encabezado `Accept-Language` y luego se redirigirán de acuerdo con la estrategia configurada.
+
+### Optimización de motores de búsqueda
+
+Dado que Next.js conoce el idioma de la página visitada por el usuario, agregará automáticamente el atributo lang a la etiqueta `<html>`.
+
+Next.js no conoce las variantes de una página, por lo que dependerá de nosotros agregar las meta etiquetas `hreflang` usando `next/head`. Sobre `hreflang` [aquí más información](https://developers.google.com/search/docs/advanced/crawling/localized-versions?visit_id=637417387696940686-2253031362&rd=1 "aquí más información").
+
+### El futuro de la internacionalización en Next.js
+
+El enrutamiento con internacionalización es la primera de una serie de funciones que facilitarán la internacionalización y localización de los proyectos. El enrutamiento permite la integración con la mayoría de las bibliotecas de internacionalización de React, como `react-intl`, `react-i18next`, `lingui`, `rosetta`, etc.
+
+## Next.js Analytics
+
+En Vercel, saben que no se puede arreglar lo que no se puede medir.
+
+Cada vez, los visitantes se han vuelto cada vez más sensibles al rendimiento de un sitio web. Más del 50% de ellos abandonará un sitio web si tarda más de 3 segundos en cargar. Si está en ecommerce, muchos habrán descubierto que mejorar el tiempo de carga en una démica de segundo ha resultado en un aumento del 1% de la conversión.
+
+Debido a lo crítico que es el rendimiento para el éxito, es que se hace también el lanzamiento de Next.js Analytics. La solución para realizar un seguimiento de las métricas de rendimiento del mundo real y aportar esos conocimientos al flujo de trabajo de desarrollo.
+
+Con Next.js Analytics:
+
+En lugar de medir una vez, **ahora medirá continuamente**.
+
+En lugar de medir en un dispositivo de desarrollo, las **mediciones provendrán de los dispositivos reales que están usando los visitantes**.
+
+**Next.js Analytics se trata de centrarse en la imagen completa, comprender profundamente a la audiencia y cómo funciona la aplicación para los usuarios**.
+
+Somos tan inflexibles en la recopilación de datos reales porque las causas de un rendimiento deficiente no siempre son las más obvias. Las regresiones de rendimiento pueden resultar de una variedad de lugares: guiones y hojas de estilo de terceros, o fuentes, imágenes y videos propios que son demasiado grandes o lentos.
+
+### Elementos fundamentales de la Web
+
+Google, junto con el Grupo de trabajo de rendimiento Web, ha establecido el conjunto de métricas para medir con precisión cómo los usuarios experimentan el rendimiento de un sitio web: con el nombre adecuado, Web Vitals. Web Vitals son métricas que rastrean la velocidad de carga percibida, la capacidad de respuesta y la estabilidad visual de un sitio web, ¡las tres son esenciales para la salud general del sitio web!
+
+La velocidad de carga percibida se puede medir con Largest Contentful Paint o cuando se ha mostrado todo el contenido de la página. Por ejemplo, cuando se abre un enlace para comprar un par de zapatillas, la cantidad de tiempo que pasa antes de ver las zapatillas, su precio y el botón Agregar al Carrito es LCP (Largest Contentful Paint).
+
+La capacidad de respuesta de la página se puede medir mediante el retardo de la primera entrada, que mide cuánto tiempo deben esperar los usuarios para ver la reacción de su primera interacción con la página. Por ejemplo, la cantidad de tiempo entre que se hace clic en Agregar al Carrito y el número de artículos del carrito se incrementa es FID (First Input Delay).
+
+Por último, la estabilidad visual se puede medir mediante el Cumulative Layout Shift o la cantidad de elementos que se mueven después de mostrarse al usuario. Por ejemplo, todos hemos experimentado la frustración de intentar presionar un botón que se movió porque una imagen se cargó tarde; es es un Cambio de Diseño (Layout Shift).
+
+La medición continua y la conformidad de estos elementos vitales web para usuarios reales es crucial. Es la única forma de saber realmente el rendimiento de un sitio para los usuarios. El rendimiento de un sitio puede variar drásticamente según el dispositivo de un usuario y las condiciones de su red, o cómo interactúan con la página. Los sitios que cargan contenido o anuncios personalizados también pueden experimentar un rendimiento muy diferente de un usuario a otro.
+
+**Una prueba emulada no puede capturar estas señales importantes.**
+
+Next.js Analytics le permite capturar información del mundo real, en lugar de evaluaciones comparativas sintéticas. Permite un flujo continuo de medición en lugar de depender de pruebas ocasionales, lo que garantiza que se aparte del flujo de trabajo de desarrollo.
+
+Next.js Analytics le permite capturar **información del mundo real**, en lugar de evaluaciones comparativas sintéticas. Permite un **flujo continuo** de medición en lugar de depender de pruebas ocasionales, **lo que garantiza que se aparte del flujo de trabajo de desarrollo**.
+
+## Next.js Commerce
+
+El ecommerce es uno de los usos más importantes de la web. Las nuevas funciones de Next.js 10 son nuevas y potentes herramientas para ecommerce.
+
+Es por eso que hoy, en colaboración con BigCommerce, han lanzado Next.js Commerce, el kit de inicio todo en uno para sitios de ecommerce. Con unos pocos clics, los desarrolladores de Next.js pueden clonarlo, implementarlo y personalizarlo por completo. Empiece ahora mismo en [nextjs.org/commerce](https://nextjs.org/commerce "nextjs.org/commerce").
+
+## Soporte de React 17
+
+React 17 no tuvo cambios importantes para Next.js, sin embargo, re requirieron algunos cambios de mantención, por ejemplo, actualizar las dependencias de los pares. La [nueva transformación JSX](blog/la-nueva-transformacion-jsx-de-react "nueva transformación JSX") se habilita automáticamente cuando se usa React 17, no se necesitan cambios de configuración.
+
+Todo lo que tienes que hacer para comenzar a usar React 17 es actualizar Next.js y React:
+
+```bash
+npm install next@latest react@latest react-dom@latest
+```
+
+```bash
+yarn add next@latest react@latest react-dom@latest
+```
+
+## Fast Refresh para getStaticProps/getServerSideProps
+
+Al realizar cambios en sus funciones `getStaticProps` y `getServerSideProps `, Next.js volverá a ejecutar automáticamente la función y aplicará los nuevos datos. Esto permite iterar más rápido sin tener que actualizar la página.
+
+## Fast Refresh para MDX
+
+Al usar Next.js con MDX a través de `@next/mdx` cambiar el contenido de MDX, ahora se aprovechará Fast Refresh, asegurándose de que el navegador no tenga que volver a cargar la página en las ediciones.
+
+## Importación de CSS de componentes React de terceros
+
+Ahora se puede importar css de terceros dentro de los componentes de React. Esto permite la división de código CSS solo para un solo componente. Por ejemplo, ahora puede usar `react-datepicker` por ejemplo, sin necesidad de importar el CSS en `_app.js`.
+
+```jsx
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+```
+
+## Resolución Automática de href
+
+Si has utilizado las rutas dinámicas antes, habrás tenido que proporcionar tanto la propiedad `href` como `as` a `next/link`. Se vería así:
+
+```jsx
+<Link href="/categories/[slug]" as="/categories/books" />
+```
+
+Esto permitió Next.js para interpolar la href para los párametros dinámicos, sin embargo, causó la fricción cuando al momento de desarrollar, se olvidaba de añadir la propiedad `as` haciendo que las transiciones de página no usaran el enrutador del lado del cliente.
+
+Next.js se propuso resolver esta fricción para el desarrollo hace unos meses, con el objetivo principal de mejorar la experiencia al desarrollar y la experiencia del usuario final. Trabajaron gradualmente hacia una solución que permite que `href` se resuelva automáticamente.
+
+Como parte de Next.js 10, ya no se tiene que usar la propiedad `as` para la mayoría de los casos de uso. Eliminando así la fricción al momento de desarrollar mejorando la experiencia del usuario final.
+
+Este cambio es totalmente compatible con versiones anteriores, si actualmente usa ambos `href` y `as` se conserva el comportamiento existente.
+
+Para adoptar la resolución automática de `href`, todo lo que se tiene que hacer, es cambiar su uso de `next/link` para usar solo `href` manteniendo el valor que tenía anteriormente en la propiedad `as`.
+
+## @next/codemod CLI
+
+Next.js está comprometido de asegurarse de que las actualizaciones de Next.js sean lo más fluidas posible a través de una amplia compatibilidad con versiones anteriores. Este compromiso comienza con características que se desaprueban con moderación y, al mismo tiempo, presenta nuevas y mejores soluciones en su lugar. Además de este compromiso, hay amplias pruebas de integración para todas las funciones de Next.js, incluidas las pruebas que replican el desarrollo local.
+
+Cuando una función en Next.js está obsoleta y requiere grandes cambios en la base del código, el equipo crea un código para ella. Un codificador es una transformación de código automatizada que puede ejecutar sobre un proyecto para actualizar el código de fuente.
+
+Por ejemplo: se ha lanzado un codificador para actualizar funciones de flecha y funciones anónimas a funciones con nombre. Estra transformación es necesaria porque, de lo contrario, React Fast Refresh no detecta la función como un componente de React válido. De manera similar, las reglas de eslint de React hooks no recogerían la función como un componente de React.
+
+Con Next.js 10 se está lanzando una nueva herramienta codemods CLI, que permite ejecutar un solo comando para actualizar la solicitud: `npx @next/codemod <transform> <path>`.
+
+## Bloqueo fallback de getStaticPaths
+
+En Next.js 9.3 presentaron `getStaticProps` y `getStaticPaths` junto con la capacidad de devolver una propiedad `fallback` en formato `getStaticPaths`. La propiedad `fallback` permite generar páginas estáticas adicionales sin necesidad de una reconstrucción completa, sirviendo un archivo HTML estático inicialmente que luego es reemplazado por el contenido completamente renderizado en solicitudes posteriores.
+En los últimos meses, Next.js, ha recibido muchos comentarios de empresas que querían un comportamiento similar pero ligeramente diferente: un bloqueo previo a la representación cuando un usuario solicita la página por primera vez. Después de ese procesamiento inicial, la página se reutilizaría para solicitudes posteriores.
+
+Con Next.js 10 se esta resolviendo este caso.
+
+El nuevo `fallback: 'blocking'` modo `getStaticPaths` que habilita el comportamiento de bloqueo en el que no se envía una reserva estática al navegador. En su lugar, se espera la solicitud inicial para la reproducción previa.
+
+```jsx
+export function getStaticPaths() {
+	return {
+		// habilita el modo de bloqueo para el comportamiento de fallback
+		fallback: 'blocking'
+	}
+}
+```
+
+## Redirect y Soporte de notFound para getStaticProps/getServerSideProps
+
+Desde la introducción de `getStaticProps` y `getServerSideProps` se ha notado casos en los que los usuarios necesitan devolver redireccionamientos y respuestas 404. Para ayudar a simplificar estos casos, ahora se permite devolver dos nuevos campos de `getStaticProps` y `getServerSideProps`: `notFound` y `redirect`.
+
+### Soporte notFound
+
+Al devolver el campo `notFound` con `true` la página 404 predeterminada, se devolverá con un código de estado `404`. Esto permite evitar generar páginas adicionales con SSG y tener que manejar la representación de la página 404 manualmente.
+
+```jsx
+export function getStaticProps() {
+	return {
+		// predeterminar una página 404 con el código de status 404
+		notFound: true
+	}
+}
+```
+
+### Soporte redirect
+
+Ahora se puede devolver si contiene `destination` y si el redireccionamiento debe ser permanente o no, por ejemplo `permanent: true`. También `statusCode` se puede devolver un opcional en lugar del campo `permanent` para los casos que necesite usar un estado específico sobre los valores predeterminados.
+
+```jsx
+export function getStaticProps() {
+	return {
+		// regresa un redirect a una página interna `/otra-pagina`
+		redirect: {
+			destination: '/otra-pagina',
+			permanent: false
+		}
+	}
+}
+```
+
+
+```jsx
+export function getServerSideProps () {
+	return {
+		// regresa un redirect a un dominio externo `ejemplo.com`
+		redirect: {
+			destination: 'https://ejemplo.com',
+			permanent: false
+		}
+	}
+}
+```
+
+## Bloqueo fallback de getStaticPaths
+
+En Next.js 9.3 presentaron `getStaticProps` y `getStaticPaths` junto con la capacidad de devolver una propiedad `fallback` en formato `getStaticPaths`. La propiedad `fallback` permite generar páginas estáticas adicionales sin necesidad de una reconstrucción completa, sirviendo un archivo HTML estático inicialmente que luego es reemplazado por el contenido completamente renderizado en solicitudes posteriores.
+En los últimos meses, Next.js, ha recibido muchos comentarios de empresas que querían un comportamiento similar pero ligeramente diferente: un bloqueo previo a la representación cuando un usuario solicita la página por primera vez. Después de ese procesamiento inicial, la página se reutilizaría para solicitudes posteriores.
+
+Con Next.js 10 se esta resolviendo este caso.
+
+El nuevo `fallback: 'blocking'` modo `getStaticPaths` que habilita el comportamiento de bloqueo en el que no se envía una reserva estática al navegador. En su lugar, se espera la solicitud inicial para la reproducción previa.
+
+```jsx
+export function getStaticPaths() {
+	return {
+		// habilita el modo de bloqueo para el comportamiento de fallback
+		fallback: 'blocking'
+	}
+}
+```
+
+## Redirect y Soporte de notFound para getStaticProps/getServerSideProps
+
+Desde la introducción de `getStaticProps` y `getServerSideProps` se ha notado casos en los que los usuarios necesitan devolver redireccionamientos y respuestas 404. Para ayudar a simplificar estos casos, ahora se permite devolver dos nuevos campos de `getStaticProps` y `getServerSideProps`: `notFound` y `redirect`.
+
+### Soporte notFound
+
+Al devolver el campo `notFound` con `true` la página 404 predeterminada, se devolverá con un código de estado `404`. Esto permite evitar generar páginas adicionales con SSG y tener que manejar la representación de la página 404 manualmente.
+
+```jsx
+export function getStaticProps() {
+	return {
+		// predeterminar una página 404 con el código de status 404
+		notFound: true
+	}
+}
+```
+
+### Soporte redirect
+
+Ahora se puede devolver si contiene `destination` y si el redireccionamiento debe ser permanente o no, por ejemplo `permanent: true`. También `statusCode` se puede devolver un opcional en lugar del campo `permanent` para los casos que necesite usar un estado específico sobre los valores predeterminados.
+
+```jsx
+export function getStaticProps() {
+	return {
+		// regresa un redirect a una página interna `/otra-pagina`
+		redirect: {
+			destination: '/otra-pagina',
+			permanent: false
+		}
+	}
+}
+```
+
+
+```jsx
+export function getServerSideProps () {
+	return {
+		// regresa un redirect a un dominio externo `ejemplo.com`
+		redirect: {
+			destination: 'https://ejemplo.com',
+			permanent: false
+		}
+	}
+}
+```
+
+## Conclusión
+
+El equipo de Next.js está muy emocionado con este lanzamiento y el continuo crecimiento de Next.js.
+
+- Han tenido más de 1.300 colaboradores independientes, con más de 120 colaboradores nuevos desde la versión 9.5.
+- En GitHub, el proyecto ha sido protagonizado más de 54.800 veces.
+
+## Conclusiones Personales
+
+Debo decir, que soy un usuario activo de Next.js.
+
+Actualmente mi blog se encuentra con la versión 10 de Next.js, incluido el uso del componente nuevo de `next/image` (aunque hay solo una imagen en la página [sobre mí](/sobre-mi "sobre mí")), también el uso de MDX y con React 17.
+
+Desde que llevo trabajando con React, en sus versiones más anteriores, hasta el día de hoy, debo decir que Next.js es la mejor solución que he encontrado. Aunque debo decir, que Next.js se puede usar para cualquier proyecto, hay ciertas ocasiones en que podría solo utilizarse `create-react-app` en su lugar, si no se necesitara la generación estática o del lado del servidor, no obstante, aún así, se podría seguir utilizando Next.js. En especial, porque la mayoría de las soluciones internas primitivas que trae, como el enrutador, links, imágenes, uso del servidor, etc, han sido muy importantes para mi en el uso cotidiano.
+
+Con esta nueva actualización, me encuentro con mucho más entusiasmo de seguir usando Next.js para cualquier proyecto.
+
+Aún me quedan muchas páginas por seguir generando contenido sobre Next.js.
+
+Muchas gracias por leer.
+
+Fuente: https://nextjs.org/blog/next-10
+
+export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>

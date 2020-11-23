@@ -63,6 +63,7 @@ export default function Blog ({ myPosts }) {
             }
             .post-link {
               text-decoration: none;
+              color: var(--ns-fg);
               &:hover .post {
                 background: var(--ns-light);
                 border-radius: 6px;

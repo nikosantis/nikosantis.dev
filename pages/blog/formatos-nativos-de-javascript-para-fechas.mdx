@@ -1,7 +1,5 @@
-import { LayoutPost } from 'components/layout/post'
+import LayoutPost from 'components/layout/post'
 import { meta } from '_posts/formatos-nativos-de-javascript-para-fechas'
-
-export default LayoutPost({ ...meta })
 
 Por mucho tiempo, para manejar fechas, horas y sus formatos he sido un usuario de **moment.js** y tú?
 
@@ -150,3 +148,5 @@ No obstante, si el cambio es muy grande desde moment a los métodos nativos, la 
 Espero que este pequeño post sobre algunos métodos nativos para el manejo de fechas y horas, te haya sido útil.
 
 Gracias por leer 😀.
+
+export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>
