@@ -1,5 +1,5 @@
-import LayoutPost from 'components/layout/post'
-import { meta } from '_posts/nextjs-10'
+import LayoutPost from 'components/layout/post';
+import { meta } from '_posts/nextjs-10';
 
 Hoy 27 de octubre 2020, ha sido lanzado Next.js 10, con grandes noticias, las cuales debo decir, son bastante importantes.
 
@@ -9,7 +9,7 @@ Dentro de las cosas que trae esta nueva versión son:
 - **Enrutamiento con Internacionalización:** ahora se puede internacionalizar de manera sencilla Nextj.sj con primitivas integradas.
 - **Next.js Analytics:** medir y actuar sobre el rendimiento de un usuario real.
 - **Next.js Commerce:** kit de inicio, todo en uno, para sitios ecommerce de alto rendimiento.
-- **Soporte para [React 17](/blog/react-17-ya-esta-aqui "React 17"):** soporte para la última versión de React 17 es totalmente compatible con Next.js.
+- **Soporte para [React 17](/blog/react-17-ya-esta-aqui 'React 17'):** soporte para la última versión de React 17 es totalmente compatible con Next.js.
 - **Fast refresh de getStaticProps / getServerSideProps:** fast refresh de propiedades al editar métodos de obtención de datos.
 - **Fast refresh para MDX:** cuando se usa `@next/mdx`, el fast refresh ahora se aprovecha para aplicar cambios sin recargar la página completa.
 - **Importación de CSS de componentes de React de terceros:** ahora se admite la importación de CSS necesaria para los componentes de NPM.
@@ -37,7 +37,7 @@ Si bien, el enfoque de Next.js en reducir la cantidad de JavaScript que el naveg
 
 Las imágenes ocupan el 50% del total de bytes en las páginas web.
 
-Las imágenes tienen un gran impacto en el Largest Contentful Paint, ya que a menudo son el elemento visible más grande cuando se carga una página. El Largest Contentful Paint es un elemento fundamental de la Web que Google utilizará en su clasificación de búsqueda [muy pronto](https://webmasters.googleblog.com/2020/05/evaluating-page-experience.html "muy pronto").
+Las imágenes tienen un gran impacto en el Largest Contentful Paint, ya que a menudo son el elemento visible más grande cuando se carga una página. El Largest Contentful Paint es un elemento fundamental de la Web que Google utilizará en su clasificación de búsqueda [muy pronto](https://webmasters.googleblog.com/2020/05/evaluating-page-experience.html 'muy pronto').
 
 La mitad de todas las imágenes tiene un tamaño superior a un megabyte, lo que significa que no están optimizadas para mostrarse en la web.
 
@@ -62,7 +62,12 @@ Con esta nueva versión se anuncia la solución de Next.js para imágenes de alt
 En su forma más básica, el componente de imagen Next.js es solo un reemplazo directo del elemento HTML `<img>`, desarrollado para la web moderna.
 
 ```html
-<img src="src/profile-picture.jpg" width="400" height="400" alt="Profile Picture">
+<img
+  src="src/profile-picture.jpg"
+  width="400"
+  height="400"
+  alt="Profile Picture"
+/>
 ```
 
 ```jsx
@@ -118,11 +123,11 @@ Para ambas estrategias, se debe configurar las configuraciones regionales en Nex
 ```js
 // next.config.js
 module.exports = {
-	i18n: {
-		locales: ['en', 'es'],
-		defaultLocale: 'es'
-	}
-}
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'es',
+  },
+};
 ```
 
 Las configuraciones regionales son los identificadores de configuración regional de UTS, un formato estandarizado para definir configuraciones regionales.
@@ -152,20 +157,20 @@ El enrutamiento de dominios requiere una configuración adicional para saber có
 ```js
 // next.config.js
 module.exports = {
-	i18n: {
-		locales: ['es', 'en'],
-		domains: [
-			{
-				domain: 'example.com',
-				defaultLocale: 'en'
-			},
-			{
-				domain: 'ejemplo.cl',
-				defaultLocale: 'es'
-			}
-		]
-	}
-}
+  i18n: {
+    locales: ['es', 'en'],
+    domains: [
+      {
+        domain: 'example.com',
+        defaultLocale: 'en',
+      },
+      {
+        domain: 'ejemplo.cl',
+        defaultLocale: 'es',
+      },
+    ],
+  },
+};
 ```
 
 ### Detección de idioma
@@ -176,7 +181,7 @@ Next.js 10 tiene detección de idioma incorporado en la ruta `'/'` basada en el 
 
 Dado que Next.js conoce el idioma de la página visitada por el usuario, agregará automáticamente el atributo lang a la etiqueta `<html>`.
 
-Next.js no conoce las variantes de una página, por lo que dependerá de nosotros agregar las meta etiquetas `hreflang` usando `next/head`. Sobre `hreflang` [aquí más información](https://developers.google.com/search/docs/advanced/crawling/localized-versions?visit_id=637417387696940686-2253031362&rd=1 "aquí más información").
+Next.js no conoce las variantes de una página, por lo que dependerá de nosotros agregar las meta etiquetas `hreflang` usando `next/head`. Sobre `hreflang` [aquí más información](https://developers.google.com/search/docs/advanced/crawling/localized-versions?visit_id=637417387696940686-2253031362&rd=1 'aquí más información').
 
 ### El futuro de la internacionalización en Next.js
 
@@ -222,11 +227,11 @@ Next.js Analytics le permite capturar **información del mundo real**, en lugar 
 
 El ecommerce es uno de los usos más importantes de la web. Las nuevas funciones de Next.js 10 son nuevas y potentes herramientas para ecommerce.
 
-Es por eso que hoy, en colaboración con BigCommerce, han lanzado Next.js Commerce, el kit de inicio todo en uno para sitios de ecommerce. Con unos pocos clics, los desarrolladores de Next.js pueden clonarlo, implementarlo y personalizarlo por completo. Empiece ahora mismo en [nextjs.org/commerce](https://nextjs.org/commerce "nextjs.org/commerce").
+Es por eso que hoy, en colaboración con BigCommerce, han lanzado Next.js Commerce, el kit de inicio todo en uno para sitios de ecommerce. Con unos pocos clics, los desarrolladores de Next.js pueden clonarlo, implementarlo y personalizarlo por completo. Empiece ahora mismo en [nextjs.org/commerce](https://nextjs.org/commerce 'nextjs.org/commerce').
 
 ## Soporte de React 17
 
-React 17 no tuvo cambios importantes para Next.js, sin embargo, re requirieron algunos cambios de mantención, por ejemplo, actualizar las dependencias de los pares. La [nueva transformación JSX](blog/la-nueva-transformacion-jsx-de-react "nueva transformación JSX") se habilita automáticamente cuando se usa React 17, no se necesitan cambios de configuración.
+React 17 no tuvo cambios importantes para Next.js, sin embargo, re requirieron algunos cambios de mantención, por ejemplo, actualizar las dependencias de los pares. La [nueva transformación JSX](blog/la-nueva-transformacion-jsx-de-react 'nueva transformación JSX') se habilita automáticamente cuando se usa React 17, no se necesitan cambios de configuración.
 
 Todo lo que tienes que hacer para comenzar a usar React 17 es actualizar Next.js y React:
 
@@ -238,7 +243,7 @@ npm install next@latest react@latest react-dom@latest
 yarn add next@latest react@latest react-dom@latest
 ```
 
-## Fast Refresh para getStaticProps/getServerSideProps
+## Fast Refresh para getStaticProps / getServerSideProps
 
 Al realizar cambios en sus funciones `getStaticProps` y `getServerSideProps `, Next.js volverá a ejecutar automáticamente la función y aplicará los nuevos datos. Esto permite iterar más rápido sin tener que actualizar la página.
 
@@ -251,8 +256,8 @@ Al usar Next.js con MDX a través de `@next/mdx` cambiar el contenido de MDX, ah
 Ahora se puede importar css de terceros dentro de los componentes de React. Esto permite la división de código CSS solo para un solo componente. Por ejemplo, ahora puede usar `react-datepicker` por ejemplo, sin necesidad de importar el CSS en `_app.js`.
 
 ```jsx
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 ```
 
 ## Resolución Automática de href
@@ -260,7 +265,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 Si has utilizado las rutas dinámicas antes, habrás tenido que proporcionar tanto la propiedad `href` como `as` a `next/link`. Se vería así:
 
 ```jsx
-<Link href="/categories/[slug]" as="/categories/books" />
+<Link href='/categories/[slug]' as='/categories/books' />
 ```
 
 Esto permitió Next.js para interpolar la href para los párametros dinámicos, sin embargo, causó la fricción cuando al momento de desarrollar, se olvidaba de añadir la propiedad `as` haciendo que las transiciones de página no usaran el enrutador del lado del cliente.
@@ -294,10 +299,10 @@ El nuevo `fallback: 'blocking'` modo `getStaticPaths` que habilita el comportami
 
 ```jsx
 export function getStaticPaths() {
-	return {
-		// habilita el modo de bloqueo para el comportamiento de fallback
-		fallback: 'blocking'
-	}
+  return {
+    // habilita el modo de bloqueo para el comportamiento de fallback
+    fallback: 'blocking',
+  };
 }
 ```
 
@@ -311,10 +316,10 @@ Al devolver el campo `notFound` con `true` la página 404 predeterminada, se dev
 
 ```jsx
 export function getStaticProps() {
-	return {
-		// predeterminar una página 404 con el código de status 404
-		notFound: true
-	}
+  return {
+    // predeterminar una página 404 con el código de status 404
+    notFound: true,
+  };
 }
 ```
 
@@ -324,26 +329,25 @@ Ahora se puede devolver si contiene `destination` y si el redireccionamiento deb
 
 ```jsx
 export function getStaticProps() {
-	return {
-		// regresa un redirect a una página interna `/otra-pagina`
-		redirect: {
-			destination: '/otra-pagina',
-			permanent: false
-		}
-	}
+  return {
+    // regresa un redirect a una página interna `/otra-pagina`
+    redirect: {
+      destination: '/otra-pagina',
+      permanent: false,
+    },
+  };
 }
 ```
 
-
 ```jsx
-export function getServerSideProps () {
-	return {
-		// regresa un redirect a un dominio externo `ejemplo.com`
-		redirect: {
-			destination: 'https://ejemplo.com',
-			permanent: false
-		}
-	}
+export function getServerSideProps() {
+  return {
+    // regresa un redirect a un dominio externo `ejemplo.com`
+    redirect: {
+      destination: 'https://ejemplo.com',
+      permanent: false,
+    },
+  };
 }
 ```
 
@@ -358,10 +362,10 @@ El nuevo `fallback: 'blocking'` modo `getStaticPaths` que habilita el comportami
 
 ```jsx
 export function getStaticPaths() {
-	return {
-		// habilita el modo de bloqueo para el comportamiento de fallback
-		fallback: 'blocking'
-	}
+  return {
+    // habilita el modo de bloqueo para el comportamiento de fallback
+    fallback: 'blocking',
+  };
 }
 ```
 
@@ -375,10 +379,10 @@ Al devolver el campo `notFound` con `true` la página 404 predeterminada, se dev
 
 ```jsx
 export function getStaticProps() {
-	return {
-		// predeterminar una página 404 con el código de status 404
-		notFound: true
-	}
+  return {
+    // predeterminar una página 404 con el código de status 404
+    notFound: true,
+  };
 }
 ```
 
@@ -388,26 +392,25 @@ Ahora se puede devolver si contiene `destination` y si el redireccionamiento deb
 
 ```jsx
 export function getStaticProps() {
-	return {
-		// regresa un redirect a una página interna `/otra-pagina`
-		redirect: {
-			destination: '/otra-pagina',
-			permanent: false
-		}
-	}
+  return {
+    // regresa un redirect a una página interna `/otra-pagina`
+    redirect: {
+      destination: '/otra-pagina',
+      permanent: false,
+    },
+  };
 }
 ```
 
-
 ```jsx
-export function getServerSideProps () {
-	return {
-		// regresa un redirect a un dominio externo `ejemplo.com`
-		redirect: {
-			destination: 'https://ejemplo.com',
-			permanent: false
-		}
-	}
+export function getServerSideProps() {
+  return {
+    // regresa un redirect a un dominio externo `ejemplo.com`
+    redirect: {
+      destination: 'https://ejemplo.com',
+      permanent: false,
+    },
+  };
 }
 ```
 
@@ -422,7 +425,7 @@ El equipo de Next.js está muy emocionado con este lanzamiento y el continuo cre
 
 Debo decir, que soy un usuario activo de Next.js.
 
-Actualmente mi blog se encuentra con la versión 10 de Next.js, incluido el uso del componente nuevo de `next/image` (aunque hay solo una imagen en la página [sobre mí](/sobre-mi "sobre mí")), también el uso de MDX y con React 17.
+Actualmente mi blog se encuentra con la versión 10 de Next.js, incluido el uso del componente nuevo de `next/image` (aunque hay solo una imagen en la página [sobre mí](/sobre-mi 'sobre mí')), también el uso de MDX y con React 17.
 
 Desde que llevo trabajando con React, en sus versiones más anteriores, hasta el día de hoy, debo decir que Next.js es la mejor solución que he encontrado. Aunque debo decir, que Next.js se puede usar para cualquier proyecto, hay ciertas ocasiones en que podría solo utilizarse `create-react-app` en su lugar, si no se necesitara la generación estática o del lado del servidor, no obstante, aún así, se podría seguir utilizando Next.js. En especial, porque la mayoría de las soluciones internas primitivas que trae, como el enrutador, links, imágenes, uso del servidor, etc, han sido muy importantes para mi en el uso cotidiano.
 
@@ -434,4 +437,6 @@ Muchas gracias por leer.
 
 Fuente: https://nextjs.org/blog/next-10
 
-export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>
+export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost
+
+>

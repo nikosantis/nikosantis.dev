@@ -25,6 +25,7 @@ function H2 ({ children, id }) {
           h2 {
             margin-top: 2rem;
             font-size: 1.875rem;
+            word-break: break-word;
           }
         `}
       </style>
@@ -68,20 +69,21 @@ function Li ({ children }) {
   return (
     <li>
       {children}
-      <style jsx>{`
-        li {
-          margin-bottom: 0.35rem;
-          font-size: 1.125rem;
-          font-weight: 300;
-          :before {
-            content: '-';
-            display: inline-block;
-            color: #6d6d6d;
-            position: absolute;
-            margin-left: -25px;
+      <style jsx>
+        {`
+          li {
+            margin-bottom: 0.35rem;
+            font-size: 1.125rem;
+            font-weight: 300;
+            :before {
+              content: '-';
+              display: inline-block;
+              color: #6d6d6d;
+              position: absolute;
+              margin-left: -25px;
+            }
           }
-        }
-    `}
+        `}
       </style>
     </li>
   )
@@ -314,7 +316,7 @@ function Blockquote ({ children }) {
             margin: 0;
             padding-left: 1rem;
             border-left: 3px solid var(--ns-light-gray);
-            transition: border-color .1s ease-in-out ;
+            transition: border-color 0.1s ease-in-out;
           }
         `}
       </style>
