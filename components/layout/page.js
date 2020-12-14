@@ -49,8 +49,8 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
         {`
           .page {
             position: relative;
-            width: 100vw;
-            min-height: 100vh;
+            width: 100%;
+            min-height: 100%;
           }
         `}
       </style>
@@ -74,7 +74,7 @@ export default function Page ({ title, description, image, ogUrl, ogType, childr
           body {
             font-family: var(--font-sans);
             min-width: 320px;
-            min-height: 100vh;
+            min-height: 100%;
             transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
             margin: 0;
             font-size: 1rem;

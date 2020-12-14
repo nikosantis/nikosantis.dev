@@ -32,7 +32,7 @@ export default function Header () {
       <style jsx>
         {`
           header {
-            width: 100vw;
+            width: 100%;
             display: flex;
             align-items: center;
             flex-direction: column;
