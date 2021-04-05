@@ -95,7 +95,7 @@ export default function Home({ myPosts }: Props) {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const myPosts = await getPosts()
   return {
     props: {

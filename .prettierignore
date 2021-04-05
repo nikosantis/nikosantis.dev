@@ -5,6 +5,7 @@ coverage
 out
 .next
 next-env.d.ts
+mdx.d.ts
 public
 package-lock.json
 yarn.lock

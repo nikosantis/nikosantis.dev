@@ -19,6 +19,7 @@ class MyDocument extends Document {
       <Html lang='es'>
         <Head>
           <script
+            async
             dangerouslySetInnerHTML={{
               __html: `
                 <!-- Google Tag Manager -->
@@ -30,7 +31,7 @@ class MyDocument extends Document {
                 <!-- End Google Tag Manager -->
               `
             }}
-          ></script>
+          />
           <link rel='icon' href='/favicon/favicon.ico' />
           <link
             rel='apple-touch-icon'
@@ -59,6 +60,8 @@ class MyDocument extends Document {
           <meta name='theme-color' content='#ffffff' />
         </Head>
         <body>
+          <Main />
+          <NextScript />
           <noscript
             dangerouslySetInnerHTML={{
               __html: `
@@ -68,9 +71,7 @@ class MyDocument extends Document {
                 <!-- End Google Tag Manager (noscript) -->
               `
             }}
-          ></noscript>
-          <Main />
-          <NextScript />
+          />
         </body>
       </Html>
     )
