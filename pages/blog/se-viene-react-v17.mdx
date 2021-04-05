@@ -1,5 +1,5 @@
 import LayoutPost from 'components/layout/post'
-import { meta } from '_posts/se-viene-react-v17'
+import { getPostByUrl } from 'lib/posts'
 
 Hoy se ha publicado en el blog oficial de React el primer Release Candidate para React 17, luego de dos años y medio desde el último release importante (ha pasado bastante no?).
 
@@ -17,7 +17,7 @@ El enfoque está en **no dejar a nadie atrás**. React 17 es una versión **"tra
 
 Durante los últimos siete años, las actualizaciones de React han sido de "todo o nada". O te quedabas con una versión anterior o actualizas toda la aplicación a una nueva versión. No hubo intermedios.
 
-Esto había funcionado hasta ahora, pero React está llegando a los límites de esa estrategia de actualización (todo o nada). Algunos cambios de API, por ejemplo, la desaprobación de la *API de Contexto heredado*, son imposibles de realizar de una forma automatizada. Aunque la mayoría de las aplicaciones escritas hoy en día nunca las usan, aún se admiten en React. Se tendría que elegir entre admitirlas en React indefinitivamente o dejar algunas aplicaciones en una versión anterior de React, donde ambas opciones no son muy buenas.
+Esto había funcionado hasta ahora, pero React está llegando a los límites de esa estrategia de actualización (todo o nada). Algunos cambios de API, por ejemplo, la desaprobación de la _API de Contexto heredado_, son imposibles de realizar de una forma automatizada. Aunque la mayoría de las aplicaciones escritas hoy en día nunca las usan, aún se admiten en React. Se tendría que elegir entre admitirlas en React indefinitivamente o dejar algunas aplicaciones en una versión anterior de React, donde ambas opciones no son muy buenas.
 
 Por eso es que se han enfocado en otra opción.
 
@@ -31,7 +31,7 @@ OJO: Esto no significa que se deben hacer mejoras graduales. Para la mayoría de
 
 Para habilitar las actualizaciones graduales, necesitamos realizar algunos cambios en el sistema de eventos de React. La versión 17 es importante porque estos cambios potencialmente se está rompiendo. En la práctica, solo se ha tenido que cambiar menos de 20 componentes de más de 100 mil, por lo que esperan, en React, que la mayoría de las aplicaciones puedan actualizarse a React 17 sin demasiados problemas. (ahora más en la práctica, puede que haya problemas igual no?)
 
-Hay un repositorio de ejemplo que demuestra cómo cargar de forma diferida una versión anterior de React si es necesario. Es una demo que utiliza CRA (create-react-app), pero debería ser posible seguir un enfoque similar con cualquier otra herramienta. [Aquí el demo.](https://github.com/reactjs/react-gradual-upgrade-demo/ "Aquí el demo.")
+Hay un repositorio de ejemplo que demuestra cómo cargar de forma diferida una versión anterior de React si es necesario. Es una demo que utiliza CRA (create-react-app), pero debería ser posible seguir un enfoque similar con cualquier otra herramienta. [Aquí el demo.](https://github.com/reactjs/react-gradual-upgrade-demo/ 'Aquí el demo.')
 
 Algo importante que ellos mencionan:
 
@@ -87,25 +87,28 @@ Al igual que con cualquier cambio importante, es probable que sea necesario ajus
 Por ejemplo, si se agrega listeners manuales al DOM con `document.addEventListener(...)` se puede esperar que capturen todos los eventos React. En React 16 y versiones anteriores, incluso si llama `e.stopPropagation()` a un controlador de eventos React, los listeners `document` personalizados aún lo recibirían porque el evento nativo ya está en el nivel del document. Con React 17, la propagación se detendría (!según lo solicitado!), por que sus controladores `document` no dispararían:
 
 ```js
-document.addEventListener('click', function() {
-	// este controlador no recibirá más clics
-	// de los componentes de React que llamen e.stopPropagation()
+document.addEventListener('click', function () {
+  // este controlador no recibirá más clics
+  // de los componentes de React que llamen e.stopPropagation()
 })
 ```
 
 Se puede corregir un código como este convirtiendo el listener para usar la fase de captura. Para hace esto, se puede pasar `{ capture: true }` como tercer argumento a `document.addEventListener`:
 
 ```js
-document.addEventListener('click', function() {
-	// ahora este controlador de evento usa la fase de captura
-	// por lo que recibe *todos* los eventos de clic que siguen
-}, { capture: true })
+document.addEventListener(
+  'click',
+  function () {
+    // ahora este controlador de evento usa la fase de captura
+    // por lo que recibe *todos* los eventos de clic que siguen
+  },
+  { capture: true }
+)
 ```
 
 Hay que tener en cuenta cómo esta estrategia es más resistente en general; por ejemplo, probablemente solucionará los errores existentes en el código que ocurren cuando `e.stopPropagation()` se llame fuera de un controlador de eventos de React. En otras palabras, la propagación de eventos en React 17 funciona más cerca del DOM normal.
 
-
-------------
+---
 
 ## Otros cambios importantes
 
@@ -127,11 +130,11 @@ React 17 elimina la optimización de "agrupación de ventos" de React. No mejora
 
 ```jsx
 function handleChange(e) {
-	setData(data => ({
-		...data,
-		// esto hace crash en React 16 y anteriores
-		text: e.target.value
-	}))
+  setData((data) => ({
+    ...data,
+    // esto hace crash en React 16 y anteriores
+    text: e.target.value
+  }))
 }
 ```
 
@@ -147,16 +150,16 @@ Están haciendo que la sincronización de la función de limpieza de `useEffect`
 
 ```jsx
 useEffect(() => {
-	// este es el efecto en sí
-	return () => {
-		// esto es un limpiador
-	}
+  // este es el efecto en sí
+  return () => {
+    // esto es un limpiador
+  }
 })
 ```
 
 La mayoría de los efectos no necesitan retrasar las actualizaciones de la pantalla, por lo que React los ejecuta de forma asincrónica poco después de que la actualización se refleje en la pantalla. (Para los casos excepcionales en los que se necesite un efecto para bloquear el paint, por ejemplo, para medir y colocar una información sobre herramientas, hay que preferir `useLayoutEffect`).
 
-Sin embargo, cuando se desmonta un componente, las funciones de *limpieza* del efecto se utilizan para ejecutarse sincrónicamente (similar a `componentWillUnmount` de manera sincrónica en las clases). Han descubierto que esto no es ideal para aplicaciones más grandes porque relentiza las transiciones de pantalla grande (por ejemplo, cambiar de pestaña).
+Sin embargo, cuando se desmonta un componente, las funciones de _limpieza_ del efecto se utilizan para ejecutarse sincrónicamente (similar a `componentWillUnmount` de manera sincrónica en las clases). Han descubierto que esto no es ideal para aplicaciones más grandes porque relentiza las transiciones de pantalla grande (por ejemplo, cambiar de pestaña).
 
 **En React 17, la función de limpieza de efectos siempre se ejecutará de forma asincrónica; por ejemplo, si el componente se está desmontando, la limpieza se ejecutará después de que se haya actualizado la pantalla.**
 
@@ -170,22 +173,22 @@ Solo han visto un par de componentes que se rompen con este cambio, aunque es po
 
 ```jsx
 useEffect(() => {
-	someRef.current.someSetupMethod()
-	return () => {
-		someRef.current.someCleanupMethod()
-	}
+  someRef.current.someSetupMethod()
+  return () => {
+    someRef.current.someCleanupMethod()
+  }
 })
 ```
 
-El problema es que el `someRef.current` es mutable, por lo que cuando se ejecuta la función de limpieza, es posible que se haya configurado en `null`. La solución es capturar cualquier valor mutable *dentro* del efecto:
+El problema es que el `someRef.current` es mutable, por lo que cuando se ejecuta la función de limpieza, es posible que se haya configurado en `null`. La solución es capturar cualquier valor mutable _dentro_ del efecto:
 
 ```jsx
 useEffect(() => {
-	const instance = someRef.current
-	instance.someSetupMethod()
-	return () => {
-		instance.someCleanupMethod()
-	}
+  const instance = someRef.current
+  instance.someSetupMethod()
+  return () => {
+    instance.someCleanupMethod()
+  }
 })
 ```
 
@@ -197,7 +200,7 @@ En React 16 y versiones anteriores, regresar `undefined` siempre ha sido un erro
 
 ```jsx
 function Button() {
-	return // error: nada ha retornado
+  return // error: nada ha retornado
 }
 ```
 
@@ -205,9 +208,9 @@ Esto se debe en parte a que es fácil volver `undefined` sin querer:
 
 ```jsx
 function Button() {
-	// hemos olvidado escribir return, por lo tanto este componente retorna undefined
-	// React muestra esto como un error en lugar de ignorarlo
-	<button />
+  // hemos olvidado escribir return, por lo tanto este componente retorna undefined
+  // React muestra esto como un error en lugar de ignorarlo
+  ;<button />
 }
 ```
 
@@ -217,15 +220,15 @@ En React 17, el comportamiento de los componentes forwardRef y memo, es coherent
 
 ```jsx
 let Button = forwardRef(() => {
-	// hemos olvidado escribir return, por lo tanto este componente retorna undefined
-	// React 17 muestra esto como un error en lugar de ignorarlo
-	<button />
+  // hemos olvidado escribir return, por lo tanto este componente retorna undefined
+  // React 17 muestra esto como un error en lugar de ignorarlo
+  ;<button />
 })
 
 let Button = memo(() => {
-	// hemos olvidado escribir return, por lo tanto este componente retorna undefined
-	// React 17 muestra esto como un error en lugar de ignorarlo
-	<button />
+  // hemos olvidado escribir return, por lo tanto este componente retorna undefined
+  // React 17 muestra esto como un error en lugar de ignorarlo
+  ;<button />
 })
 ```
 
@@ -251,7 +254,7 @@ Finalmente (sí, por fin dirás 🤪), el último cambio notable es que han elim
 
 Esto significa que las versiones anteriores de React Native para Web, no serán compatibles con React 17, pero las versiones más nuevas funcionarán con él. En la práctica, esto no cambia mucho porque React Native para Web tuvo que lanzar nuevas versiones para adaptarse a los cambios internos de React de todos modos.
 
-Además, han eliminado los métodos auxiliares `ReactTestUtils.SimulateNative`. Nunca se han documentado, no hicieron exactamente lo que sus nombres implicaban y no funcionaron con los cambios que se hicieron en el sistema de eventos. Si se desea una forma conveniente de activar eventos nativos del navegador en los tests, ver [React Testing Library](https://testing-library.com/docs/dom-testing-library/api-events "React Testing Library").
+Además, han eliminado los métodos auxiliares `ReactTestUtils.SimulateNative`. Nunca se han documentado, no hicieron exactamente lo que sus nombres implicaban y no funcionaron con los cambios que se hicieron en el sistema de eventos. Si se desea una forma conveniente de activar eventos nativos del navegador en los tests, ver [React Testing Library](https://testing-library.com/docs/dom-testing-library/api-events 'React Testing Library').
 
 ## Para probar / Instalación
 
@@ -272,12 +275,31 @@ yarn add react@17.0.0-rc.2 react-dom@17.0.0-rc.2
 También se ha proporcionado compilaciones UMD de React a través de una CDN:
 
 ```html
-<script crossorigin src="https://unpkg.com/react@17.0.0-rc.2/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@17.0.0-rc.2/umd/react-dom.production.min.js"></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react@17.0.0-rc.2/umd/react.production.min.js"
+></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@17.0.0-rc.2/umd/react-dom.production.min.js"
+></script>
 ```
 
 Uff que largo.
 
 Fuente: https://reactjs.org/blog/2020/08/10/react-v17-rc.html (inglés)
 
-export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>
+export const post = getPostByUrl('se-viene-react-v17')
+
+export default ({ children }) => (
+  <LayoutPost
+    date={post.date}
+    dateForISO={post.dateForISO}
+    title={post.title}
+    description={post.description}
+    image={post.image}
+    url={post.url}
+  >
+    {children}
+  </LayoutPost>
+)

@@ -1,5 +1,5 @@
 import LayoutPost from 'components/layout/post'
-import { meta } from '_posts/formatos-nativos-de-javascript-para-fechas'
+import { getPostByUrl } from 'lib/posts'
 
 Por mucho tiempo, para manejar fechas, horas y sus formatos he sido un usuario de **moment.js** y tú?
 
@@ -7,7 +7,7 @@ Bueno, también de **date-fns** 😬.
 
 Las fechas en muchas ocasiones, han sido un dolor de cabeza, con los formatos y todo eso. Pero también lo son los tamaños de las librerías.
 
-No te quiero asustar, pero te invito a que veas por ti: [Bundle Phobia de Moment.js](https://bundlephobia.com/result?p=moment@2.28.0 "Bundle Phobia de Moment.js")
+No te quiero asustar, pero te invito a que veas por ti: [Bundle Phobia de Moment.js](https://bundlephobia.com/result?p=moment@2.28.0 'Bundle Phobia de Moment.js')
 
 Te podrás dar cuenta que en su última versión, el peso de moment es de 280.9kB minimizado y con gzip es de 70.4kB. Eso es muchísimo.
 
@@ -19,7 +19,7 @@ Cuando nació moment, era porque necesitábamos una forma de poder manejar las f
 
 Me refiero a los métodos **toLocaleDateString**, **toLocaleTimeString** y **toLocaleString**.
 
-La [compatibilidad en navegadores](https://caniuse.com/date-tolocaledatestring "compatibilidad en navegadores") de estos métodos es bastante buena.
+La [compatibilidad en navegadores](https://caniuse.com/date-tolocaledatestring 'compatibilidad en navegadores') de estos métodos es bastante buena.
 
 Si bien, estos tres métodos podrían ser casi iguales, tienen ciertas diferencias que veremos al final, pero lo primero que me gustaría decir, es que, el lenguaje construye realidades, y en el caso de estos métodos, podríamos entenderlos en base a sus nombres.
 
@@ -41,7 +41,7 @@ console.log(date.toLocaleString())
 // 5/18/2020, 12:00:00 AM
 ```
 
-El primer argumento, **locales**, es la configuración regional. Puede ser una etiqueta BCP-47 como string o un array de etiquetas del idioma específico. (un BCP qué? mejor revisa [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Intl "aquí")). Un ejemplo podría ser: "es-CL", que indicaría el lenguaje español usado en Chile.
+El primer argumento, **locales**, es la configuración regional. Puede ser una etiqueta BCP-47 como string o un array de etiquetas del idioma específico. (un BCP qué? mejor revisa [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Intl 'aquí')). Un ejemplo podría ser: "es-CL", que indicaría el lenguaje español usado en Chile.
 
 Si no se entrega el primer argumento (undefined), tomará por defecto la configuración predeterminada de la aplicación, el navegador, etc.
 
@@ -141,7 +141,7 @@ console.log(date.toLocaleTimeString('es-CL', options))
 
 En fin, hay varias opciones que puedes usar dependiendo de tus necesidades.
 
-Si bien es cierto, estas múltiples combinaciones posibles, pueden hacer más sencillo el manejo de fechas y horas, ten en cuenta, lo mencionado antes, *compatibilidad*.
+Si bien es cierto, estas múltiples combinaciones posibles, pueden hacer más sencillo el manejo de fechas y horas, ten en cuenta, lo mencionado antes, _compatibilidad_.
 
 No obstante, si el cambio es muy grande desde moment a los métodos nativos, la mejor transición sería con Luxon.
 
@@ -149,4 +149,17 @@ Espero que este pequeño post sobre algunos métodos nativos para el manejo de f
 
 Gracias por leer 😀.
 
-export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>
+export const post = getPostByUrl('formatos-nativos-de-javascript-para-fechas')
+
+export default ({ children }) => (
+  <LayoutPost
+    date={post.date}
+    dateForISO={post.dateForISO}
+    title={post.title}
+    description={post.description}
+    image={post.image}
+    url={post.url}
+  >
+    {children}
+  </LayoutPost>
+)

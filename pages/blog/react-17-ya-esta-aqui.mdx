@@ -1,14 +1,14 @@
 import LayoutPost from 'components/layout/post'
-import { meta } from '_posts/react-17-ya-esta-aqui'
+import { getPostByUrl } from 'lib/posts'
 
 Hoy, 20 de octubre del 2020, ha sido lanzado React 17.
 
 Si quieres saber a fondo de qué trata esta nueva versión puedes leerlo en dos posts anteriores:
-[Se viene React v17.0: Sin nuevas funciones](/blog/se-viene-react-v17 "Se viene React v17.0: Sin nuevas funciones") y sobre [La nueva transformación JSX](/blog/la-nueva-transformacion-jsx-de-react "La nueva transformación JSX").
+[Se viene React v17.0: Sin nuevas funciones](/blog/se-viene-react-v17 'Se viene React v17.0: Sin nuevas funciones') y sobre [La nueva transformación JSX](/blog/la-nueva-transformacion-jsx-de-react 'La nueva transformación JSX').
 
 Este post es un breve resumen.
 
-------------
+---
 
 ## Sin nuevas funciones
 
@@ -18,7 +18,7 @@ En particular, React 17 es una versión de "trampolín" que hace que sea más se
 
 También facilita la integración de React en aplicaciones creadas con otras tecnologías.
 
-------------
+---
 
 ## Actualizaciones graduales
 
@@ -29,11 +29,11 @@ La primera opción será actualizar toda la aplicación a la vez, como se podrí
 
 Esto no significa que hay que hacer mejoras graduales. Para la mayoría de las aplicaciones, actualizar todo a la vez sigue siendo la mejor solución. Cargar dos versiones de React, incluso si una de ellas se carga de forma Lazy a pedido, todavía no es lo ideal. Sin embargo, para las aplicaciones más grandes que no se mantienen de forma activa, esta opción tiene sentido y React 17 permite que esas aplicaciones no se queden atrás.
 
-El equipo de React ha preparado un [repositorio de ejemplo](https://github.com/nikosantis/react-gradual-upgrade-demo "repositorio de ejemplo") que demuestra cómo cargar de forma diferida una versión anterior de React si es necesario. Este demo utiliza Create React App, pero debería ser posible seguir un enfoque similar con cualquier otra herramienta.
+El equipo de React ha preparado un [repositorio de ejemplo](https://github.com/nikosantis/react-gradual-upgrade-demo 'repositorio de ejemplo') que demuestra cómo cargar de forma diferida una versión anterior de React si es necesario. Este demo utiliza Create React App, pero debería ser posible seguir un enfoque similar con cualquier otra herramienta.
 
 > Es importante mencionar que para la versión 17 de React, se han pospuesto otras actualizaciones, en beneficio del objetivo principal de esta versión, que es ayudar a la actualización de React. Si actualizar a React 17 fuera demasiado difícil, frustraría su propósito.
 
-------------
+---
 
 ## Cambios en la delegación de eventos
 
@@ -48,29 +48,29 @@ ReactDOM.render(<App />, rootNode)
 
 En React 16 y versiones anteriores, React funcionaría `document.addEventListener()` para la mayoría de los eventos. React 17 llamará `rootNode.addEventListener()` por debajo en su lugar.
 
-------------
+---
 
 ## Otros cambios importantes
 
-[Se viene React v17.0: Sin nuevas funciones](/blog/se-viene-react-v17 "Se viene React v17.0: Sin nuevas funciones") describe el resto de los cambios importantes de React 17.
+[Se viene React v17.0: Sin nuevas funciones](/blog/se-viene-react-v17 'Se viene React v17.0: Sin nuevas funciones') describe el resto de los cambios importantes de React 17.
 
 El equipo de React solo ha tenido que cambiar menos de veinte componentes de más de 100.000 en el código de producto de Facebook para trabajar con estos cambios, por lo que se espera que la mayoría de las aplicaciones puedan actualizarse a React 17 sin demasiados problemas.
 
-------------
+---
 
 ## Nueva transformación JSX
 
-React 17 admite la [La nueva transformación JSX](/blog/la-nueva-transformacion-jsx-de-react "La nueva transformación JSX"). También se ha respaldado el soporte para React 16.14.0, React 15.7.0 y 0.14.10. Hay que tener en cuenta que es completamente opcional. La transformación JSX clásica seguirá funcionando y no hay planes para dejar de admitirla.
+React 17 admite la [La nueva transformación JSX](/blog/la-nueva-transformacion-jsx-de-react 'La nueva transformación JSX'). También se ha respaldado el soporte para React 16.14.0, React 15.7.0 y 0.14.10. Hay que tener en cuenta que es completamente opcional. La transformación JSX clásica seguirá funcionando y no hay planes para dejar de admitirla.
 
 No obstante, es totalmente recomendable.
 
-------------
+---
 
 ## React Native
 
 React Native tiene un calendario de lanzamiento independiente. Actualmente esperamos que el soporte para React 17 sea en React Native 0.65, pero la versión exacta está sujeta a cambios.
 
-------------
+---
 
 ## Instalación
 
@@ -89,12 +89,31 @@ yarn add react@17.0.0 react-dom@17.0.0
 También se ha proporcionado compilaciones UMD de React a través de una CDN:
 
 ```html
-<script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"
+></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"
+></script>
 ```
 
 Muchas gracias por leer.
 
 Fuente: https://reactjs.org/blog/2020/10/20/react-v17.html
 
-export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>
+export const post = getPostByUrl('react-17-ya-esta-aqui')
+
+export default ({ children }) => (
+  <LayoutPost
+    date={post.date}
+    dateForISO={post.dateForISO}
+    title={post.title}
+    description={post.description}
+    image={post.image}
+    url={post.url}
+  >
+    {children}
+  </LayoutPost>
+)

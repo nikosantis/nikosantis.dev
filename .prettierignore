@@ -1,0 +1,10 @@
+node_modules
+build
+coverage
+*.snap
+out
+.next
+next-env.d.ts
+public
+package-lock.json
+yarn.lock

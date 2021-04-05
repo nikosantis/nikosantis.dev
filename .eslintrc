@@ -4,19 +4,60 @@
     "es2020": true,
     "node": true
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 11,
-    "sourceType": "module"
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures":{
+      "jsx":true
+    }
   },
-  "extends": ["standard", "standard-react", "plugin:react/recommended"],
-  "plugins": ["react", "react-hooks"],
+  "extends": [
+    "plugin:prettier/recommended",
+    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "react",
+    "react-hooks"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
+    "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
+    "no-console": "warn",
+    "no-unused-vars": "off",
+    "no-empty": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": [ "hrefLeft", "hrefRight" ],
+        "aspects": [ "invalidHref", "preferButton" ]
+      }
+    ],
+    "jsx-a11y/anchor-has-content": [
+      "error",
+      {
+        "components": ["Link"]
+      }
+    ]
   }
 }

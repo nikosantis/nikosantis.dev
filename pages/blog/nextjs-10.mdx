@@ -1,5 +1,5 @@
-import LayoutPost from 'components/layout/post';
-import { meta } from '_posts/nextjs-10';
+import LayoutPost from 'components/layout/post'
+import { getPostByUrl } from 'lib/posts'
 
 Hoy 27 de octubre 2020, ha sido lanzado Next.js 10, con grandes noticias, las cuales debo decir, son bastante importantes.
 
@@ -125,9 +125,9 @@ Para ambas estrategias, se debe configurar las configuraciones regionales en Nex
 module.exports = {
   i18n: {
     locales: ['en', 'es'],
-    defaultLocale: 'es',
-  },
-};
+    defaultLocale: 'es'
+  }
+}
 ```
 
 Las configuraciones regionales son los identificadores de configuración regional de UTS, un formato estandarizado para definir configuraciones regionales.
@@ -162,15 +162,15 @@ module.exports = {
     domains: [
       {
         domain: 'example.com',
-        defaultLocale: 'en',
+        defaultLocale: 'en'
       },
       {
         domain: 'ejemplo.cl',
-        defaultLocale: 'es',
-      },
-    ],
-  },
-};
+        defaultLocale: 'es'
+      }
+    ]
+  }
+}
 ```
 
 ### Detección de idioma
@@ -256,8 +256,8 @@ Al usar Next.js con MDX a través de `@next/mdx` cambiar el contenido de MDX, ah
 Ahora se puede importar css de terceros dentro de los componentes de React. Esto permite la división de código CSS solo para un solo componente. Por ejemplo, ahora puede usar `react-datepicker` por ejemplo, sin necesidad de importar el CSS en `_app.js`.
 
 ```jsx
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 ```
 
 ## Resolución Automática de href
@@ -301,8 +301,8 @@ El nuevo `fallback: 'blocking'` modo `getStaticPaths` que habilita el comportami
 export function getStaticPaths() {
   return {
     // habilita el modo de bloqueo para el comportamiento de fallback
-    fallback: 'blocking',
-  };
+    fallback: 'blocking'
+  }
 }
 ```
 
@@ -318,8 +318,8 @@ Al devolver el campo `notFound` con `true` la página 404 predeterminada, se dev
 export function getStaticProps() {
   return {
     // predeterminar una página 404 con el código de status 404
-    notFound: true,
-  };
+    notFound: true
+  }
 }
 ```
 
@@ -333,9 +333,9 @@ export function getStaticProps() {
     // regresa un redirect a una página interna `/otra-pagina`
     redirect: {
       destination: '/otra-pagina',
-      permanent: false,
-    },
-  };
+      permanent: false
+    }
+  }
 }
 ```
 
@@ -345,9 +345,9 @@ export function getServerSideProps() {
     // regresa un redirect a un dominio externo `ejemplo.com`
     redirect: {
       destination: 'https://ejemplo.com',
-      permanent: false,
-    },
-  };
+      permanent: false
+    }
+  }
 }
 ```
 
@@ -364,8 +364,8 @@ El nuevo `fallback: 'blocking'` modo `getStaticPaths` que habilita el comportami
 export function getStaticPaths() {
   return {
     // habilita el modo de bloqueo para el comportamiento de fallback
-    fallback: 'blocking',
-  };
+    fallback: 'blocking'
+  }
 }
 ```
 
@@ -381,8 +381,8 @@ Al devolver el campo `notFound` con `true` la página 404 predeterminada, se dev
 export function getStaticProps() {
   return {
     // predeterminar una página 404 con el código de status 404
-    notFound: true,
-  };
+    notFound: true
+  }
 }
 ```
 
@@ -396,9 +396,9 @@ export function getStaticProps() {
     // regresa un redirect a una página interna `/otra-pagina`
     redirect: {
       destination: '/otra-pagina',
-      permanent: false,
-    },
-  };
+      permanent: false
+    }
+  }
 }
 ```
 
@@ -408,9 +408,9 @@ export function getServerSideProps() {
     // regresa un redirect a un dominio externo `ejemplo.com`
     redirect: {
       destination: 'https://ejemplo.com',
-      permanent: false,
-    },
-  };
+      permanent: false
+    }
+  }
 }
 ```
 
@@ -437,4 +437,17 @@ Muchas gracias por leer.
 
 Fuente: https://nextjs.org/blog/next-10
 
-export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>
+export const post = getPostByUrl('nextjs-10')
+
+export default ({ children }) => (
+  <LayoutPost
+    date={post.date}
+    dateForISO={post.dateForISO}
+    title={post.title}
+    description={post.description}
+    image={post.image}
+    url={post.url}
+  >
+    {children}
+  </LayoutPost>
+)

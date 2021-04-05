@@ -1,5 +1,5 @@
 import LayoutPost from 'components/layout/post'
-import { meta } from '_posts/como-usar-standard-en-next'
+import { getPostByUrl } from 'lib/posts'
 
 **Standard** qué 🤨???
 
@@ -7,9 +7,9 @@ Si no conoces standard, te invito a seguir leyendo.
 
 Y si ya lo conoces, igual 🤪.
 
-*(Este post ha sido actualizado para que no tengas problemas con las dependencias)*
+_(Este post ha sido actualizado para que no tengas problemas con las dependencias)_
 
-Standard es una *guía de estilos JavaScript, con linter y corrección automática de código*.
+Standard es una _guía de estilos JavaScript, con linter y corrección automática de código_.
 
 Podríamos considerar que se "parece" a **Prettier**, pero, en términos concretos, no son lo mismo.
 
@@ -117,9 +117,9 @@ No obstante, si quieres usar características experimentales de javaScript, babe
 @babel/eslint-parser
 ```
 
-Qué enredado, si quieres profundizar sobre esto puedes leer el [estado de babel-eslint](https://babeljs.io/blog/2020/07/13/the-state-of-babel-eslint "estado de babel-eslint") pero no perdamos tiempo en esto por ahora. Así que dejemoslo como ellos recomiendan.
+Qué enredado, si quieres profundizar sobre esto puedes leer el [estado de babel-eslint](https://babeljs.io/blog/2020/07/13/the-state-of-babel-eslint 'estado de babel-eslint') pero no perdamos tiempo en esto por ahora. Así que dejemoslo como ellos recomiendan.
 
-También está eslint-config-standard, que es finalmente, las reglas de standard y eslint-config-standard-react las reglas de standard para react, como también los plugins eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react. 
+También está eslint-config-standard, que es finalmente, las reglas de standard y eslint-config-standard-react las reglas de standard para react, como también los plugins eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react.
 
 Claramente el primer plugin hace referencia a standard, luego viene promise, para las promesas, luego import, para la sintaxis import/export, node para el entorno de node, y finalmente el plugin para react.
 
@@ -151,7 +151,7 @@ El error es este:
 
 Esto es, porque en Next, no es necesario importar React en cada componente (algo que en React debemos hacer constantemente).
 
-Si quieres ver con más detalles los errores, te recomiendo instalar la extensión (si es que usas VSCODE, que es mi otra recomendación), [Error Lens.](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens "Error Lens")
+Si quieres ver con más detalles los errores, te recomiendo instalar la extensión (si es que usas VSCODE, que es mi otra recomendación), [Error Lens.](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens 'Error Lens')
 
 ```jsx
 import React from 'react'
@@ -169,7 +169,7 @@ No es necesario hacerlo en Next, por lo que para evitar este error haremos el pr
   "parser": "babel-eslint",
   "extends": ["standard", "standard-react"],
   "rules": {
-    "react/react-in-jsx-scope": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
 ```
@@ -179,10 +179,8 @@ Listo!!! ahora, se ha arreglado ese error que teníamos de tener React en el sco
 Ahora, cada vez que escribas código, se autoformateará. Por ejemplo si escribes el siguiente componente Title (creamos la carpeta "components" en la raíz del proyecto y dentro el archivo title.js):
 
 ```jsx
-export default function Title ({ className, children }) {
-  return (
-    <h1 className={className}>{children}</h1>
-  )
+export default function Title({ className, children }) {
+  return <h1 className={className}>{children}</h1>
 }
 ```
 
@@ -250,7 +248,7 @@ Y listo, ya tienes configurado en tu proyecto de next, lo que necesitas para tra
 
 Gracias por leer.
 
-Puedes encontrar este ejemplo en mi **[github](https://github.com/nikosantis/next-with-standardjs "github")**
+Puedes encontrar este ejemplo en mi **[github](https://github.com/nikosantis/next-with-standardjs 'github')**
 
 **BONUS:**
 
@@ -283,4 +281,17 @@ Y el archivo de configuración debería quedar así:
 
 Y listo 😀!!!
 
-export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>
+export const post = getPostByUrl('como-usar-standard-en-next')
+
+export default ({ children }) => (
+  <LayoutPost
+    date={post.date}
+    dateForISO={post.dateForISO}
+    title={post.title}
+    description={post.description}
+    image={post.image}
+    url={post.url}
+  >
+    {children}
+  </LayoutPost>
+)
