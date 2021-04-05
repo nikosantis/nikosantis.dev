@@ -99,7 +99,7 @@ export default function Page({
           }
         `}
       </style>
-      <style jsx global>
+      <style global jsx>
         {`
           html {
             -webkit-text-size-adjust: 100%;
