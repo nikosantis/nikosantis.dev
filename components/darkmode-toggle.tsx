@@ -14,6 +14,7 @@ export default function DarkmodeToggle() {
       className={cs('button', themeClass)}
       type='button'
       onClick={handleClick}
+      aria-label='Cambiar theme'
     >
       <div className='box-icon'>
         {resolvedTheme === 'dark' ? <FiSun size='20' /> : <FiMoon size='20' />}

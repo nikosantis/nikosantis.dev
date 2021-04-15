@@ -35,7 +35,11 @@ export default function Home({ myPosts }: Props) {
             <div className='posts'>
               {myPosts &&
                 myPosts.map((post) => (
-                  <Link href={post.slug} key={post.slug}>
+                  <Link
+                    href={post.slug}
+                    key={post.slug}
+                    aria-label={`Ir al post ${post.title}`}
+                  >
                     <a className='post-link'>
                       <div className='post'>
                         <h2>{post.title}</h2>

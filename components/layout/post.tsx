@@ -44,7 +44,7 @@ export default function LayoutPost({
             <section className='content'>{children}</section>
             <footer>
               <div className='back'>
-                <ButtonLink href='/blog'>
+                <ButtonLink href='/blog' aria-label='Volver atrás'>
                   <span className='icon'>
                     <FiArrowLeft />
                   </span>{' '}

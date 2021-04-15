@@ -148,7 +148,7 @@ type InternalLinkProps = {
 function InternalLink({ href, children, error = false }: InternalLinkProps) {
   return (
     <NativeLink href={href}>
-      <a>
+      <a aria-label={`Ir a ${String(children)}`}>
         {children}
 
         <style jsx>
@@ -179,7 +179,7 @@ type AnchorlLinkProps = {
 
 function AnchorLink({ href, onClick, children }: AnchorlLinkProps) {
   return (
-    <a href={href} onClick={onClick}>
+    <a href={href} onClick={onClick} aria-label={`Ir a ${String(children)}`}>
       {children}
 
       <style jsx>
@@ -210,7 +210,12 @@ type ExternalLinkProps = {
 
 function ExternalLink({ href, children }: ExternalLinkProps) {
   return (
-    <a href={href} target='_blank' rel='noopener noreferrer'>
+    <a
+      href={href}
+      target='_blank'
+      rel='noopener noreferrer'
+      aria-label={`Ir a ${String(children)}`}
+    >
       {children}
 
       <style jsx>

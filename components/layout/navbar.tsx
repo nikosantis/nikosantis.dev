@@ -22,6 +22,7 @@ export default function Navbar({ isOpen }: Props) {
                 className={cs('link', {
                   active: router.pathname === '/'
                 })}
+                aria-label='Ir al inicio'
               >
                 Inicio
               </a>
@@ -31,6 +32,7 @@ export default function Navbar({ isOpen }: Props) {
                 className={cs('link', {
                   active: router.pathname === '/sobre-mi'
                 })}
+                aria-label='Ir a Sobre mí'
               >
                 Sobre mi
               </a>
@@ -40,6 +42,7 @@ export default function Navbar({ isOpen }: Props) {
                 className={cs('link', {
                   active: router.pathname === '/blog'
                 })}
+                aria-label='Ir al blog'
               >
                 Blog
               </a>

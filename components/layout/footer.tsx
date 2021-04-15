@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <p>
               ©{' '}
-              <Link href='/'>
+              <Link href='/' aria-label='Ir al inicio'>
                 <a>Nikolas Santis</a>
               </Link>
               . Santiago, Chile.
@@ -22,6 +22,7 @@ export default function Footer() {
                 href='https://github.com/nikosantis'
                 target='_blank'
                 rel='noopener noreferrer'
+                aria-label='Ir a Github'
               >
                 <FaGithub size='24' />
               </a>
@@ -31,6 +32,7 @@ export default function Footer() {
                 href='https://www.linkedin.com/in/nikosantis'
                 target='_blank'
                 rel='noopener noreferrer'
+                aria-label='Ir a LinkedIn'
               >
                 <FaLinkedin size='24' />
               </a>

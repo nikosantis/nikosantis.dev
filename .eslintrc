@@ -25,7 +25,8 @@
     "@typescript-eslint",
     "prettier",
     "react",
-    "react-hooks"
+    "react-hooks",
+    "jsx-a11y"
   ],
   "settings": {
     "react": {

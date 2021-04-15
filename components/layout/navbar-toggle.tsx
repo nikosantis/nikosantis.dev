@@ -13,7 +13,7 @@ export default function NavbarToggle({ isOpen, handleClick }: Props) {
         active: isOpen
       })}
     >
-      <button onClick={handleClick}>
+      <button onClick={handleClick} aria-label='Abrir menú'>
         <span>
           <FiMenu />
         </span>
