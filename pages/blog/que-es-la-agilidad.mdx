@@ -1,10 +1,11 @@
 import LayoutPost from 'components/layout/post'
-import { meta } from '_posts/que-es-la-agilidad'
+import { getPostByUrl } from 'lib/posts'
 
-Era muy extraño hace unos años atrás cuando veía la palabra *agile* en muchos lados.
+Era muy extraño hace unos años atrás cuando veía la palabra _agile_ en muchos lados.
 Claramente, con el "clásico inglés 🧐" que uno cree tener, deduje que se refería a agilidad.
 
 Inmediatamente pensé:
+
 - Ahora quieren que trabajemos más rápido...
 - Esperan que seamos más ágiles con nuestro código...
 - Nos quieren 24/7 y sin descanso, metidos desarrollando...
@@ -17,12 +18,12 @@ Todo comienza por la historia.
 
 Había una vez, un grupo de personas, 17 para ser exactos, que se reunieron en el 2001, convocados por un tipo bastante conocido en el medio de desarrollo de software.
 
-Esa persona conocida es **Kent Beck**, quien tiempo antes de esta "reunión", había escrito un libro llamado *Extreme Programming Explained*, en el cual presentaba una nueva metodología de desarrollo llamada **Extreme Programming** (sí, nuevamente con los nombres que con este "clásico inglés 🧐" nos puede hacer pensar muchas cosas, además que tiene nombre de videojuego).
+Esa persona conocida es **Kent Beck**, quien tiempo antes de esta "reunión", había escrito un libro llamado _Extreme Programming Explained_, en el cual presentaba una nueva metodología de desarrollo llamada **Extreme Programming** (sí, nuevamente con los nombres que con este "clásico inglés 🧐" nos puede hacer pensar muchas cosas, además que tiene nombre de videojuego).
 
 En esta reunión, me imagino, que debe de haber sido "ágil" (😆), discutieron sobre técnicas y procesos de cómo se estaba desarrollando softwares en ese momento. En ella, se llegó a un concepto que acuñaron ese día: **"Metodologías Ágiles"**.
 Esto, en comparación a las metodologías convencionales y bastante rígidas que existian en ese momento.
 
-Bueno, finalmente se creo lo que se llama: **[Manifiesto Ágil](https://agilemanifesto.org/iso/es/manifesto.html "Manifiesto Ágil")**, el cual mencionaba 4 valores muy importantes.
+Bueno, finalmente se creo lo que se llama: **[Manifiesto Ágil](https://agilemanifesto.org/iso/es/manifesto.html 'Manifiesto Ágil')**, el cual mencionaba 4 valores muy importantes.
 
 > Estamos descubriendo formas mejores de desarrollar software tanto por nuestra propia experiencia como ayudando a terceros. A través de este trabajo hemos aprendido a valorar:
 
@@ -93,4 +94,17 @@ Para terminar, te dejo los principios del manifiesto ágil:
 - Las mejores arquitecturas, requisitos y diseños emergen de equipos auto-organizados.
 - A intervalos regulares el equipo reflexiona sobre cómo ser más efectivo para a continuación ajustar y perfeccionar su comportamiento en consecuencia.
 
-export default ({children}) => <LayoutPost { ...meta }>{children}</LayoutPost>
+export const post = getPostByUrl('que-es-la-agilidad')
+
+export default ({ children }) => (
+  <LayoutPost
+    date={post.date}
+    dateForISO={post.dateForISO}
+    title={post.title}
+    description={post.description}
+    image={post.image}
+    url={post.url}
+  >
+    {children}
+  </LayoutPost>
+)

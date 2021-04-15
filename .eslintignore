@@ -1,0 +1,7 @@
+node_modules
+out
+.next
+next-env.d.ts
+mdx.d.ts
+next.config.js
+next-sitemap.js

@@ -8,7 +8,10 @@ const withMDX = require('@next/mdx')({
 })
 
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'mdx']
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  future: {
+    webpack5: true
+  }
 }
 
 module.exports = withMDX(nextConfig)
