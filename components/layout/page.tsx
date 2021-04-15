@@ -37,11 +37,13 @@ export default function Page({
         />
         <meta
           property='og:title'
-          content={title || 'Nikolas Santis | Desarrollador JavaScript'}
+          content={
+            title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'
+          }
         />
         <meta
           property='og:site_name'
-          content='Nikolas Santis | Desarrollador JavaScript'
+          content='Nikolas Santis | Desarrollador JavaScript y TypeScript'
         />
         <meta name='author' content='Nikolas Santis' />
         <meta
@@ -148,6 +150,14 @@ export default function Page({
           h2,
           h3 {
             margin: 0;
+            color: var(--ns-fg-heads);
+            font-weight: 700;
+          }
+          p {
+            font-weight: 400;
+          }
+          li {
+            font-weight: 400;
           }
           p a,
           a {

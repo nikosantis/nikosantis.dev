@@ -66,7 +66,7 @@ export default function Header() {
             line-height: 1;
             font-size: 1rem;
             font-weight: 600;
-            color: var(--ns-fg);
+            color: var(--ns-logo);
             @media (min-width: 576px) {
               font-size: 1.2rem;
             }

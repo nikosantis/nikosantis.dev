@@ -2,19 +2,18 @@ import '../styles/fonts.css'
 import '../styles/base.css'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
-import { MDXProvider } from '@mdx-js/react'
 
 import Progress from 'components/nprogress'
-import { components } from 'components/mdx-components'
+import MdxComponentsProvider from 'components/mdx-components'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MDXProvider components={components}>
-      <ThemeProvider attribute='class' enableSystem={false}>
+    <MdxComponentsProvider>
+      <ThemeProvider attribute='class'>
         <Progress />
         <Component {...pageProps} />
       </ThemeProvider>
-    </MDXProvider>
+    </MdxComponentsProvider>
   )
 }
 

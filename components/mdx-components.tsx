@@ -1,13 +1,14 @@
 import NativeLink from 'next/link'
 import { ReactNode } from 'react'
 import cs from 'classnames'
+import { MDXProvider } from '@mdx-js/react'
 
-type Props = {
+type ComponentProps = {
   children: ReactNode
   id: string
 }
 
-function H1({ children, id }: Props) {
+function H1({ children, id }: ComponentProps) {
   return (
     <h1 id={id}>
       {children}
@@ -23,7 +24,7 @@ function H1({ children, id }: Props) {
   )
 }
 
-function H2({ children, id }: Props) {
+function H2({ children, id }: ComponentProps) {
   return (
     <h2 id={id}>
       {children}
@@ -40,7 +41,7 @@ function H2({ children, id }: Props) {
   )
 }
 
-function H3({ children, id }: Props) {
+function H3({ children, id }: ComponentProps) {
   return (
     <h3 id={id}>
       {children}
@@ -56,7 +57,7 @@ function H3({ children, id }: Props) {
   )
 }
 
-function Ul({ children }: Props) {
+function Ul({ children }: ComponentProps) {
   return (
     <ul>
       {children}
@@ -72,7 +73,7 @@ function Ul({ children }: Props) {
   )
 }
 
-function Li({ children }: Props) {
+function Li({ children }: ComponentProps) {
   return (
     <li>
       {children}
@@ -81,7 +82,6 @@ function Li({ children }: Props) {
           li {
             margin-bottom: 0.35rem;
             font-size: 1.125rem;
-            font-weight: 300;
             :before {
               content: '-';
               display: inline-block;
@@ -96,7 +96,7 @@ function Li({ children }: Props) {
   )
 }
 
-function P({ children }: Props) {
+function P({ children }: ComponentProps) {
   return (
     <p>
       {children}
@@ -104,7 +104,6 @@ function P({ children }: Props) {
         {`
           p {
             font-size: 1.125rem;
-            font-weight: 300;
             line-height: 1.8;
             margin-bottom: 1.5rem;
 
@@ -281,7 +280,7 @@ function Code({ children, className }: CodeProps) {
           }
           .token.boolean,
           .token.constant {
-            color: #99cc99;
+            color: #d19a66;
           }
           .token.symbol,
           .token.deleted {
@@ -341,6 +340,32 @@ function Code({ children, className }: CodeProps) {
   )
 }
 
+function InlineCode({ children }: CodeProps) {
+  return (
+    <code>
+      {children}
+      <style jsx>
+        {`
+          code {
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            color: #f92672;
+          }
+          code.no-wrap {
+            white-space: nowrap;
+          }
+          code::before {
+            content: '\`';
+          }
+          code::after {
+            content: '\`';
+          }
+        `}
+      </style>
+    </code>
+  )
+}
+
 type BlockQuoteProps = {
   children: ReactNode
 }
@@ -381,15 +406,24 @@ function Hr() {
   )
 }
 
-export const components = {
+const components = {
   h1: H1,
   h2: H2,
   h3: H3,
   ul: Ul,
   li: Li,
   code: Code,
+  inlineCode: InlineCode,
   p: P,
   a: GenericLink,
   blockquote: Blockquote,
   hr: Hr
+}
+
+type Props = {
+  children: ReactNode
+}
+
+export default function MdxComponentsProvider({ children }: Props) {
+  return <MDXProvider components={components}>{children}</MDXProvider>
 }

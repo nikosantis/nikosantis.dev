@@ -1,6 +1,8 @@
 :root {
   --ns-bg: #ffffff;
-  --ns-fg: #1c1e21;
+  --ns-fg: #24292e;
+  --ns-fg-heads: #24292e;
+  --ns-logo: #24292e;
   --ns-light: #f5f5f5;
   --ns-light-code: #fafafa;
   --ns-gray: #666666;
@@ -27,8 +29,10 @@
 }
 
 .dark {
-  --ns-bg: #1c1e21;
-  --ns-fg: #ffffff;
+  --ns-bg: #0d1117;
+  --ns-fg: #c9d1d9;
+  --ns-fg-heads: #ffffff;
+  --ns-logo: #ffffff;
   --ns-selection: rgba(255, 255, 255, 0.99);
   --ns-light: #3e4042;
   --ns-navbar-link: rgba(255, 255, 255, 0.5);

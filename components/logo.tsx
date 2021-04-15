@@ -11,7 +11,7 @@ export default function Logo({ color, size }: Props) {
         {`
           svg {
             path {
-              fill: ${color || 'var(--ns-fg)'};
+              fill: ${color || 'var(--ns-logo)'};
               transition: fill 0.2s ease;
             }
           }

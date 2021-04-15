@@ -15,9 +15,9 @@ export default function DarkmodeToggle() {
       type='button'
       onClick={handleClick}
     >
-      <span>
+      <div className='box-icon'>
         {resolvedTheme === 'dark' ? <FiSun size='20' /> : <FiMoon size='20' />}
-      </span>
+      </div>
 
       <style jsx>
         {`
@@ -29,12 +29,17 @@ export default function DarkmodeToggle() {
             border-radius: 8px;
             transition: background 0.2s ease;
           }
+          .box-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
           .dark {
             &:hover {
               outline: none;
               background: var(--ns-light);
             }
-            span {
+            .box-icon {
               font-size: 0;
               color: var(--ns-fg);
             }
@@ -44,7 +49,7 @@ export default function DarkmodeToggle() {
               outline: none;
               background: var(--ns-light);
             }
-            span {
+            .box-icon {
               font-size: 0;
               color: var(--ns-fg);
             }
