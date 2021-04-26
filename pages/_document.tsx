@@ -60,8 +60,6 @@ class MyDocument extends Document {
           <meta name='theme-color' content='#ffffff' />
         </Head>
         <body>
-          <Main />
-          <NextScript />
           <noscript
             dangerouslySetInnerHTML={{
               __html: `
@@ -72,6 +70,8 @@ class MyDocument extends Document {
               `
             }}
           />
+          <Main />
+          <NextScript />
         </body>
       </Html>
     )

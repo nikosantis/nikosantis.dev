@@ -1,5 +1,15 @@
 const posts: GetPostsType = [
   {
+    slug: '/blog/lo-que-debes-saber-de-core-web-vitals',
+    date: 'Abril 26, 2021',
+    dateForISO: '4/26/2021',
+    title: 'Lo que debes saber de Core Web Vitals',
+    description:
+      'Lo que debes saber de Core Web Vitals para preparar tu sitio web al cambio de Google de mayo 2021.',
+    image: 'lo-que-debes-saber-de-core-web-vitals/cover.png',
+    url: 'lo-que-debes-saber-de-core-web-vitals'
+  },
+  {
     slug: '/blog/guia-basica-de-supervivencia-en-react-con-typescript',
     date: 'Abril 15, 2021',
     dateForISO: '4/15/2021',

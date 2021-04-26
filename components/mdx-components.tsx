@@ -1,5 +1,5 @@
-import NativeLink from 'next/link'
 import { ReactNode } from 'react'
+import NativeLink from 'next/link'
 import cs from 'classnames'
 import { MDXProvider } from '@mdx-js/react'
 
@@ -156,13 +156,11 @@ function InternalLink({ href, children, error = false }: InternalLinkProps) {
             a {
               text-decoration: ${error ? 'underline' : 'none'};
               font-size: inherit;
-              overflow-wrap: break-word;
-              word-wrap: break-word;
-              word-break: break-all;
-              hyphens: auto;
+              color: var(--ns-blue-link);
             }
             a:hover {
               text-decoration: none;
+              color: #68b5fb;
             }
           `}
         </style>
@@ -188,13 +186,10 @@ function AnchorLink({ href, onClick, children }: AnchorlLinkProps) {
             color: inherit;
             font-size: inherit;
             border-bottom: 1px dotted;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            word-break: break-all;
-            hyphens: auto;
+            color: var(--ns-blue-link);
           }
           a:hover {
-            color: gray;
+            color: #68b5fb;
             text-decoration: none;
           }
         `}
@@ -223,10 +218,10 @@ function ExternalLink({ href, children }: ExternalLinkProps) {
           a {
             text-decoration: none;
             font-size: inherit;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            word-break: break-all;
-            hyphens: auto;
+            color: var(--ns-blue-link);
+          }
+          a:hover {
+            color: #68b5fb;
           }
         `}
       </style>
@@ -411,6 +406,81 @@ function Hr() {
   )
 }
 
+type TableProps = {
+  children: ReactNode
+}
+
+function Table({ children }: TableProps) {
+  return (
+    <div className='table-container'>
+      <table>{children}</table>
+      <style jsx>
+        {`
+          .table-container {
+            display: flex;
+            justify-content: center;
+          }
+          table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            display: block;
+            overflow: auto;
+            word-break: normal;
+            word-break: keep-all;
+          }
+        `}
+      </style>
+    </div>
+  )
+}
+
+function Tr({ children }: TableProps) {
+  return (
+    <tr>
+      {children}
+      <style jsx>
+        {`
+          tr {
+            border-top: 1px solid #ccc;
+          }
+        `}
+      </style>
+    </tr>
+  )
+}
+
+function Th({ children }: TableProps) {
+  return (
+    <th>
+      {children}
+      <style jsx>
+        {`
+          th {
+            padding: 6px 13px;
+            border: 1px solid #ddd;
+          }
+        `}
+      </style>
+    </th>
+  )
+}
+
+function Td({ children }: TableProps) {
+  return (
+    <td>
+      {children}
+      <style jsx>
+        {`
+          td {
+            padding: 6px 13px;
+            border: 1px solid #ddd;
+          }
+        `}
+      </style>
+    </td>
+  )
+}
+
 const components = {
   h1: H1,
   h2: H2,
@@ -422,7 +492,11 @@ const components = {
   p: P,
   a: GenericLink,
   blockquote: Blockquote,
-  hr: Hr
+  hr: Hr,
+  table: Table,
+  tr: Tr,
+  th: Th,
+  td: Td
 }
 
 type Props = {
