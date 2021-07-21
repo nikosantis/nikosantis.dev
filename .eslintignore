@@ -1,7 +1,4 @@
-node_modules
-out
 .next
+/coverage
 next-env.d.ts
-mdx.d.ts
 next.config.js
-next-sitemap.js

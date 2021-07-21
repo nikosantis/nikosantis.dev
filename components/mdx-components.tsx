@@ -209,8 +209,7 @@ function ExternalLink({ href, children }: ExternalLinkProps) {
       href={href}
       target='_blank'
       rel='noopener noreferrer'
-      aria-label={`Ir a ${String(children)}`}
-    >
+      aria-label={`Ir a ${String(children)}`}>
       {children}
 
       <style jsx>

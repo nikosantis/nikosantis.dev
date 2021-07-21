@@ -64,8 +64,7 @@ function Collapse({ isOpen, navbar, children }: Props) {
       onExit={onExit}
       onExiting={onExiting}
       onExited={onExited}
-      nodeRef={_nodeRef}
-    >
+      nodeRef={_nodeRef}>
       {(status: StatusTypes) => {
         const collapseClass = getTransitionClass(status)
         const classes = cs(

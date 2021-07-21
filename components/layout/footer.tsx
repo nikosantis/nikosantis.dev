@@ -22,8 +22,7 @@ export default function Footer() {
                 href='https://github.com/nikosantis'
                 target='_blank'
                 rel='noopener noreferrer'
-                aria-label='Ir a Github'
-              >
+                aria-label='Ir a Github'>
                 <FaGithub size='24' />
               </a>
             </div>
@@ -32,8 +31,7 @@ export default function Footer() {
                 href='https://www.linkedin.com/in/nikosantis'
                 target='_blank'
                 rel='noopener noreferrer'
-                aria-label='Ir a LinkedIn'
-              >
+                aria-label='Ir a LinkedIn'>
                 <FaLinkedin size='24' />
               </a>
             </div>

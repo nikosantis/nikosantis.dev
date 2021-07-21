@@ -25,9 +25,7 @@ export default function Page({
   return (
     <div className='page'>
       <Head>
-        <title>
-          {title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'}
-        </title>
+        <title>{title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'}</title>
         <meta
           name='description'
           content={
@@ -37,9 +35,7 @@ export default function Page({
         />
         <meta
           property='og:title'
-          content={
-            title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'
-          }
+          content={title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'}
         />
         <meta
           property='og:site_name'
@@ -48,11 +44,7 @@ export default function Page({
         <meta name='author' content='Nikolas Santis' />
         <meta
           property='og:url'
-          content={
-            ogUrl
-              ? `https://nikosantis.dev/${ogUrl}`
-              : 'https://nikosantis.dev/'
-          }
+          content={ogUrl ? `https://nikosantis.dev/${ogUrl}` : 'https://nikosantis.dev/'}
         />
         <meta property='og:type' content={ogType || 'website'} />
         <meta property='og:locale' content='es_ES' />
@@ -70,9 +62,7 @@ export default function Page({
         />
         <meta
           name='twitter:title'
-          content={
-            title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'
-          }
+          content={title || 'Nikolas Santis | Desarrollador JavaScript y TypeScript'}
         />
         <meta
           name='twitter:description'

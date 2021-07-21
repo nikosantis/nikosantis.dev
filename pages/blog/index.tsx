@@ -15,25 +15,23 @@ export default function Blog({ myPosts }: Props) {
     <Page
       title='Mi Blog | Nikolas Santis, Desarrollador JavaScript'
       ogUrl='https://nikosantis.dev/blog'
-      description='Mi Blog. Aquí encontrarás artículos sobre JavaScript, React, Nextjs, Jamstack, Node, Serverless y más cosas.'
-    >
+      description='Mi Blog. Aquí encontrarás artículos sobre JavaScript, React, Nextjs, Jamstack, Node, Serverless y más cosas.'>
       <Main>
         <Container>
           <div className='wrapper'>
             <div className='intro'>
               <h1>Este es mi Blog</h1>
               <p>
-                Aquí encontrarás artículos sobre JavaScript, React, Nextjs,
-                Jamstack, Node, Serverless y más cosas.
+                Aquí encontrarás artículos sobre JavaScript, React, Nextjs, Jamstack,
+                Node, Serverless y más cosas.
               </p>
             </div>
             <div className='posts'>
-              {myPosts.map((post) => (
+              {myPosts.map(post => (
                 <Link
                   href={post.slug}
                   key={post.slug}
-                  aria-label={`Ir al post ${post.title}`}
-                >
+                  aria-label={`Ir al post ${post.title}`}>
                   <a className='post-link'>
                     <div className='post'>
                       <h2>{post.title}</h2>

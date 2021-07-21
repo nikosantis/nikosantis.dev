@@ -130,7 +130,7 @@ React 17 elimina la optimización de "agrupación de ventos" de React. No mejora
 
 ```jsx
 function handleChange(e) {
-  setData((data) => ({
+  setData(data => ({
     ...data,
     // esto hace crash en React 16 y anteriores
     text: e.target.value
@@ -298,8 +298,7 @@ export default ({ children }) => (
     title={post.title}
     description={post.description}
     image={post.image}
-    url={post.url}
-  >
+    url={post.url}>
     {children}
   </LayoutPost>
 )

@@ -18,8 +18,7 @@ export default function ButtonLink({ href, children, ...props }: Props) {
               justify-content: center;
               cursor: pointer;
               text-decoration: none;
-              transition: background 0.2s ease, color 0.2s ease,
-                box-shadow 0.2s ease;
+              transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
               outline: none;
               padding: 0 3.5rem;
               height: 2.81rem;

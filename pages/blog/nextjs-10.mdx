@@ -62,12 +62,7 @@ Con esta nueva versión se anuncia la solución de Next.js para imágenes de alt
 En su forma más básica, el componente de imagen Next.js es solo un reemplazo directo del elemento HTML `<img>`, desarrollado para la web moderna.
 
 ```html
-<img
-  src="src/profile-picture.jpg"
-  width="400"
-  height="400"
-  alt="Profile Picture"
-/>
+<img src="src/profile-picture.jpg" width="400" height="400" alt="Profile Picture" />
 ```
 
 ```jsx
@@ -446,8 +441,7 @@ export default ({ children }) => (
     title={post.title}
     description={post.description}
     image={post.image}
-    url={post.url}
-  >
+    url={post.url}>
     {children}
   </LayoutPost>
 )

@@ -26,26 +26,23 @@ export default function Home({ myPosts }: Props) {
                 <br /> y este es mi blog
               </h1>
               <p>
-                Soy desarrollador JavaScript y TypeScript de software, web y
-                mobile. Comparto mi experiencia con artículos sobre JavaScript,
-                TypeScript, React, Nextjs, Jamstack, Node, Serverless y más.
+                Soy desarrollador JavaScript y TypeScript de software, web y mobile.
+                Comparto mi experiencia con artículos sobre JavaScript, TypeScript, React,
+                Nextjs, Jamstack, Node, Serverless y más.
               </p>
             </div>
 
             <div className='posts'>
               {myPosts &&
-                myPosts.map((post) => (
+                myPosts.map(post => (
                   <Link
                     href={post.slug}
                     key={post.slug}
-                    aria-label={`Ir al post ${post.title}`}
-                  >
+                    aria-label={`Ir al post ${post.title}`}>
                     <a className='post-link'>
                       <div className='post'>
                         <h2>{post.title}</h2>
-                        <time
-                          dateTime={new Date(post.dateForISO).toISOString()}
-                        >
+                        <time dateTime={new Date(post.dateForISO).toISOString()}>
                           {post.date}
                         </time>
                       </div>

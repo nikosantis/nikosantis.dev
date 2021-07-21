@@ -389,15 +389,11 @@ function CounterComponent() {
   return (
     <div>
       <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({ type: 'increment', payload: 3 })}>
-        Sumar 3
-      </button>
+      <button onClick={() => dispatch({ type: 'increment', payload: 3 })}>Sumar 3</button>
       <button onClick={() => dispatch({ type: 'decrement' })}>Restar 1</button>
       <input
         value={state.text}
-        onChange={(e) =>
-          dispatch({ type: 'set_text', payload: e.target.value })
-        }
+        onChange={e => dispatch({ type: 'set_text', payload: e.target.value })}
       />
       <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
     </div>
@@ -560,7 +556,7 @@ function SomeComponent() {
 
   return (
     // dentro del onChange, el evento `e` será: e: ChangeEvent<HTMLInputElement>
-    <input type='text' value={text} onChange={(e) => setText(e.target.value)} />
+    <input type='text' value={text} onChange={e => setText(e.target.value)} />
   )
 }
 ```
@@ -589,7 +585,7 @@ Otra manera de definir la función sería así:
 
 ```tsx
 // de manera inferida, el valor de `e` será `ChangeEvent<HTMLInputElement>`
-const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
   setText(e.target.value)
 }
 ```
@@ -727,9 +723,7 @@ Te recomiendo algunas lecturas más completas y adicionales para asuntos más co
 
 Abrazos
 
-export const post = getPostByUrl(
-  'guia-basica-de-supervivencia-en-react-con-typescript'
-)
+export const post = getPostByUrl('guia-basica-de-supervivencia-en-react-con-typescript')
 
 export default ({ children }) => (
   <LayoutPost
@@ -738,8 +732,7 @@ export default ({ children }) => (
     title={post.title}
     description={post.description}
     image={post.image}
-    url={post.url}
-  >
+    url={post.url}>
     {children}
   </LayoutPost>
 )

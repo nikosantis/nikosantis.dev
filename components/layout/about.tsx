@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Page from 'components/layout/page'
 import Main from 'components/layout/main'
 import Container from 'components/layout/container'
+import avatarImg from 'public/images/nikolas-santis.png'
 
 type Props = {
   children: ReactNode
@@ -13,17 +14,17 @@ export default function About({ children }: Props) {
   return (
     <Page
       title='Soy Nikolas Santis | Desarrollador JavaScript y TypeScript'
-      ogUrl='sobre-mi'
-    >
+      ogUrl='sobre-mi'>
       <Main>
         <Container>
           <header>
             <div className='photo'>
               <Image
-                src='/images/nikolas-santis.png'
+                src={avatarImg}
                 alt='Nikolas Santis'
                 layout='fill'
                 objectFit='contain'
+                placeholder='blur'
               />
             </div>
             <div className='title'>

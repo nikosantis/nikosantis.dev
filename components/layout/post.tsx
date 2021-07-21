@@ -32,8 +32,7 @@ export default function LayoutPost({
       description={description}
       image={`https://nikosantis.dev/images/posts/${image}`}
       ogUrl={`blog/${url}`}
-      ogType='article'
-    >
+      ogType='article'>
       <Main>
         <Container>
           <article className='post'>

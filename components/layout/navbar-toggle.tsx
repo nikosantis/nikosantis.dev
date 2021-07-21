@@ -11,8 +11,7 @@ export default function NavbarToggle({ isOpen, handleClick }: Props) {
     <div
       className={cs('navbar-toggle', {
         active: isOpen
-      })}
-    >
+      })}>
       <button onClick={handleClick} aria-label='Abrir menú'>
         <span>
           <FiMenu />
