@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import LayoutPost from 'components/layout/post'
 import { getPostByUrl } from 'lib/posts'
+import imgUrl from 'public/images/posts/lo-que-debes-saber-de-core-web-vitals/core-web-vitals.png'
 
 Así como ha avanzando tan rápido este año y ya estamos pronto a entrar a mayo 2021, con eso, también **Google** comenzará a tomar en cuenta la **Experiencia de Usuario** respecto al posicionamiento en los resultados de búsqueda de Google.
 
@@ -52,11 +53,10 @@ Las métricas que componen Core Web Vitals evolucionarán con el tiempo. El conj
 
 <div className='image-container'>
   <Image
-    src='/images/posts/lo-que-debes-saber-de-core-web-vitals/core-web-vitals.png'
+    src={imgUrl}
     alt='Core Web Vitals'
     layout='responsive'
-    width={848}
-    height={279}
+    placeholder='blur'
   />
   <style jsx>
     {`
