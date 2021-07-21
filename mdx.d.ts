@@ -1,1 +1,1 @@
-/// <reference types="@mdx-js/vue-loader" />
+/// <reference types="@mdx-js/loader" />
