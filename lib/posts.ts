@@ -14,7 +14,8 @@ const posts: GetPostsType = [
     date: 'Abril 15, 2021',
     dateForISO: '4/15/2021',
     title: 'Guía Básica de Supervivencia en React con Typescript',
-    description: 'Una pequeña guía básica para sobrevivir en React usando Typescript',
+    description:
+      'Una pequeña guía básica para sobrevivir en React usando Typescript',
     image: 'guia-basica-de-supervivencia-en-react-con-typescript/cover.png',
     url: 'guia-basica-de-supervivencia-en-react-con-typescript'
   },

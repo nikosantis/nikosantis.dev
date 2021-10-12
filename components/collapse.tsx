@@ -1,16 +1,16 @@
 import { useState, memo, useRef, ReactNode, useCallback } from 'react'
 import { Transition } from 'react-transition-group'
-import cs from 'classnames'
+import cx from 'clsx'
 
 export type StatusTypes = 'entering' | 'entered' | 'exiting' | 'exited'
 
 const duration = 350
 
 const collapseStyles = {
-  entering: 'collapsing',
-  entered: 'collapse show',
-  exiting: 'collapsing',
-  exited: 'collapse'
+  entering: 'h-0 overflow-hidden collapsing',
+  entered: '',
+  exiting: 'h-0 overflow-hidden collapsing',
+  exited: 'hidden'
 }
 
 const getTransitionClass = (status: StatusTypes) => {
@@ -64,13 +64,15 @@ function Collapse({ isOpen, navbar, children }: Props) {
       onExit={onExit}
       onExiting={onExiting}
       onExited={onExited}
-      nodeRef={_nodeRef}>
+      nodeRef={_nodeRef}
+    >
       {(status: StatusTypes) => {
         const collapseClass = getTransitionClass(status)
-        const classes = cs(
+        const classes = cx(
           collapseClass,
           {
-            'navbar-collapse': navbar
+            'flex-grow items-center flex-basis-full order-3 lg:flex lg:flex-basis-auto lg:order-1':
+              navbar
           },
           { heightRef }
         )
@@ -79,30 +81,6 @@ function Collapse({ isOpen, navbar, children }: Props) {
         return (
           <div style={style} className={classes} ref={_nodeRef}>
             {children}
-            <style jsx>
-              {`
-                .navbar-collapse {
-                  flex-basis: 100%;
-                  flex-grow: 1;
-                  align-items: center;
-                  order: 3;
-                  @media (min-width: 992px) {
-                    display: flex !important;
-                    flex-basis: auto;
-                    order: 1;
-                  }
-                }
-                .collapse:not(.show) {
-                  display: none;
-                }
-
-                .collapsing {
-                  height: 0;
-                  overflow: hidden;
-                  transition: height 350ms ease;
-                }
-              `}
-            </style>
           </div>
         )
       }}

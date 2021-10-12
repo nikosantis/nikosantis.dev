@@ -11,16 +11,18 @@ export default function Header() {
   const [openMobile, setOpenMobile] = useState(false)
 
   return (
-    <header>
+    <header className='w-full flex items-center flex-col lg:py-2 lg:px-4'>
       <Container>
-        <div className='box'>
+        <div className='relative flex flex-wrap items-center lg:justify-between'>
           <Link href='/'>
             <a>
-              <div className='brand'>
-                <span className='logo'>
+              <div className='flex items-center h-[50px]'>
+                <span className='mr-4'>
                   <Logo />
                 </span>
-                <span className='text'>nikosantis.dev</span>
+                <span className='font-semibold text-base sm:text-xl'>
+                  nikosantis.dev
+                </span>
               </div>
             </a>
           </Link>
@@ -32,50 +34,6 @@ export default function Header() {
           <DarkMode />
         </div>
       </Container>
-      <style jsx>
-        {`
-          header {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            @media (min-width: 992px) {
-              padding: 0.5rem 1rem;
-            }
-          }
-          .box {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-
-            @media (min-width: 992px) {
-              justify-content: space-between;
-            }
-          }
-          .brand {
-            display: flex;
-            align-items: center;
-            height: 50px;
-          }
-          .logo {
-            margin-right: 15px;
-            font-size: 0;
-          }
-          .text {
-            line-height: 1;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--ns-logo);
-            @media (min-width: 576px) {
-              font-size: 1.2rem;
-            }
-          }
-          h1 {
-            font-size: 1.5rem;
-          }
-        `}
-      </style>
     </header>
   )
 }

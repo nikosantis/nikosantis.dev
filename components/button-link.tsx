@@ -7,37 +7,11 @@ type Props = {
 export default function ButtonLink({ href, children, ...props }: Props) {
   return (
     <Link href={href} passHref {...props}>
-      <a href='passHref'>
+      <a
+        href='passHref'
+        className='relative inline-flex items-center justify-center cursor-pointer transition duration-200 no-underline outline-none px-[3.5rem] h-[2.81rem] text-sm text-center rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-gray-900 hover:bg-white hover:border-gray-900'
+      >
         {children}
-        <style jsx>
-          {`
-            a {
-              position: relative;
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              cursor: pointer;
-              text-decoration: none;
-              transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-              outline: none;
-              padding: 0 3.5rem;
-              height: 2.81rem;
-              line-height: 2.8rem;
-              border-radius: 7px;
-              background: var(--ns-button-link);
-              color: var(--ns-bg);
-              border: 1px solid var(--ns-button-link);
-              text-align: center;
-              font-size: 0.875rem;
-
-              &:hover {
-                color: var(--ns-fg);
-                background: var(--ns-bg);
-                border-color: var(--ns-button-link);
-              }
-            }
-          `}
-        </style>
       </a>
     </Link>
   )

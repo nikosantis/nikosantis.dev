@@ -4,9 +4,9 @@ import Container from 'components/layout/container'
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className='h-[70px]'>
       <Container>
-        <div className='wrapper'>
+        <div className='h-[70px] flex justify-between items-center'>
           <div>
             <p>
               ©{' '}
@@ -16,51 +16,30 @@ export default function Footer() {
               . Santiago, Chile.
             </p>
           </div>
-          <div className='social'>
-            <div className='network'>
+          <div className='flex items-center'>
+            <div className='mr-2 last:m-0'>
               <a
                 href='https://github.com/nikosantis'
                 target='_blank'
                 rel='noopener noreferrer'
-                aria-label='Ir a Github'>
+                aria-label='Ir a Github'
+              >
                 <FaGithub size='24' />
               </a>
             </div>
-            <div className='network'>
+            <div className='mr-2 last:m-0'>
               <a
                 href='https://www.linkedin.com/in/nikosantis'
                 target='_blank'
                 rel='noopener noreferrer'
-                aria-label='Ir a LinkedIn'>
+                aria-label='Ir a LinkedIn'
+              >
                 <FaLinkedin size='24' />
               </a>
             </div>
           </div>
         </div>
       </Container>
-      <style jsx>
-        {`
-          footer {
-            height: var(--ns-footer);
-          }
-          .wrapper {
-            height: var(--ns-footer);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
-          .social {
-            display: flex;
-            align-items: center;
-          }
-          .network {
-            margin-right: 8px;
-            &:last-child {
-              margin: 0;
-            }
-          }
-        `}
-      </style>
     </footer>
   )
 }

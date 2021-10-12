@@ -1,4 +1,10 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext
+} from 'next/document'
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
 
@@ -45,7 +51,11 @@ class MyDocument extends Document {
             href='/favicon/favicon-16x16.png'
           />
           <link rel='manifest' href='/favicon/site.webmanifest' />
-          <link rel='mask-icon' href='/favicon/safari-pinned-tab.svg' color='#000000' />
+          <link
+            rel='mask-icon'
+            href='/favicon/safari-pinned-tab.svg'
+            color='#000000'
+          />
           <meta name='msapplication-TileColor' content='#000000' />
           <meta name='theme-color' content='#ffffff' />
           <link

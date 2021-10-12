@@ -15,27 +15,34 @@ export default function Blog({ myPosts }: Props) {
     <Page
       title='Mi Blog | Nikolas Santis, Desarrollador JavaScript'
       ogUrl='https://nikosantis.dev/blog'
-      description='Mi Blog. Aquí encontrarás artículos sobre JavaScript, React, Nextjs, Jamstack, Node, Serverless y más cosas.'>
+      description='Mi Blog. Aquí encontrarás artículos sobre JavaScript, React, Nextjs, Jamstack, Node, Serverless y más cosas.'
+    >
       <Main>
         <Container>
-          <div className='wrapper'>
-            <div className='intro'>
-              <h1>Este es mi Blog</h1>
-              <p>
-                Aquí encontrarás artículos sobre JavaScript, React, Nextjs, Jamstack,
-                Node, Serverless y más cosas.
+          <div className='flex flex-col min-h-intro'>
+            <div className='py-[45px]'>
+              <h1 className='mb-7 text-3xl'>Este es mi Blog</h1>
+              <p className='text-lg font-light'>
+                Aquí encontrarás artículos sobre JavaScript, React, Nextjs,
+                Jamstack, Node, Serverless y más cosas.
               </p>
             </div>
-            <div className='posts'>
+            <div className='flex-1 h-full py-6 px-0 transition'>
               {myPosts.map(post => (
                 <Link
                   href={post.slug}
                   key={post.slug}
-                  aria-label={`Ir al post ${post.title}`}>
-                  <a className='post-link'>
-                    <div className='post'>
-                      <h2>{post.title}</h2>
-                      <time dateTime={new Date(post.dateForISO).toISOString()}>
+                  aria-label={`Ir al post ${post.title}`}
+                >
+                  <a className='group block mb-2' title={post.title}>
+                    <div className='p-[10px] transition bg-transparent rounded-md group-hover:bg-gray-100 dark:group-hover:bg-gray-500'>
+                      <h2 className='transition text-ns-fg-light dark:text-white text-2xl'>
+                        {post.title}
+                      </h2>
+                      <time
+                        dateTime={new Date(post.dateForISO).toISOString()}
+                        className='transition text-ns-fg-light dark:text-white'
+                      >
                         {post.date}
                       </time>
                     </div>
@@ -46,45 +53,6 @@ export default function Blog({ myPosts }: Props) {
           </div>
         </Container>
       </Main>
-      <style jsx>
-        {`
-          .intro {
-            padding: 45px 0;
-          }
-          .wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: calc(100vh - (var(--ns-header) + var(--ns-footer)));
-          }
-          h1 {
-            margin-bottom: 25px;
-          }
-          p {
-            font-size: 1.2rem;
-          }
-          .posts {
-            padding: 25px 0;
-            height: 100%;
-            flex: 1;
-          }
-          .post-link {
-            text-decoration: none;
-            color: var(--ns-fg);
-            &:hover .post {
-              background: var(--ns-light);
-              border-radius: 6px;
-            }
-          }
-          .post {
-            padding: 10px;
-            transition: background 0.2s ease;
-            margin-bottom: 8px;
-            h2 {
-              font-size: 1.5rem;
-            }
-          }
-        `}
-      </style>
     </Page>
   )
 }

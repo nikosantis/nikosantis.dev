@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import cs from 'classnames'
+import cx from 'clsx'
 
 type Props = {
   className?: string
@@ -7,35 +7,14 @@ type Props = {
 }
 
 function Container({ className, children }: Props) {
-  const classNames = cs('container', className)
-
   return (
-    <div className={classNames}>
+    <div
+      className={cx(
+        'w-full mx-auto p-4 sm:max-w-[540px] md:max-w-[720px] lg:max-w-[880px]',
+        className
+      )}
+    >
       {children}
-
-      <style jsx>
-        {`
-          .container {
-            width: 100%;
-            padding-right: 1rem;
-            padding-left: 1rem;
-            margin-right: auto;
-            margin-left: auto;
-
-            @media (min-width: 576px) {
-              max-width: 540px;
-            }
-
-            @media (min-width: 768px) {
-              max-width: 720px;
-            }
-
-            @media (min-width: 992px) {
-              max-width: 880px;
-            }
-          }
-        `}
-      </style>
     </div>
   )
 }

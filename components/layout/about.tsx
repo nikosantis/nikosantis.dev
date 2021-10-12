@@ -13,12 +13,13 @@ type Props = {
 export default function About({ children }: Props) {
   return (
     <Page
-      title='Soy Nikolas Santis | Desarrollador JavaScript y TypeScript'
-      ogUrl='sobre-mi'>
+      title='Soy Nikolas Santis | Desarrollador de Software'
+      ogUrl='sobre-mi'
+    >
       <Main>
         <Container>
-          <header>
-            <div className='photo'>
+          <header className='w-full flex items-center justify-center py-6 mb-5 flex-col lg:flex-row'>
+            <div className='w-[100px] h-[100px] rounded-full overflow-hidden relative lg:w-[100px] lg:h-[100px]'>
               <Image
                 src={avatarImg}
                 alt='Nikolas Santis'
@@ -27,70 +28,21 @@ export default function About({ children }: Props) {
                 placeholder='blur'
               />
             </div>
-            <div className='title'>
-              <h1>
+            <div className='text-center lg:text-left ml-6'>
+              <h1 className='m-0 text-2xl lg:text-3xl'>
                 Mi nombre es Nikolas Santis
                 <br />
-                <span>y soy desarrollador JavaScript y TypeScript</span>
+                <span className='text-xl lg:text-2xl'>
+                  y soy desarrollador de Software
+                </span>
               </h1>
             </div>
           </header>
-          <section className='content'>{children}</section>
+          <section className='prose lg:prose-xl w-full max-w-full'>
+            {children}
+          </section>
         </Container>
       </Main>
-      <style jsx>
-        {`
-          header {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px 0;
-            margin-bottom: 20px;
-            flex-direction: column;
-            @media (min-width: 768px) {
-              flex-direction: row;
-            }
-          }
-          .photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            position: relative;
-            @media (min-width: 992px) {
-              width: 150px;
-              height: 150px;
-            }
-          }
-          .image {
-            border-radius: 50%;
-          }
-          .title {
-            text-align: center;
-            @media (min-width: 768px) {
-              text-align: left;
-              margin-left: 25px;
-            }
-            h1 {
-              margin: 0;
-              font-size: 1.5rem;
-              @media (min-width: 992px) {
-                font-size: 2rem;
-              }
-              span {
-                font-size: 1.25rem;
-                @media (min-width: 992px) {
-                  font-size: 1.5rem;
-                }
-              }
-            }
-          }
-          .content {
-            padding: 12px 0;
-          }
-        `}
-      </style>
     </Page>
   )
 }

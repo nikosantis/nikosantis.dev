@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import cs from 'classnames'
+import cx from 'clsx'
 
 import Collapse from 'components/collapse'
 import Container from 'components/layout/container'
@@ -14,72 +14,53 @@ export default function Navbar({ isOpen }: Props) {
 
   return (
     <Collapse navbar isOpen={isOpen}>
-      <nav role='navigation'>
-        <Container>
-          <div className='links'>
+      <nav role='navigation' className='flex-1 px-3'>
+        <div className='container mx-auto'>
+          <div className='flex flex-col justify-end items-center mt-[1.125rem] lg:flex-row lg:mt-0'>
             <Link href='/'>
               <a
-                className={cs('link', {
-                  active: router.pathname === '/'
-                })}
-                aria-label='Ir al inicio'>
+                className={cx(
+                  'px-[22px] py-[12px] uppercase transition-colors text-gray-500 rounded-lg font-medium hover:bg-gray-100 hover:text-gray-600',
+                  {
+                    'text-gray-900 hover:text-gray-900 dark:text-white':
+                      router.pathname === '/'
+                  }
+                )}
+                aria-label='Ir al inicio'
+              >
                 Inicio
               </a>
             </Link>
             <Link href='/sobre-mi'>
               <a
-                className={cs('link', {
-                  active: router.pathname === '/sobre-mi'
-                })}
-                aria-label='Ir a Sobre mí'>
+                className={cx(
+                  'px-[22px] py-[12px] uppercase transition-colors text-gray-500 rounded-lg font-medium hover:bg-gray-100 hover:text-gray-600',
+                  {
+                    'text-gray-900 hover:text-gray-900 dark:text-white':
+                      router.pathname === '/sobre-mi'
+                  }
+                )}
+                aria-label='Ir a Sobre mí'
+              >
                 Sobre mi
               </a>
             </Link>
             <Link href='/blog'>
               <a
-                className={cs('link', {
-                  active: router.pathname === '/blog'
-                })}
-                aria-label='Ir al blog'>
+                className={cx(
+                  'px-[22px] py-[12px] uppercase transition-colors text-gray-500 rounded-lg font-medium hover:bg-gray-100 hover:text-gray-600',
+                  {
+                    'text-gray-900 hover:text-gray-900 dark:text-white':
+                      router.pathname === '/blog'
+                  }
+                )}
+                aria-label='Ir al blog'
+              >
                 Blog
               </a>
             </Link>
           </div>
-        </Container>
-        <style jsx>
-          {`
-            nav {
-              flex: 1;
-              padding: 0 12px;
-            }
-            .links {
-              display: flex;
-              justify-content: flex-end;
-              align-items: center;
-              flex-direction: column;
-              margin-top: 1.125rem;
-              @media (min-width: 992px) {
-                flex-direction: row;
-                margin: 0;
-              }
-            }
-            .link {
-              padding: 20px 22px;
-              transition: background 0.2s ease;
-              text-transform: uppercase;
-              color: var(--ns-navbar-link);
-              border-radius: 8px;
-              font-weight: 500;
-              & :hover {
-                background: var(--ns-light);
-                color: var(--ns-navbar-link-hover);
-              }
-            }
-            .active {
-              color: var(--ns-navbar-link-hover);
-            }
-          `}
-        </style>
+        </div>
       </nav>
     </Collapse>
   )
