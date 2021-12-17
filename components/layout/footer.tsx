@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import Container from 'components/layout/container'
+import pckJson from 'package.json'
 
 export default function Footer() {
   return (
@@ -38,6 +39,13 @@ export default function Footer() {
               </a>
             </div>
           </div>
+        </div>
+        <div className='text-center text-sm'>
+          <p>
+            Sitio web desarrollado con <a href='https://nextjs.org/'>Next.js</a>{' '}
+            versión {pckJson.dependencies.next} y Tailwind versión{' '}
+            {pckJson.devDependencies.tailwindcss}
+          </p>
         </div>
       </Container>
     </footer>

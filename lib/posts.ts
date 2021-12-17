@@ -1,5 +1,15 @@
 const posts: GetPostsType = [
   {
+    slug: '/blog/cambiando-a-tailwindcss',
+    date: 'Junio 7, 2021',
+    dateForISO: '6/07/2021',
+    title: 'Cambiando a TailwindCSS',
+    description:
+      'Actualizando mi blog con TailwindCSS y la última versión de Nextjs.',
+    image: 'cambiando-a-tailwindcss/cover.png',
+    url: 'cambiando-a-tailwindcss'
+  },
+  {
     slug: '/blog/lo-que-debes-saber-de-core-web-vitals',
     date: 'Abril 26, 2021',
     dateForISO: '4/26/2021',

@@ -38,9 +38,7 @@ export default function About({ children }: Props) {
               </h1>
             </div>
           </header>
-          <section className='prose lg:prose-xl w-full max-w-full'>
-            {children}
-          </section>
+          <section>{children}</section>
         </Container>
       </Main>
     </Page>

@@ -37,15 +37,15 @@ export default function LayoutPost({
       <Main>
         <Container>
           <article className='post'>
-            <header>
-              <h1>{title}</h1>
+            <header className='py-[35px]'>
+              <h1 className='mb-4 mt-0 text-3xl'>{title}</h1>
               <time dateTime={new Date(dateForISO).toISOString()}>{date}</time>
             </header>
-            <section className='content'>{children}</section>
-            <footer>
+            <section>{children}</section>
+            <footer className='py-[25px]'>
               <div className='back'>
                 <ButtonLink href='/blog' aria-label='Volver atrás'>
-                  <span className='icon'>
+                  <span className='flex items-center justify-center mr-2'>
                     <FiArrowLeft />
                   </span>{' '}
                   Volver
@@ -55,27 +55,6 @@ export default function LayoutPost({
           </article>
         </Container>
       </Main>
-      <style jsx>
-        {`
-          header {
-            padding: 35px 0;
-          }
-          h1 {
-            margin-bottom: 15px;
-            margin-top: 0;
-            font-size: 2rem;
-          }
-          footer {
-            padding: 25px 0;
-          }
-          .icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-          }
-        `}
-      </style>
     </Page>
   )
 }
