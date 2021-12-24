@@ -143,4 +143,7 @@
   #nprogress .peg {
     box-shadow: 0 0 10px var(--ns-fg), 0 0 5px var(--ns-fg);
   }
+  .resume {
+    @apply text-gray-700 dark:text-gray-200;
+  }
 }

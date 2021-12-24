@@ -8,7 +8,7 @@ type Props = {
 
 export default function NavbarToggle({ isOpen, handleClick }: Props) {
   return (
-    <div className='order-2 ml-1 lg:hidden'>
+    <div className='order-3 ml-1 lg:hidden'>
       <button
         onClick={handleClick}
         aria-label='Abrir menú'

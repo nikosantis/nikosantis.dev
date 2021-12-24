@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import Head from 'next/head'
 
-import Header from 'components/layout/header'
-import Footer from 'components/layout/footer'
+import HeaderEn from 'components/layout/header-en'
+import FooterEn from 'components/layout/footer-en'
 
 type Props = {
   title?: string
@@ -14,16 +14,16 @@ type Props = {
   children: ReactNode
 }
 
-export default function Page({
+export default function PageEn({
   image,
   ogUrl,
   children,
   ...customMetas
 }: Props) {
   const metas = {
-    title: 'Nikolas Santis | Desarrollador de Software',
+    title: 'Nikolas Santis | Software Developer',
     description:
-      'Soy Nikolas Santis, Desarrollador de Software, Full Stack JavaScript & TypeScript Senior. Backend & Frontend. React, Nextjs, Nodejs. Trabajando remotamente desde Chile.',
+      "I'm Nikolas Santis, a Software Developer, Full Stack JavaScript & TypeScript Senior. Backend & Frontend. React, Nextjs, Nodejs. Working remotely from Chile.",
     ogType: 'website',
     ogUrl: 'https://nikosantis.dev/',
     ...customMetas
@@ -36,7 +36,7 @@ export default function Page({
         <meta property='og:title' content={metas.title} />
         <meta
           property='og:site_name'
-          content='Nikolas Santis | Desarrollador de Software'
+          content='Nikolas Santis | Software Developer'
         />
         <meta name='author' content='Nikolas Santis' />
         <meta
@@ -44,7 +44,7 @@ export default function Page({
           content={ogUrl ? `https://nikosantis.dev/${ogUrl}` : metas.ogUrl}
         />
         <meta property='og:type' content={metas.ogType} />
-        <meta property='og:locale' content='es_ES' />
+        <meta property='og:locale' content='en' />
         <meta property='og:description' content={metas.description} />
         <meta
           name='image'
@@ -61,9 +61,9 @@ export default function Page({
           content={image || 'https://nikosantis.dev/images/nikosantis-dev.png'}
         />
       </Head>
-      <Header />
+      <HeaderEn />
       {children}
-      <Footer />
+      <FooterEn />
     </div>
   )
 }

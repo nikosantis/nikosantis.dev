@@ -13,7 +13,7 @@ module.exports = {
         ...colors,
         'ns-bg': {
           light: '#ffffff',
-          dark: '#0d1117'
+          dark: '#111111'
         },
         'ns-fg': {
           light: '#24292e',
@@ -25,7 +25,8 @@ module.exports = {
         sans: ['Roboto', ...fontFamily.sans]
       },
       minHeight: {
-        intro: 'calc(100vh - 7px)'
+        intro: 'calc(100vh - 7px)',
+        resume: 'calc(100vh - 84px)'
       }
     }
   },

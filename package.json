@@ -13,6 +13,7 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.2",
     "@mapbox/rehype-prism": "^0.8.0",
     "@mdx-js/loader": "^1.6.22",
     "@mdx-js/react": "^1.6.22",

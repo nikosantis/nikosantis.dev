@@ -1,35 +1,25 @@
 import { ReactNode } from 'react'
 import Head from 'next/head'
 
-import Header from 'components/layout/header'
-import Footer from 'components/layout/footer'
-
 type Props = {
   title?: string
   description?: string
-  image?: string
   ogUrl?: string
   ogType?: 'article' | 'website'
   structuredData?: string
   children: ReactNode
 }
 
-export default function Page({
-  image,
-  ogUrl,
-  children,
-  ...customMetas
-}: Props) {
+export default function ResumePage({ children, ...customMetas }: Props) {
   const metas = {
     title: 'Nikolas Santis | Desarrollador de Software',
     description:
       'Soy Nikolas Santis, Desarrollador de Software, Full Stack JavaScript & TypeScript Senior. Backend & Frontend. React, Nextjs, Nodejs. Trabajando remotamente desde Chile.',
     ogType: 'website',
-    ogUrl: 'https://nikosantis.dev/',
     ...customMetas
   }
   return (
-    <div className='relative min-h-full w-full'>
+    <div className='relative min-h-full h-full w-full'>
       <Head>
         <title>{metas.title}</title>
         <meta name='description' content={metas.description} />
@@ -39,17 +29,14 @@ export default function Page({
           content='Nikolas Santis | Desarrollador de Software'
         />
         <meta name='author' content='Nikolas Santis' />
-        <meta
-          property='og:url'
-          content={ogUrl ? `https://nikosantis.dev/${ogUrl}` : metas.ogUrl}
-        />
+        <meta property='og:url' content='https://nikosantis.dev/cv' />
         <meta property='og:type' content={metas.ogType} />
         <meta property='og:locale' content='es_ES' />
         <meta property='og:description' content={metas.description} />
         <meta
           name='image'
           property='og:image'
-          content={image || 'https://nikosantis.dev/images/nikosantis-dev.png'}
+          content='https://nikosantis.dev/images/nikosantis-dev.png'
         />
         <meta name='twitter:title' content={metas.title} />
         <meta name='twitter:description' content={metas.description} />
@@ -58,12 +45,10 @@ export default function Page({
         <meta name='twitter:creator' content='@nikosantise' />
         <meta
           name='twitter:image'
-          content={image || 'https://nikosantis.dev/images/nikosantis-dev.png'}
+          content='https://nikosantis.dev/images/nikosantis-dev.png'
         />
       </Head>
-      <Header />
       {children}
-      <Footer />
     </div>
   )
 }

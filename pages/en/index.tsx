@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
 import { getPosts, GetPostsType } from 'lib/posts'
-import Page from 'components/layout/page'
+import PageEn from 'components/layout/page-en'
 import Main from 'components/layout/main'
 import Container from 'components/layout/container'
 
@@ -12,28 +12,24 @@ type Props = {
 
 export default function Home({ myPosts }: Props) {
   return (
-    <Page>
+    <PageEn>
       <Main>
         <Container>
           <div className='flex flex-col min-h-intro'>
             <div className='py-[45px]'>
               <h1 className='mb-7 text-4xl'>
-                Hola{' '}
+                Hi there{' '}
                 <span role='img' aria-label='hola'>
                   👋
                 </span>
-                , mi nombre es Nikolas Santis
-                <br /> y este es mi blog
+                , my name is Nikolas Santis
+                <br /> and this is my blog
               </h1>
               <p className='text-lg font-light'>
-                Soy Desarrollador de Software trabajando remotamente desde
-                Chile. Me gusta generar contenido y estoy compartiendo sobre las
-                tecnologías que uso actualmente, experiencias y vida cotidiana
-                mientras desarrollo, a través de mi blog y creando comunidad.
-              </p>
-              <p className='text-lg font-light'>
-                Estoy escribiendo artículos sobre JavaScript, TypeScript, React,
-                Nextjs, Jamstack, Node, Serverless y más.
+                I&apos;m a Software Developer working remotely from Chile. I
+                like to create content and I&apos;m sharing about the
+                technologies that I currently use, experiences and daily life
+                while developing, through my blog and creating community.
               </p>
             </div>
 
@@ -49,6 +45,9 @@ export default function Home({ myPosts }: Props) {
                       <div className='p-[10px] transition bg-transparent rounded-md group-hover:bg-gray-100 dark:group-hover:bg-gray-500'>
                         <h2 className='transition text-ns-fg-light dark:text-white text-2xl'>
                           {post.title}
+                          <span className='ml-2 text-sm'>
+                            [not in english yet]
+                          </span>
                         </h2>
                         <time
                           dateTime={new Date(post.dateForISO).toISOString()}
@@ -64,7 +63,7 @@ export default function Home({ myPosts }: Props) {
           </div>
         </Container>
       </Main>
-    </Page>
+    </PageEn>
   )
 }
 

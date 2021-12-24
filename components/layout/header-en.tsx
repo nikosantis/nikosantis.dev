@@ -4,18 +4,18 @@ import Link from 'next/link'
 import Container from 'components/layout/container'
 import DarkMode from 'components/darkmode'
 import Logo from 'components/logo'
-import Navbar from 'components/layout/navbar'
+import NavbarEn from 'components/layout/navbar-en'
 import NavbarToggle from 'components/layout/navbar-toggle'
 import LanguageChange from 'components/language-change'
 
-export default function Header() {
+export default function HeaderEn() {
   const [openMobile, setOpenMobile] = useState(false)
 
   return (
     <header className='w-full flex items-center flex-col lg:py-2 lg:px-4'>
       <Container>
         <div className='relative flex flex-wrap items-center lg:justify-between'>
-          <Link href='/'>
+          <Link href='/en'>
             <a>
               <div className='flex items-center h-[50px]'>
                 <span className='mr-4'>
@@ -31,7 +31,7 @@ export default function Header() {
             isOpen={openMobile}
             handleClick={() => setOpenMobile(!openMobile)}
           />
-          <Navbar isOpen={openMobile} />
+          <NavbarEn isOpen={openMobile} />
           <DarkMode />
           <LanguageChange />
         </div>

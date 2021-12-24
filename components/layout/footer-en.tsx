@@ -3,14 +3,14 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import Container from 'components/layout/container'
 import pckJson from 'package.json'
 
-export default function Footer() {
+export default function FooterEn() {
   return (
     <footer className='h-[70px]'>
       <Container>
         <div className='h-[70px] flex justify-between items-center'>
           <div>
             <p>
-              <Link href='/' aria-label='Ir al inicio'>
+              <Link href='/en' aria-label='Go to home'>
                 <a>Nikolas Santis</a>
               </Link>
               . Santiago, Chile.
@@ -22,7 +22,7 @@ export default function Footer() {
                 href='https://github.com/nikosantis'
                 target='_blank'
                 rel='noopener noreferrer'
-                aria-label='Ir a Github'
+                aria-label='Go to Github'
               >
                 <FaGithub size='24' />
               </a>
@@ -32,7 +32,7 @@ export default function Footer() {
                 href='https://www.linkedin.com/in/nikosantis'
                 target='_blank'
                 rel='noopener noreferrer'
-                aria-label='Ir a LinkedIn'
+                aria-label='Go to LinkedIn'
               >
                 <FaLinkedin size='24' />
               </a>
@@ -41,15 +41,15 @@ export default function Footer() {
         </div>
         <div className='text-center text-sm'>
           <p>
-            Sitio web desarrollado con{' '}
+            Developed with{' '}
             <a href='https://nextjs.org/' target='_blank' rel='noreferrer'>
               Next.js
             </a>{' '}
-            versión {pckJson.dependencies.next} y{' '}
+            version {pckJson.dependencies.next} and{' '}
             <a href='https://tailwindcss.com/' target='_blank' rel='noreferrer'>
               Tailwind
             </a>{' '}
-            versión {pckJson.devDependencies.tailwindcss} y deployado en{' '}
+            version {pckJson.devDependencies.tailwindcss} and deployed in{' '}
             <a href='https://vercel.com' target='_blank' rel='noreferrer'>
               Vercel
             </a>

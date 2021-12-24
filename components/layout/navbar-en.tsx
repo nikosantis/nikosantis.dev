@@ -16,7 +16,7 @@ export default function Navbar({ isOpen }: Props) {
       <nav role='navigation' className='flex-1 px-3'>
         <div className='container mx-auto'>
           <div className='flex flex-col justify-end items-center mt-[1.125rem] lg:flex-row lg:mt-0'>
-            <Link href='/'>
+            <Link href='/en'>
               <a
                 className={cx(
                   'px-[22px] py-[12px] uppercase transition-colors text-gray-500 rounded-lg font-medium hover:bg-gray-100 hover:text-gray-600',
@@ -25,51 +25,37 @@ export default function Navbar({ isOpen }: Props) {
                       router.pathname === '/'
                   }
                 )}
-                aria-label='Ir al inicio'
+                aria-label='Go to Home'
               >
-                Inicio
+                Home
               </a>
             </Link>
-            <Link href='/sobre-mi'>
+            <Link href='/en/about'>
               <a
                 className={cx(
                   'px-[22px] py-[12px] uppercase transition-colors text-gray-500 rounded-lg font-medium hover:bg-gray-100 hover:text-gray-600',
                   {
                     'text-gray-900 hover:text-gray-900 dark:text-white':
-                      router.pathname === '/sobre-mi'
+                      router.pathname === '/en/about'
                   }
                 )}
-                aria-label='Ir a Sobre mí'
+                aria-label='Go to About'
               >
-                Sobre mí
+                About
               </a>
             </Link>
-            <Link href='/blog'>
+            <Link href='/en/resume'>
               <a
                 className={cx(
                   'px-[22px] py-[12px] uppercase transition-colors text-gray-500 rounded-lg font-medium hover:bg-gray-100 hover:text-gray-600',
                   {
                     'text-gray-900 hover:text-gray-900 dark:text-white':
-                      router.pathname === '/blog'
+                      router.pathname === '/en/resume'
                   }
                 )}
-                aria-label='Ir al blog'
+                aria-label='View Resume'
               >
-                Blog
-              </a>
-            </Link>
-            <Link href='/curriculum'>
-              <a
-                className={cx(
-                  'px-[22px] py-[12px] uppercase transition-colors text-gray-500 rounded-lg font-medium hover:bg-gray-100 hover:text-gray-600',
-                  {
-                    'text-gray-900 hover:text-gray-900 dark:text-white':
-                      router.pathname === '/curriculum'
-                  }
-                )}
-                aria-label='Ver Curriculum'
-              >
-                Curriculum
+                Resume
               </a>
             </Link>
           </div>
