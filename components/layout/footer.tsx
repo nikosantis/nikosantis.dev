@@ -42,9 +42,19 @@ export default function Footer() {
         </div>
         <div className='text-center text-sm'>
           <p>
-            Sitio web desarrollado con <a href='https://nextjs.org/'>Next.js</a>{' '}
-            versión {pckJson.dependencies.next} y Tailwind versión{' '}
-            {pckJson.devDependencies.tailwindcss}
+            Sitio web desarrollado con{' '}
+            <a href='https://nextjs.org/' target='_blank' rel='noreferrer'>
+              Next.js
+            </a>{' '}
+            versión {pckJson.dependencies.next} y{' '}
+            <a href='https://tailwindcss.com/' target='_blank' rel='noreferrer'>
+              Tailwind
+            </a>{' '}
+            versión {pckJson.devDependencies.tailwindcss} y deployado en{' '}
+            <a href='https://vercel.com' target='_blank' rel='noreferrer'>
+              Vercel
+            </a>
+            .
           </p>
         </div>
       </Container>
