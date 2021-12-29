@@ -28,7 +28,7 @@ export default function LayoutPost({
 }: Props) {
   return (
     <Page
-      title={`${title} | Mi Blog`}
+      title={`${title} | Nikolas Santis Software Developer`}
       description={description}
       image={`https://nikosantis.dev/images/posts/${image}`}
       ogUrl={`blog/${url}`}

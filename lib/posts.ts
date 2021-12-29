@@ -1,5 +1,15 @@
 const posts: GetPostsType = [
   {
+    slug: '/blog/como-instalar-tailwindcss-en-nextjs',
+    date: 'Diciembre 29, 2021',
+    dateForISO: '12/29/2021',
+    title: '¿Cómo instalar TailwindCSS en Nextjs?',
+    description:
+      'Una guía rápida de cómo instalar TailwindCSS en un proyecto de Nextjs.',
+    image: 'como-instalar-tailwindcss-en-nextjs/cover.png',
+    url: 'como-instalar-tailwindcss-en-nextjs'
+  },
+  {
     slug: '/blog/cambiando-a-tailwindcss',
     date: 'Junio 16, 2021',
     dateForISO: '6/16/2021',
