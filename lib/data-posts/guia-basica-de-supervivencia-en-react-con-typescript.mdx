@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: guia-basica-de-supervivencia-en-react-con-typescript
+date: Abril 15, 2021
+dateForISO: 4/15/2021
+title: Guía Básica de Supervivencia en React con Typescript
+description: Una pequeña guía básica para sobrevivir en React usando Typescript
+image: guia-basica-de-supervivencia-en-react-con-typescript/cover.png
+---
 
 Para muchas personas que llevan un tiempo aprendiendo, practicando y ejerciendo el uso de **React** en su trabajo o en proyectos de aprendizaje, el tener que usar **TypeScript**, es un dolor de cabeza.
 
@@ -20,7 +26,7 @@ Para React, TypeScript le permite trabajar de una manera mucho más ordenada, tr
 
 En esta primera parte, trataremos de manera muy básica, algunos aspectos esenciales de TypeScript.
 
-Por ejemplo, podemos tener una constante que es un `string`, sobre la cual queramos definir un `number`. TypeScript nos dirá de inmediato que habrá un error en esta constante. Recordar que VSCODE nos mostrará el error y en especial si se utiliza la extensión \*_[Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens 'Error Lens')_
+Por ejemplo, podemos tener una constante que es un `string`, sobre la cual queramos definir un `number`. TypeScript nos dirá de inmediato que habrá un error en esta constante. Recordar que VSCODE nos mostrará el error y en especial si se utiliza la extensión _[Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens 'Error Lens')_.
 
 ```ts
 const unaConstanteSimple: string = 32
@@ -724,19 +730,3 @@ Te recomiendo algunas lecturas más completas y adicionales para asuntos más co
 - La misma pero en español: https://github.com/typescript-cheatsheets/react-typescript-cheatsheet-es
 
 Abrazos
-
-export const post = getPostByUrl(
-  'guia-basica-de-supervivencia-en-react-con-typescript'
-)
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

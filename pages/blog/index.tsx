@@ -1,10 +1,12 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
-import { getPosts, GetPostsType } from 'lib/posts'
+import { GetPostsType } from 'lib/posts'
 import Page from 'components/layout/page'
 import Main from 'components/layout/main'
 import Container from 'components/layout/container'
+import { allPosts } from 'contentlayer/generated'
+import type { Post } from 'contentlayer/generated'
 
 type Props = {
   myPosts?: GetPostsType
@@ -30,7 +32,7 @@ export default function Blog({ myPosts }: Props) {
             <div className='flex-1 h-full py-6 px-0 transition'>
               {myPosts.map(post => (
                 <Link
-                  href={post.slug}
+                  href={`/blog/${post.slug}`}
                   key={post.slug}
                   aria-label={`Ir al post ${post.title}`}
                 >
@@ -58,10 +60,24 @@ export default function Blog({ myPosts }: Props) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const myPosts = await getPosts()
+  const posts = (allPosts as Post[])
+    .map(x => ({
+      slug: x.slug,
+      date: x.date,
+      dateForISO: x.dateForISO,
+      title: x.title,
+      description: x.description,
+      image: x.image,
+      url: x.slug
+    }))
+    .sort((a, b) => {
+      const date1 = new Date(a.dateForISO).valueOf()
+      const date2 = new Date(b.dateForISO).valueOf()
+      return date2 - date1
+    })
   return {
     props: {
-      myPosts: myPosts
+      myPosts: posts
     }
   }
 }

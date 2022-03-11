@@ -17,6 +17,7 @@ type Props = {
   structuredData?: string
   children: ReactNode
   date?: string
+  robots?: string
 }
 
 export default function Page({ children, ...customMetas }: Props) {
@@ -28,13 +29,14 @@ export default function Page({ children, ...customMetas }: Props) {
     ogType: 'website',
     ogUrl: 'https://nikosantis.dev/',
     image: 'https://nikosantis.dev/images/nikosantis-dev.png',
+    robots: 'follow, index',
     ...customMetas
   }
   return (
-    <div className='relative min-h-full w-full'>
+    <div className='relative min-h-screen w-full flex flex-col'>
       <Head>
         <title>{metas.title}</title>
-        <meta name='robots' content='follow, index' />
+        <meta name='robots' content={metas.robots} />
         <meta name='description' content={metas.description} />
         <meta property='og:title' content={metas.title} />
         <meta

@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: react-17-ya-esta-aqui
+date: Octubre 20, 2020
+dateForISO: 10/20/2020
+title: React v17.0 ya está aquí
+description: Hoy 20 de octubre ha sido lanzado React v17.0 de manera oficial. ¿Ya sabes qué trae esta nueva versión?
+image: react-17-ya-esta-aqui/cover.png
+---
 
 Hoy, 20 de octubre del 2020, ha sido lanzado React 17.
 
@@ -102,17 +108,3 @@ También se ha proporcionado compilaciones UMD de React a través de una CDN:
 Muchas gracias por leer.
 
 Fuente: https://reactjs.org/blog/2020/10/20/react-v17.html
-
-export const post = getPostByUrl('react-17-ya-esta-aqui')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

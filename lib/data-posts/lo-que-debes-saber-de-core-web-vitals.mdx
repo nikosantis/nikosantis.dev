@@ -1,8 +1,11 @@
-import Image from 'next/image'
-
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
-import imgUrl from 'public/images/posts/lo-que-debes-saber-de-core-web-vitals/core-web-vitals.png'
+---
+slug: lo-que-debes-saber-de-core-web-vitals
+date: Abril 26, 2021
+dateForISO: 4/26/2021
+title: Lo que debes saber de Core Web Vitals
+description: Lo que debes saber de Core Web Vitals para preparar tu sitio web al cambio de Google de mayo 2021.
+image: lo-que-debes-saber-de-core-web-vitals/cover.png
+---
 
 Así como ha avanzando tan rápido este año y ya estamos pronto a entrar a mayo 2021, con eso, también **Google** comenzará a tomar en cuenta la **Experiencia de Usuario** respecto al posicionamiento en los resultados de búsqueda de Google.
 
@@ -51,29 +54,19 @@ Las métricas que componen Core Web Vitals evolucionarán con el tiempo. El conj
 
 - **Cumulative Layout Shift (Cambios de diseño acumulados)**: mide la **estabilidad visual**. Para proporcionar una buena experiencia de usuario, las páginas deben mantener un CLS de menos de 0,1.
 
-<div className='image-container'>
-  <Image
-    src={imgUrl}
-    alt='Core Web Vitals'
-    layout='responsive'
-    placeholder='blur'
-  />
-  <style jsx>
-    {`
-      .image-container {
-        width: 100%;
-        position: relative;
-        margin-bottom: 30px;
-      }
-    `}
-  </style>
-</div>
+<Image
+  src={`/static/images/core-web-vitals.png`}
+  alt='Core Web Vitals'
+  layout='responsive'
+  width='848'
+  height='287'
+/>
 
-|         | Rápidas 🟢 | Necesitan una mejora 🟠 | Lentas 🔴 |
-| ------- | ---------- | ----------------------- | --------- |
-| **LCP** | <= 2,5 s   | <= 4 s                  | > 4 s     |
-| **FID** | <= 100 ms  | <= 300 ms               | > 300 ms  |
-| **CLS** | <= 0,1     | <= 0,25                 | > 0,25    |
+|         | Rápidas 🟢    | Necesitan una mejora 🟠 | Lentas 🔴    |
+| ------- | ------------- | ----------------------- | ------------ |
+| **LCP** | {'<='} 2,5 s  | {'<='} 4 s              | {'>'} 4 s    |
+| **FID** | {'<='} 100 ms | {'<='} 300 ms           | {'>'} 300 ms |
+| **CLS** | {'<='} 0,1    | {'<='} 0,25             | {'>'} 0,25   |
 
 Para cada una de las métricas anteriores, para asegurarse de que se está alcanzando el objetivo recomendado para la mayoría de sus usuarios, un buen umbral para medir es el percentil 75 de cargas de página, segmentado en dispositivos móviles y de escritorio.
 
@@ -145,17 +138,3 @@ Fuentes:
 
 - [Web Vitals](https://web.dev/vitals/ 'Web Vitals')
 - [Herramientas para Core Web Vitals](https://web.dev/vitals-tools/ 'Herramientas para Core Web Vitals')
-
-export const post = getPostByUrl('lo-que-debes-saber-de-core-web-vitals')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: cambiando-a-tailwindcss
+date: Junio 16, 2021
+dateForISO: 6/16/2021
+title: Cambiando a TailwindCSS
+description: Actualizando mi blog con TailwindCSS y la última versión de Nextjs.
+image: cambiando-a-tailwindcss/cover.png
+---
 
 Siempre trato de mantenerme actualizado con las nuevas tecnologías relacionadas a lo cotidiano de mi trabajo y utilizo tanto mi blog como los sitios web que voy trabajando en el momento, de esta manera, trato de formar una opinión sobre lo que disfruto usar. En mi caso, es mucho más fácil aprender construyendo cosas reales.
 
@@ -86,17 +92,3 @@ Creo que lo mejor que puedes hacer, es intentar usarlo.
 Estoy preparando unos videos tutoriales con proyectos en Nextjs usando TailwindCSS para aportar un poco más, pero mientras, te dejo la diversión de explorar.
 
 Gracias por leer.
-
-export const post = getPostByUrl('cambiando-a-tailwindcss')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

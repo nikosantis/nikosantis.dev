@@ -5,7 +5,7 @@ import pckJson from 'package.json'
 
 export default function Footer() {
   return (
-    <footer className='h-[70px]'>
+    <footer className='h-[122px] flex'>
       <Container>
         <div className='h-[70px] flex justify-between items-center'>
           <div>

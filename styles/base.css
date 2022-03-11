@@ -60,6 +60,35 @@
       scroll-behavior: auto !important;
     }
   }
+  .post p {
+    @apply text-lg mb-6;
+  }
+  .post > section > p > code {
+    @apply whitespace-pre-wrap text-[#f92672] text-[0.9rem] after:content-pre before:content-pre;
+  }
+  .post pre {
+    @apply bg-gray-800 text-gray-50 whitespace-pre overflow-auto p-6 my-10 rounded;
+  }
+  .post pre code {
+    @apply text-sm after:content-none before:content-none;
+    border: initial;
+  }
+
+  .post section ul {
+    @apply mb-8 list-disc list-inside;
+  }
+
+  .post section ul li::marker {
+  }
+
+  .post section ul li {
+    @apply mb-4 text-lg list-item;
+  }
+
+  .post section ul li p {
+    @apply mb-0 inline;
+  }
+
   .token.comment,
   .token.prolog,
   .token.doctype,

@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: la-nueva-transformacion-jsx-de-react
+date: Septiembre 23, 2020
+dateForISO: 9/23/2020
+title: La nueva transformación JSX
+description: Si bien React 17 no trae nuevas funciones, brindará soporte para una nueva versión de la transformación JSX.
+image: la-nueva-transformacion-jsx-de-react/cover.png
+---
 
 Siguiendo con el post anterior de React 17, lo vuelvo a decir: No contiene nuevas funciones. No obstante, hay algo importante que han anunciado ayer 22 de septiembre el equipo de React:
 
@@ -255,17 +261,3 @@ Bueno, este era más corto que el anterior.
 Se vienen grandes cosas en React 17 ⚛️ 😱!!!
 
 Fuente: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html (inglés)
-
-export const post = getPostByUrl('la-nueva-transformacion-jsx-de-react')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

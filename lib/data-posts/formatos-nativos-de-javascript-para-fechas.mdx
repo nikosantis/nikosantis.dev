@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: formatos-nativos-de-javascript-para-fechas
+date: Marzo 18, 2020
+dateForISO: 03/18/2020
+title: Formatos Nativos de JavaScript para fechas
+description: Por mucho tiempo he usado Momentjs, y si bien ahora uso Luxon, he querido compartir este post para revisar 3 métodos nativos para formatear una fecha y hora.
+image: formatos-nativos-de-javascript-para-fechas/cover.png
+---
 
 Por mucho tiempo, para manejar fechas, horas y sus formatos he sido un usuario de **moment.js** y tú?
 
@@ -148,17 +154,3 @@ No obstante, si el cambio es muy grande desde moment a los métodos nativos, la 
 Espero que este pequeño post sobre algunos métodos nativos para el manejo de fechas y horas, te haya sido útil.
 
 Gracias por leer 😀.
-
-export const post = getPostByUrl('formatos-nativos-de-javascript-para-fechas')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

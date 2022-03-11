@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import NativeLink from 'next/link'
 import cx from 'clsx'
 import { MDXProvider } from '@mdx-js/react'
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 
 type ComponentProps = {
   children: ReactNode
@@ -31,18 +31,6 @@ function H3({ children, id }: ComponentProps) {
       {children}
     </h3>
   )
-}
-
-function Ul({ children }: ComponentProps) {
-  return <ul className='mb-8 list-disc list-inside'>{children}</ul>
-}
-
-function Li({ children }: ComponentProps) {
-  return <li className='mb-2 text-lg'>{children}</li>
-}
-
-function P({ children }: ComponentProps) {
-  return <p className='text-lg mb-6'>{children}</p>
 }
 
 type GenericLinkProps = {
@@ -127,32 +115,6 @@ function ExternalLink({ href, children }: ExternalLinkProps) {
   )
 }
 
-type CodeProps = {
-  children: ReactNode
-  className: string
-}
-
-function Code({ children, className }: CodeProps) {
-  return (
-    <pre
-      className={cx(
-        'bg-gray-800 text-gray-50 whitespace-pre overflow-auto p-6 my-10 rounded',
-        className
-      )}
-    >
-      <code className='text-sm'>{children}</code>
-    </pre>
-  )
-}
-
-function InlineCode({ children }: CodeProps) {
-  return (
-    <code className='whitespace-pre-wrap text-[#f92672] text-[0.9rem] after:content-pre before:content-pre'>
-      {children}
-    </code>
-  )
-}
-
 type BlockQuoteProps = {
   children: ReactNode
 }
@@ -179,7 +141,7 @@ type TableProps = {
 
 function Table({ children }: TableProps) {
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center mb-6'>
       <table className='block overflow-auto break-normal border-collapse'>
         {children}
       </table>
@@ -203,19 +165,18 @@ function Td({ children }: TableProps) {
   )
 }
 
-function ResponsiveImage(props) {
-  return <Image alt={props.alt} layout='responsive' {...props} />
+function ImageComp(props: ImageProps) {
+  return (
+    <div className='w-full relative mb-8'>
+      <Image alt={props.alt} src={props.src} {...props} />
+    </div>
+  )
 }
 
-const components = {
+export const components = {
   h1: H1,
   h2: H2,
   h3: H3,
-  ul: Ul,
-  li: Li,
-  code: Code,
-  inlineCode: InlineCode,
-  p: P,
   a: GenericLink,
   blockquote: Blockquote,
   hr: Hr,
@@ -223,7 +184,7 @@ const components = {
   tr: Tr,
   th: Th,
   td: Td,
-  img: ResponsiveImage
+  Image: ImageComp
 }
 
 type Props = {

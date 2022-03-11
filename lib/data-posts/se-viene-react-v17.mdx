@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: se-viene-react-v17
+date: Agosto 10, 2020
+dateForISO: 08/10/2020
+title: Se viene React v17.0 sin nuevas funciones
+description: En el blog oficial de React se ha publicado el primer candidato a lanzamiento para React 17, luego de dos años y medio de un importante lanzamiento anterior.
+image: se-viene-react-v17/cover.png
+---
 
 Hoy se ha publicado en el blog oficial de React el primer Release Candidate para React 17, luego de dos años y medio desde el último release importante (ha pasado bastante no?).
 
@@ -288,17 +294,3 @@ También se ha proporcionado compilaciones UMD de React a través de una CDN:
 Uff que largo.
 
 Fuente: https://reactjs.org/blog/2020/08/10/react-v17-rc.html (inglés)
-
-export const post = getPostByUrl('se-viene-react-v17')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

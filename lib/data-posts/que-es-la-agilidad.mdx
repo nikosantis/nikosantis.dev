@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: que-es-la-agilidad
+date: Febrero 3, 2020
+dateForISO: 02/03/2020
+title: ¿Qué es la Agilidad?
+description: La agilidad es un tema muy recurrente en la actualidad, aunque viene de mucho más tiempo atrás. He querido hacer pequeña aproximación a lo que es la agilidad y cómo nos relacionamos con ella.
+image: que-es-la-agilidad/cover.png
+---
 
 Era muy extraño hace unos años atrás cuando veía la palabra _agile_ en muchos lados.
 Claramente, con el "clásico inglés 🧐" que uno cree tener, deduje que se refería a agilidad.
@@ -93,17 +99,3 @@ Para terminar, te dejo los principios del manifiesto ágil:
 - La simplicidad, o el arte de maximizar la cantidad de trabajo no realizado, es esencial.
 - Las mejores arquitecturas, requisitos y diseños emergen de equipos auto-organizados.
 - A intervalos regulares el equipo reflexiona sobre cómo ser más efectivo para a continuación ajustar y perfeccionar su comportamiento en consecuencia.
-
-export const post = getPostByUrl('que-es-la-agilidad')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

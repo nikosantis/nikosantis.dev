@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: como-usar-standard-en-next
+date: Marzo 9, 2020
+dateForISO: 03/09/2020
+title: ¿Cómo usar Standard en Next?
+description: Si alguna vez escuchaste, leíste o usaste Standardjs, te comparto una manera de cómo implementarlo en un proyecto con Nextjs.
+image: como-usar-standard-en-next/cover.png
+---
 
 **Standard** qué 🤨???
 
@@ -280,17 +286,3 @@ Y el archivo de configuración debería quedar así:
 ```
 
 Y listo 😀!!!
-
-export const post = getPostByUrl('como-usar-standard-en-next')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)

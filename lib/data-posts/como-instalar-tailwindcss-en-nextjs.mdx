@@ -1,5 +1,11 @@
-import LayoutPost from 'components/layout/post'
-import { getPostByUrl } from 'lib/posts'
+---
+slug: como-instalar-tailwindcss-en-nextjs
+date: Diciembre 29, 2021
+dateForISO: 12/29/2021
+title: ¿Cómo instalar TailwindCSS en Nextjs?
+description: Una guía rápida de cómo instalar TailwindCSS en un proyecto de Nextjs.
+image: como-instalar-tailwindcss-en-nextjs/cover.png
+---
 
 TailwindCSS se está transformando en uno de los framework de CSS más usados e interesantes del último momento, y si aún no lo usas o no lo has probado, qué esperas 😱?
 
@@ -75,17 +81,3 @@ Esta extensión, te permite un autocompletado de las clases de TailwindCSS, mues
 Y bueno, eso, espero que te vaya muy bien.
 
 Muchas gracias por leer.
-
-export const post = getPostByUrl('como-instalar-tailwindcss-en-nextjs')
-
-export default ({ children }) => (
-  <LayoutPost
-    date={post.date}
-    dateForISO={post.dateForISO}
-    title={post.title}
-    description={post.description}
-    image={post.image}
-  >
-    {children}
-  </LayoutPost>
-)
