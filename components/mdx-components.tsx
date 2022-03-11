@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import NativeLink from 'next/link'
 import cx from 'clsx'
 import { MDXProvider } from '@mdx-js/react'
+import Image from 'next/image'
 
 type ComponentProps = {
   children: ReactNode
@@ -202,6 +203,10 @@ function Td({ children }: TableProps) {
   )
 }
 
+function ResponsiveImage(props) {
+  return <Image alt={props.alt} layout='responsive' {...props} />
+}
+
 const components = {
   h1: H1,
   h2: H2,
@@ -217,7 +222,8 @@ const components = {
   table: Table,
   tr: Tr,
   th: Th,
-  td: Td
+  td: Td,
+  img: ResponsiveImage
 }
 
 type Props = {

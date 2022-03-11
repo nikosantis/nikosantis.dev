@@ -13,7 +13,6 @@ type Props = {
   title: string
   description: string
   image: string
-  url: string
   children: ReactNode
 }
 
@@ -23,7 +22,6 @@ export default function LayoutPost({
   title,
   description,
   image,
-  url,
   children
 }: Props) {
   return (
@@ -31,8 +29,8 @@ export default function LayoutPost({
       title={`${title} | Nikolas Santis Software Developer`}
       description={description}
       image={`https://nikosantis.dev/images/posts/${image}`}
-      ogUrl={`blog/${url}`}
       ogType='article'
+      date={new Date(dateForISO).toISOString()}
     >
       <Main>
         <Container>

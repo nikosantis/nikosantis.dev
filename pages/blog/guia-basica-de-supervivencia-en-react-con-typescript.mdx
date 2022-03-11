@@ -389,7 +389,9 @@ function CounterComponent() {
   return (
     <div>
       <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({ type: 'increment', payload: 3 })}>Sumar 3</button>
+      <button onClick={() => dispatch({ type: 'increment', payload: 3 })}>
+        Sumar 3
+      </button>
       <button onClick={() => dispatch({ type: 'decrement' })}>Restar 1</button>
       <input
         value={state.text}
@@ -723,7 +725,9 @@ Te recomiendo algunas lecturas más completas y adicionales para asuntos más co
 
 Abrazos
 
-export const post = getPostByUrl('guia-basica-de-supervivencia-en-react-con-typescript')
+export const post = getPostByUrl(
+  'guia-basica-de-supervivencia-en-react-con-typescript'
+)
 
 export default ({ children }) => (
   <LayoutPost
@@ -732,7 +736,7 @@ export default ({ children }) => (
     title={post.title}
     description={post.description}
     image={post.image}
-    url={post.url}>
+  >
     {children}
   </LayoutPost>
 )
