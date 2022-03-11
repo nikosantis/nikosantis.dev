@@ -34,7 +34,7 @@ export default function LayoutPost({
     >
       <Main>
         <Container>
-          <article className='post'>
+          <article className='post mdx-content'>
             <header className='py-[35px]'>
               <h1 className='mb-4 mt-0 text-3xl'>{title}</h1>
               <time dateTime={new Date(dateForISO).toISOString()}>{date}</time>

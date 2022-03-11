@@ -35,7 +35,7 @@ export default function AboutEn({ children }: Props) {
               </h1>
             </div>
           </header>
-          <section>{children}</section>
+          <section className='mdx-content'>{children}</section>
         </Container>
       </Main>
     </PageEn>
