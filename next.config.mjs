@@ -15,4 +15,4 @@ const nextConfig = {
   swcMinify: true
 }
 
-export default withContentlayer()(nextConfig)
+export default withContentlayer(nextConfig)
