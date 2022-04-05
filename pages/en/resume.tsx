@@ -73,9 +73,6 @@ export default function CvPage() {
                 <a href='mailto:nikosantis@gmail.com'>nikosantis@gmail.com</a>
               </p>
               <p className='text-sm'>
-                <a href='tel:+56984155721'>+56 9 8415 5721</a>
-              </p>
-              <p className='text-sm'>
                 <a
                   href='https://www.linkedin.com/in/nikosantis/'
                   target='_blank'
