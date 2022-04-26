@@ -46,7 +46,7 @@ export default function Home({ myPosts }: Props) {
                     aria-label={`Ir al post ${post.title}`}
                   >
                     <a title={post.title} className='group block mb-2'>
-                      <div className='p-[10px] transition bg-transparent rounded-md group-hover:bg-gray-100 dark:group-hover:bg-gray-500'>
+                      <article className='p-[10px] transition bg-transparent rounded-md group-hover:bg-gray-100 dark:group-hover:bg-gray-500'>
                         <h2 className='transition text-ns-fg-light dark:text-white text-2xl'>
                           {post.title}
                         </h2>
@@ -56,7 +56,7 @@ export default function Home({ myPosts }: Props) {
                         >
                           {post.date}
                         </time>
-                      </div>
+                      </article>
                     </a>
                   </Link>
                 ))}
