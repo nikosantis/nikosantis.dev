@@ -1,0 +1,81 @@
+---
+title: '¿Cómo instalar TailwindCSS en Nextjs?'
+publishedAt: '12/29/2021'
+description: 'Una guía rápida de cómo instalar TailwindCSS en un proyecto de Nextjs.'
+isOld: true
+---
+
+TailwindCSS se está transformando en uno de los framework de CSS más usados e interesantes del último momento, y si aún no lo usas o no lo has probado, qué esperas 😱?
+
+Bueno, aquí te muestro de una forma bastante sencilla como usarlo con Nextjs.
+
+Estoy considerando que ya has trabajado antes con Nextjs, por lo que será bastante preciso.
+
+Yo acostumbro a trabajar con TypeScript, así que, iniciemos creando un proyecto con Nextjs y TypeScript.
+
+```bash title="Terminal"
+yarn create next-app --typescript
+```
+
+En ese momento, el `CLI` te preguntará por el nombre del proyecto:
+
+```bash title="Terminal"
+nextjs-with-tailwindcss
+```
+
+Esperamos que se instale todo (React, ReactDOM, Nextjs, etc) y nos movemos a la carpeta del proyecto:
+
+```bash title="Terminal"
+cd nextjs-with-tailwindcss
+```
+
+Luego, debemos instalar la última versión de TailwindCSS, en compañía de PostCSS y Autoprefixer:
+
+```bash title="Terminal"
+yarn add -D tailwindcss postcss autoprefixer
+```
+
+El paso siguiente, que es muy importante, se puede hacer manual, pero mi recomendación, es que la hagas siempre con `npx`, la herramienta de CLI que nos permite ejecutar paquetes de `npm` de forma mucho más sencilla.
+
+```bash title="Terminal"
+npx tailwindcss init -p
+```
+
+Este comando nos creará dos archivos en la raíz de nuestro proyecto Nextjs: un archivo llamado `tailwind.config.js` y otro llamado `postcss.config.js`.
+
+Para una configuración básica de TailwindCSS, tu archivo `tailwind.config.js` debe quedar como esto:
+
+```js title="tailwind.config.js"
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}'
+  ],
+  theme: {
+    extend: {}
+  },
+  plugins: []
+}
+```
+
+Si ya llegaste hasta aquí, solo te falta el último paso: agregar las directivas de `@tailwind` a un archivo `css`.
+
+Añade lo siguiente a tu archivo `globals.css`:
+
+```css title="globals.css"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Y listo!!! Así, ya puedes comenzar a trabajar con TailwindCSS.
+
+## BONUS
+
+Si deseas trabajar de una manera mucho más dinámica con TailwindCSS, te recomiendo instalar la extensión de VSCODE llamada: [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss 'Tailwind CSS IntelliSense').
+
+Esta extensión, te permite un autocompletado de las clases de TailwindCSS, muestra de errores, como también información extra de los estilos css que agrega cada clase. 100% recomendado.
+
+Y bueno, eso, espero que te vaya muy bien.
+
+Muchas gracias por leer.

@@ -1,0 +1,60 @@
+---
+title: 'He actualizado mi sitio web: Descubre las últimas novedades Next.js 15'
+publishedAt: '9/25/2024'
+description: 'En este post, te cuento cómo he actualizado mi sitio web a Next.js 15, explorando las nuevas funcionalidades y mejoras que trae esta versión. Descubre cómo estas novedades impactan en el rendimiento, la optimización y la experiencia de desarrollo.'
+---
+
+En este post, quiero compartir mi experiencia actualizando mi sitio personal a [Next.js 15](https://nextjs.org/docs) y cómo fue el proceso, además de destacar algunas de las funcionalidades nuevas que trae esta versión, junto con las mejoras clave de [React 19](https://es.react.dev/blog/2024/04/25/react-19).
+
+## Mi experiencia con la actualización
+
+Actualizar mi sitio a Next.js 15 fue sorprendentemente sencillo. No encontré problemas importantes durante el proceso, y la transición fue bastante fluida. Mi sitio es relativamente simple, por lo que no estoy aprovechando todas las funcionalidades que Next.js 15 y React 19 ofrecen. Aun así, estoy muy contento con las mejoras en rendimiento y en la experiencia de desarrollo.
+
+## Novedades de Next.js 15
+
+Next.js 15 viene cargado de nuevas características que mejoran la eficiencia y la optimización del desarrollo web. Algunas de las novedades más destacadas incluyen:
+
+### Route Handlers mejorados
+
+En Next.js 15, las funciones GET ya no se cachean por defecto, lo que proporciona mayor control sobre las rutas. Si es necesario, se puede habilitar el caché estático con la configuración `dynamic = 'force-static'`.
+
+### Client-side Router Cache optimizado
+
+El almacenamiento en caché de los segmentos de página ahora es más eficiente. Los segmentos ya no se reutilizan automáticamente entre las páginas, salvo cuando se navega hacia adelante o hacia atrás, lo que mejora la consistencia de la navegación y el rendimiento.
+
+### Optimización de dependencias por rutas
+
+El nuevo sistema `bundlePagesRouterDependencies` optimiza el rendimiento al agrupar solo las dependencias necesarias por página, lo que reduce el tamaño de los bundles y mejora los tiempos de carga.
+
+### Separación de dependencias del servidor
+
+Con `serverExternalPackages`, es posible especificar qué dependencias se usarán solo en el servidor, lo que evita que los paquetes innecesarios se incluyan en el bundle del cliente, optimizando aún más la aplicación.
+
+## React 19: Novedades clave
+
+[React 19](https://es.react.dev/blog/2024/04/25/react-19) introduce mejoras significativas en el rendimiento y en la forma de gestionar los componentes. Algunas de las novedades más importantes incluyen:
+
+### Mejoras en Concurrent Rendering
+
+React 19 mejora la capacidad de procesar tareas en segundo plano mientras se priorizan las interacciones del usuario. Esto se traduce en una interfaz de usuario más rápida y receptiva, permitiendo actualizaciones concurrentes sin bloquear la interfaz.
+
+### Optimizaciones en la reconciliación
+
+La optimización de la reconciliación reduce la cantidad de renders innecesarios y mejora la eficiencia al actualizar componentes. Esto hace que la experiencia de usuario sea más suave y ayuda a los desarrolladores a crear aplicaciones más ágiles.
+
+### Integración más fluida con herramientas externas
+
+React 19 incluye una mejor integración con herramientas de gestión de estado y otras librerías, lo que facilita mantener sincronizados los estados externos con los componentes de React.
+
+## Next.js 15 y React 19: Una combinación poderosa
+
+La combinación de **Next.js 15** con **React 19** ofrece un ecosistema de desarrollo optimizado que mejora tanto el rendimiento como la experiencia de usuario. Algunas de las formas en que estas dos versiones trabajan juntas incluyen:
+
+- **Concurrent Rendering mejorado**: Next.js 15 se beneficia del rendering concurrente de React 19 para optimizar la carga de páginas, sobre todo en sitios más complejos con muchos componentes interactivos.
+- **Separación eficiente del cliente y servidor**: La habilidad de Next.js 15 para gestionar dependencias específicas del servidor complementa las optimizaciones de React 19 en términos de renderización y sincronización de estados.
+
+- **Reducción en el tamaño de los bundles**: React 19 optimiza la forma en que se manejan los estados y eventos en la UI, mientras que Next.js 15 asegura que solo se carguen las dependencias necesarias, logrando una carga más rápida y mejor rendimiento general.
+
+## Reflexiones finales
+
+Actualizar mi sitio web a Next.js 15 ha sido una experiencia sin complicaciones, y aunque no estoy aprovechando todas las funcionalidades avanzadas, las mejoras en rendimiento y experiencia de desarrollo son notables. La integración con React 19 hace que la creación de aplicaciones más rápidas, interactivas y eficientes sea mucho más fácil, lo que abre un mundo de posibilidades para desarrollos más complejos en el futuro.

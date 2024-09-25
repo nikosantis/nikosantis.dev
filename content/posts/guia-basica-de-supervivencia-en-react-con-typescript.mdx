@@ -1,0 +1,735 @@
+---
+title: 'Guía Básica de Supervivencia en React con Typescript'
+publishedAt: '4/15/2021'
+description: 'Una pequeña guía básica para sobrevivir en React usando Typescript.'
+isOld: true
+---
+
+Para muchas personas que llevan un tiempo aprendiendo, practicando y ejerciendo el uso de **React** en su trabajo o en proyectos de aprendizaje, el tener que usar **TypeScript**, es un dolor de cabeza.
+
+Es muy sencillo decir que TypeScript es fácil cuando ya sabes, pero no tanto así para quienes recién vienen aprendiendo las maravillas de este lenguaje de programación construido sobre **JavaScript**.
+
+He querido compartir hace un buen tiempo una pequeña **Guía básica de Supervivencia en React con TypeScript** y ahora es el momento.
+
+_Disclaimer nº1: Es importante señalar que es una guía básica, sin profundizar demasiado en TypeScript o en las diversas formas de hacer algo. También quiero agregar que al ser una guía básica, se considera el uso de TypeScript en un proyecto que ya tiene todo configurado para usarlo, no obstante, más adelante publicaré más sobre cómo configurar un proyecto en React y Nextjs con TypeScript._
+_Disclaimer nº2: En mi uso cotidiano utilizo VSCODE por ende, todos los ejercicios de este post están probados en VSCODE. Aunque también puedes probar todo esto en el [playground oficial de TypeScript](https://www.typescriptlang.org/es/play 'playground oficial de TypeScript')._
+
+## 1. Introducción
+
+TypeScript es un lenguaje de programación Open Source construido sobre JavaScript, que en esencia, le añade tipos estáticos a JS.
+
+Los tipos (types) proveen una manera de describir la forma de un objeto, otorgando mejor documentación y permitiendo a TypeScript validar que el código funciona correctamente.
+
+Para React, TypeScript le permite trabajar de una manera mucho más ordenada, tratando de disminuir el mal uso de ciertos componentes, props, estados, hooks, funciones, etc.
+
+En esta primera parte, trataremos de manera muy básica, algunos aspectos esenciales de TypeScript.
+
+Por ejemplo, podemos tener una constante que es un `string`, sobre la cual queramos definir un `number`. TypeScript nos dirá de inmediato que habrá un error en esta constante. Recordar que VSCODE nos mostrará el error y en especial si se utiliza la extensión _[Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens 'Error Lens')_.
+
+```ts title="index.ts"
+const unaConstanteSimple: string = 32
+// error => El tipado 'number' no se puede asignar al tipado 'string'
+```
+
+De la misma manera si lo defines al revés, es decir, que sea un `number` y luego le asignas un `string`.
+
+En una función, el tema es similar, aunque debemos considerar que se le agregan un poco más de tipado, esto porque puedes tipar el argumento, como también lo que la función retorna. Revisemos el siguiente ejemplo:
+
+```js title="index.js"
+// una función que retorna un argumento en mayúscula
+function unaFuncion(argumento) {
+  return argumento.toUpperCase()
+}
+```
+
+En JavaScript sabemos que el argumento que ingresará hará que el método `toUpperCase` convierta el argumento en mayúscula. No obstante, qué sucede si ingresamos un `number` o incluso, una `función` en el argumento?
+
+```js title="index.js"
+unaFuncion(32)
+unaFuncion(function otraFuncion() {
+  return 32
+})
+// Error => Uncaught TypeError: argumento.toUpperCase is not a function
+```
+
+Recibiremos un error en ambos casos.
+Bueno, aquí TypeScript comienza a tomar sentido, porque vamos a específicar que la función solo podrá recibir un `string`.
+
+```ts title="index.ts"
+// una función que retorna un argumento en mayúscula
+function unaFuncion(argumento: string) {
+  return argumento.toUpperCase()
+}
+```
+
+En este caso, estamos siendo muy específicos en que el argumento siempre deberá será un `string`. Aquí si intentamos ingresar un `number` o una `función` como el ejemplo anterior, nos aparecerá un error similar al del primer ejemplo.
+
+Al mismo tiempo, una función, como mencioné, también se puede tipar el retorno.
+Por defecto, TypeScript (y también JavaScript si posicionas el mouse sobre la función) nos dirá que la función `unaFuncion` retornará un `string`. Pero, para este ejemplo, queremos ser más específicos y queremos ponerlo.
+
+```ts title="index.ts"
+function unaFuncion(argumento: string): string {
+  return argumento.toUpperCase()
+}
+```
+
+Finalmente, una última prueba. Si cambiamos el `return` por `Number(argumento)`, también tendremos un error. Porque ya habíamos dicho que el `return` debía ser un `string`.
+
+Luego de este pequeño ejemplo, podremos avanzar un poco más en esta guía básica.
+
+Existen diferentes tipados para usar:
+
+Los primitivos: `string`, `number` y `boolean` (este último indica que puede ser verdadero o falso).
+
+También tenemos otro tipado llamado `any`. Este lo verás mucho y en la práctica indica que puede ser cualquier tipo de tipado.
+
+Con estas primitivas podemos crear otros tipados combinados. Por ejemplo, con un `array`.
+
+```ts title="index.ts"
+const unArray: number[] = [1, 2, 3] // => esto será un array con números [1,2,3].
+const otroArray: Array<number> = [1, 2, 3]
+```
+
+Te habrás dado cuenta que he escrito lo mismo de dos maneras. En ambos casos, estamos asignado el mismo tipado. Te muestro esto, porque es muy típico que en algunos lados encontrarás de ambas maneras esto.
+
+_Aunque siempre se mostrará con el hover del mouse `number[]`_
+
+Otro ejemplo, pero con objetos.
+
+```ts title="index.ts"
+const unObjeto: { id: string } = { id: '1' }
+```
+
+Ahora bien, si el objeto tiene muchas propiedades, puede ser que tipar este objeto pueda ser un poco _verbose_. Aquí TypeScript nos regala una manera más práctica de hacerlo, definiendo un `type`.
+
+```ts title="index.ts"
+type MiObjetoType = {
+  id: string
+  nombre: string
+  edad: number
+}
+const unObjeto: MiObjetoType = { id: '1', nombre: 'Nikolas', edad: 32 }
+```
+
+Y este mismo ejemplo, lo podemos combinar con un array.
+
+```ts title="index.ts"
+type MiObjetoType = {
+  id: string
+  nombre: string
+  edad: number
+}
+const otroObjetoConArray: MiObjetoType[] = [
+  { id: '1', nombre: 'Nikolas', edad: 32 },
+  { id: '2', nombre: 'Angie', edad: 33 }
+]
+```
+
+Yo siempre trato de definir mis tipados con la palabra Type al final, para establecer un nombre coherente que le permit a otras personas entender mi código.
+
+> Cuando escribimos código, siempre estamos escribiendo para una máquina/computadora, la cual comprenderá si se ha escrito de manera correcta, lo que debe realizar. Pero muchas veces, si bien, el código funciona, cuando llega otra persona a leer nuestro código y trata de leerlo, se encuentra con que no es muy fácil de entender. Por ende, siempre debemos tratar de escribir código para la computadora y código para humanos.
+
+También podríamos haber definido el tipado desde antemano que era un array, agregando los corchetes al final `[]` o escribir `Array<...>`. Pero a veces, puede que el mismo tipado lo debas utilizar en otro lado.
+
+Para finalizar, también existe lo que se llama `interface`, que funciona de manera similar a `type` pero tiene sus diferencias.
+
+```ts title="index.ts"
+interface MiObjetoInterface {
+  id: string
+  nombre: string
+  edad: number
+}
+const objetoConArray: MiObjetoInterface[] = [
+  { id: '1', nombre: 'Nikolas', edad: 32 },
+  { id: '2', nombre: 'Angie', edad: 33 }
+]
+```
+
+Si te fijas, la `interface` no tiene el signo '='. Tiene muchas más diferencias que lo del signo, pero no quiero entrar en tanto detalle, no obstante, en el punto nº 3 del post, ahondaremos un poco más en sus diferencias.
+
+Te recomiendo ahondar mucho más en cursos, tutoriales y la documentación para aprender detalles. Esto es solo una pequeña parte.
+
+## 2.- Tipando un Componente
+
+Hay muchas formas de tipar un componente en React y te mostraré las más usadas.
+
+> Te quiero dar una pista antes de continuar. Si utilizas VSCODE y estás trabajando en un proyecto que ya está configurado con TypeScript, puedes poner el mouse sobre un componente y te mostrará su tipado. Si haces esto en JavaScript te dirá que el tipado es `any`.
+
+La forma más básica es utilizar lo que se llama "tipado inferido".
+
+```jsx title="MyComponent.jsx"
+function MyComponent() {
+  return <h1>Hola</h1>
+}
+```
+
+Aquí si ponemos el mouse sobre el nombre del componente, el editor de código nos dirá que es un `JSX.Element`.
+
+Así que una simple manera de definir un componente sería:
+
+```tsx title="MyComponent.tsx"
+function MyComponent(): JSX.Element {
+  return <h1>Hola</h1>
+}
+```
+
+Esta es la manera más sencilla.
+
+Considera que para un componente con Arrow Function sería así:
+
+```tsx title="MyComponent.tsx"
+const MyComponent = (): JSX.Element => {
+  return <h1>Hola</h1>
+}
+```
+
+Definir de esta manera, solo dependerá de la configuración del proyecto.
+Hay proyectos donde los componentes (así las funciones normales también), no requiere tiparlas según la configuración de ESLINT, sino que se haría de forma inferida (no deberías hacer nada). Aunque a veces, hay que ser un poco más estricto. En mi caso, en los proyectos que configuro, soy más estricto, no obstante, utilizar el truco del mouse sobre el componente o función es una buena idea, pero no siempre es recomendable, porque si al inicio el componente retorna JSX, está bien, pero si en algún momento tienes un return NULL, el tipado va a fallar, ya que ya no sería JSX.Element.
+
+Otra forma, que es muy probable que verás en diversos proyectos con TS, es usando el tipado que trae React (@types/react) que es `FC` (puede que en algunos lados en vez de FC veas `FunctionComponent`, pero FC es lo mismo, solo que abreviado).
+
+```tsx title="MyComponent.tsx"
+const MyComponent: React.FC = () => {
+  return <h1>Hola</h1>
+}
+```
+
+También lo puedes hacer importando FC desde React.
+
+```tsx title="MyComponent.tsx"
+import { FC } from 'react'
+
+const MyComponent: FC = () => {
+  return <h1>Hola</h1>
+}
+```
+
+> Recuerda que actualmente, en la última versión de React (17), no es necesario importar React de 'react'.
+
+Aquí hay un tema muy importante de mencionar.
+El tipado FC, al igual que JSX.Element, es una `interface`. Las interfaces pueden recibir argumentos (como una función).
+
+En el archivo TS de React podemos encontrar que el tipado viene así:
+
+```ts
+// Type definitions for React 17.0
+type FC<P = {}> = FunctionComponent<P>
+
+interface FunctionComponent<P = {}> {
+  (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null
+  propTypes?: WeakValidationMap<P>
+  contextTypes?: ValidationMap<any>
+  defaultProps?: Partial<P>
+  displayName?: string
+}
+```
+
+Y aquí podemos ver unas cosas importantes de mencionar.
+
+El tipado `FC` incluye dentro de sus props, la prop `children`, por lo cual, como veremos a continuación, no es necesario tipar children con FC. Al mismo tiempo, incluye de manera opcional, `propTypes`, `contextTypes`, `defaulProps` y `displayName`.
+
+Si nunca has usado estas props, no te preocupes, no es momento de hablar de ellas, pero si puedo decir, que FC trae todo esto dentro. También debo decirte que existen algunos problemas asociados a las defaultProps y también con children respecto a este tipado, pero en casos específicos, pero casi siempre, te funcionará.
+
+Si el proyecto que te toque trabajar tiene tipados inferidos en sus componentes, no sería necesario tipar el componente y solo quedarían como elementos JSX. No obstante, si observas proyectos de dependencias que se usan mucho en React, verás diversas maneras.
+
+Personalmente, me gusta definir mis componentes como funciones clásicas `function` y solo tipar las props. Para evitar problemas con FC y todo eso que hablo arriba, me quedo de la manera más simple. JSX.Element!
+
+```jsx title="MyComponent.jsx"
+function MyComponent() {
+  return <h1>Hola</h1>
+}
+```
+
+## 3. Tipando Props
+
+Aquí viene la gran pregunta. ¿Type o Interface?.
+
+Las interfaces son diferentes a los tipos en TypeScript, pero tienen usos muy similares en lo que respecta a React.
+
+Yo sigo una regla muy útil para esto que viene de [React TypeScript Cheatsheets](https://react-typescript-cheatsheet.netlify.app/ 'React TypeScript Cheatsheets').
+
+- Siempre usar `interface` para las definiciones de API pública cuando se está escribiendo una librería o las definiciones de tipo de ambiente de una librería de terceros.
+- Considerar usar `type` para las props y estado de los componentes de React, porque tiene más restricciones.
+
+Otro elemento importante, es que los `types` son útiles para tipos de unión `type SomeType = AType | BType`, mientras que las `interface` son mejores para declarar formas de diccionario y luego `implement` o `extend`.
+
+| Aspecto                                            | Type | Interface |
+| -------------------------------------------------- | :--: | :-------: |
+| Puede describir funciones                          |  ✅  |    ✅     |
+| Puede describir constructores                      |  ✅  |    ✅     |
+| Puede describir tuplas                             |  ✅  |    ✅     |
+| Se puede extender                                  |  ⚠️  |    ✅     |
+| Se puede extender Classes                          |  🚫  |    ✅     |
+| Se puede implementar Classes                       |  ⚠️  |    ✅     |
+| Se puede intersectar con otro de su mismo tipo     |  ✅  |    ⚠️     |
+| Se puede crear una unión con otro de su mismo tipo |  ✅  |    ⚠️     |
+| Se puede usar para crear tipos mapeados            |  ✅  |    🚫     |
+| Se puede mapear con tipos mapeados                 |  ✅  |    ✅     |
+| Se expande en mensajes de error y logs             |  ✅  |    🚫     |
+| Se puede aumentar                                  |  🚫  |    ✅     |
+| Puede ser recursivo                                |  ⚠️  |    ✅     |
+
+⚠️: en algunos casos
+
+Aquí unos ejemplos de algunos tipados:
+
+```tsx title="MyComponent.tsx"
+type Props = {
+  message: string
+  count: number
+  disabled: boolean
+  // array de string
+  names: string[]
+  // string literales utilizando una "unión"
+  status: 'waiting' | 'success'
+  // cualquier objeto, aunque no muy usado.
+  obj: object
+  // casi igual a object, pero más exactamente Object.
+  obj2: {}
+  // objeto con propiedades tipadas.
+  obj3: {
+    id: string
+    title: string
+  }
+  // array de objetos
+  objArr: {
+    id: string
+    title: string
+  }[]
+  // un objeto con propiedades con el mismo tipado
+  dict1: {
+    [key: string]: OtroType
+  }
+  // equivalente a dict1.
+  dict2: Record<string, OtroType>
+  // función que no retorna nada
+  someFunction: () => void
+  // función que incluye argumentos
+  otherFunction: (id: string) => void
+  // función con tipado react - React.SyntheticEvent o import {SyntheticEvent} from 'react'
+  onChange: (event: React.SyntheticEvent) => void
+  // tipado opcional
+  optionalProp?: SomeOptionalType
+  // tipado del método dispatch del hook useState
+  someSetState: React.Dispatch<React.SetStateAction<SomeUseStateType>>
+}
+```
+
+Son solo algunas muestras.
+
+Muchas veces te encontrarás con argumentos, métodos o funciones de alguna librería, o incluso, cosas internas del mismo React, lo mejor es posicionar el mouse sobre el mouse sobre el elemento y de inmediato, tendrás una muestra del tipado y poder copiarlo y buscar los `types` o `interface`. Otra opción es utilizar un truco que hablaremos más adelante.
+
+### Tipar "children"
+
+Muchas veces, por no saber cómo tipar `children`, demasiadas personas se han equivocado y generado errores en la compilación, no obstante, es primordial saber cómo tipar children. Como también otras props específicas que podrías necesitar.
+
+```tsx title="MyComponent.tsx"
+type Props = {
+  // la mejor manera de tipar children. Ojo con unos types o interfaces que dicen React.Children u otros, no hablan de lo mismo, aunque así lo parezca.
+  children: React.ReactNode // o también import { ReactNode } from 'react'
+  // tipar una render prop
+  functionChildren: (name: string) => React.ReactNode
+  // props de estilos
+  styles?: React.CSSProperties
+  // una función con evento de formulario => event.target
+  onChange?: React.FormEventHandler<HTMLInputElement>
+}
+```
+
+Insisto, son solo algunas muestras, pero sin duda, te darán algunas pistas para hacer muchas más cosas. Revisa algunas librerías que uses y que estén hechas en TypeScript. Puede que sea mucho más complejo tomar librerías con solo JavaScript y que tienen @DefinitelyTyped aparte. Hay que navegar y buscar.
+
+### Tipar Hooks
+
+Te quiero aliviar varios dolores de cabeza en esta parte. Si bien, muchas veces se puede inferir tipados, hay cosas que también requieren un paso extra para mejorar el comportamiento y también añadir mayor control de tu código.
+
+**useState**
+
+Como dije, la inferencia de tipos funciona bastante bien.
+
+```tsx title="MyComponent.tsx"
+// se infiere que isValid es un boolean, y que setIsValid recibirá solo booleans
+const [isValid, setIsValid] = useState(false)
+```
+
+Aunque sé que por culpa de muchos tutoriales, te has agarrado la maña de iniciar cosas en null (claramente es una broma, muchas veces tenemos que hacerlo), pero luego su comportamiento hará que sea un string, o incluso 3 tipados diferentes.
+
+```tsx title="MyComponent.tsx"
+const [someData, setSomeData] = useState<SomeDataType | null>(null)
+// otros ejemplos
+const [text, setText] = useState<string>('')
+const [count, setCount] = useState<number>(0)
+```
+
+**useReducer**
+
+Una forma rápida de tipar es utilizar la técnica del `typeof`.
+
+```tsx title="MyComponent.tsx"
+import { useReducer } from 'react'
+
+const INITIAL_STATE = {
+  count: 0,
+  text: ''
+}
+
+type ActionType =
+  | { type: 'increment'; payload: number }
+  | { type: 'decrement'; payload?: number }
+  | { type: 'set_text'; payload: string }
+  | { type: 'reset' }
+
+function reducer(state: typeof INITIAL_STATE, action: ActionType) {
+  switch (action.type) {
+    case 'increment':
+      return { ...state, count: state.count + action.payload }
+    case 'decrement':
+      return { ...state, count: state.count - (action.payload || 1) }
+    case 'set_text':
+      return { ...state, text: action.payload }
+    case 'reset':
+      return INITIAL_STATE
+  }
+}
+
+function CounterComponent() {
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE)
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment', payload: 3 })}>
+        Sumar 3
+      </button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>Restar 1</button>
+      <input
+        value={state.text}
+        onChange={(e) =>
+          dispatch({ type: 'set_text', payload: e.target.value })
+        }
+      />
+      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+    </div>
+  )
+}
+```
+
+Tipar de esta manera el `action.type`, te permitirá que donde uses el método `dispatch` al comenzar a llenar `type` te dará las opciones clásicas de un tipado de TypeScript.
+Puede que la configuración del proyecto que exija que las funciones sean tipadas.
+
+```tsx title="MyComponent.tsx"
+// crea un tipado del STATE
+type StateType = {
+  count: number;
+  text: string;
+  extraProperty: null | boolean;
+}
+
+const INITIAL_STATE: StateType = {
+  count: 0,
+  text: "",
+  extraProperty: null
+};
+
+function reducer(state: StateType, action: ActionType): StateType {
+...
+}
+```
+
+**useEffect**
+
+En el caso de useEffect y como estamos usando TypeScript, lo cual implica que seamos un poco más estrictos con nuestro código, es importante que tengas cuidado con lo que retornas.
+
+```tsx title="MyComponent.tsx"
+import { useEffect } from 'react'
+
+type Props = {
+  timerMs: number
+}
+
+function SomeComponent({ timerMs }: Props) {
+  useEffect(
+    () =>
+      setTimeout(() => {
+        // hacer cualquier cosa
+      }, timerMs),
+    [timerMs]
+  )
+
+  return null
+}
+```
+
+Este ejemplo está mal, porque TypeScript y React se quejarán. Recuerda meter las funciones dentro de llaves `{}`.
+
+```tsx title="MyComponent.tsx"
+import { useEffect } from 'react'
+
+type Props = {
+  timerMs: number
+}
+
+function SomeComponent({ timerMs }: Props) {
+  useEffect(() => {
+    setTimeout(() => {
+      // hacer cualquier cosa
+    }, timerMs)
+  }, [timerMs])
+
+  return null
+}
+```
+
+**useRef**
+
+Aquí hay que tener mucho cuidado, porque la manera en que lo hagas, puede ocasionar problemas.
+Debes considerar, que useRef, cuando se utiliza con elementos `HTMLElements`, el primer render retornará someRef.current => null.
+
+Te muestro 3 maneras.
+
+```tsx title="MyComponent.tsx"
+const _ref1 = useRef<HTMLDivElement>(null!)
+const _ref2 = useRef<HTMLDivElement>(null)
+const _ref3 = useRef<HTMLDivElement | null>(null)
+```
+
+Primero, hablemos del `HTMLDivElement`. Este existe dentro de `@types/react`, por lo cual, estaré libre para usar, incluso sin necesidad de importar desde ningún lado. No todos los types o interfaces están libres de esta manera, pero en este caso sí, como también todos los demás HTMLElements.
+
+El primer ejemplo utiliza el operador non-null. No obstante, es como que le estuvieras mintiendo a TypeScript. Puede que también en tu `tsconfig.json`, esté el modo strictNullChecks, y eso cambia muchas cosas. Este operador, afirma que cualquier expresión no es null o undifined. Con esta mentira, le puedes usar \_ref1.current sin validar si es null o no.
+
+El segundo ejemplo, indica lo básico. \_ref2.current comienza como null, pero luego cambia al elemento referenciado. Este ejemplo, inferirá al \_ref2 como un `RefObject`, que no es lo mismo que `MutableRefObject`. Como lo podrás "inferir" (broma typescriptera) por el nombre, el RefObject es un objeto cuya propiedad `current` no podrá ser reasignada. Por lo cual, si en algún momento estás teniendo un error con un `ref`, verifica su tipado.
+
+En este punto es cuando comienzas a pensar: ¿cómo podía desarrollar antes sin tipados?... bueno quizás no, pero yo si lo pienso.
+
+_Nota importante: si estás en un entorno de Nextjs con TypeScript, desconozco el porqué, pero el segundo ejemplo, retorna MutableRefObject igual, pero mejor prevenir._
+
+Y el tercer ejemplo, como lo podrás nuevamente "inferir" 🥴, es `MutableRefObject`.
+
+Qué pasa con **useCallback y useMemo**
+
+Independiente o no que tengas reglas de eslint que te obliguen a tipar las funciones, para el caso de useCallback, automáticamente se inferirá, por ende, no se necesita hacer nada.
+
+En el caso de useMemo, ocurre algo similar.
+
+Te quiero invitar a que te metas a leer los tipados de las librerías que uses y los métodos o funciones que estés importando. Cada vez que crezcas más con TypeScript, podrás entender mejor cada una de las cosas que usas. Sin duda, esto no evitará cometer errores, pero si los disminuirá.
+
+**Hooks pesonalizados**
+
+Debes tener cuidado si quieres devolver un array en tu hook personalizado, similar al hook `useState` ([state, setState]), porque TypeScript inferirá como una union type. Por lo cual, tendrías que manejarlo con la palabra clave `as` que es un tipo de afirmación, que considere al objeto como otro tipo según el que le estés dando, en vez del que infiere por si solo. Mejor vamos a un ejemplo:
+
+```tsx title="MyComponent.tsx"
+export function useLoading() {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  // el uso de `any` en este ejemplo, es solo como ejemplo, deberías evitar siempre usar any.
+  const load = (somePromise: Promise<any>) => {
+    setState(true)
+    return somePromise.finally(() => setState(false))
+  }
+  return [isLoading, load] as const
+}
+```
+
+Alternativa con tupla.
+
+```tsx title="MyComponent.tsx"
+export function useLoading() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const load = (somePromise: Promise<any>) => {
+    setState(true);
+    return somePromise.finally(() => setState(false));
+  };
+  return [isLoading, load] as [
+    boolean,
+    (somePromise: Promise<any>): Promise<any>
+  ];
+}
+```
+
+Los del equipo de React recomiendan que los hooks personalizados que retornen más de dos valores, deberían usar objetos reales en lugar de tuplas.
+
+### ¿Qué pasa con las defaultProps?
+
+Bueno, el equipo de React no toma las cosas a la ligera cuando dice o indica cosas respecto a React.
+
+Según un t[weet de Dan Abramov en mayo 2019](https://twitter.com/dan_abramov/status/1133883672153792512 'weet de Dan Abramov en mayo 2019'), indica que las defaultProps eventualmente serán deprecadas.
+
+### Formularios y Eventos
+
+Mi primer consejo, es que pongas el mouse sobre las cosas que usas, para ver sus tipados. Por ejemplo, un input es muy fácil de tipar el evento de `onChange` si te das el tiempo de observar bien.
+
+Por ejemplo, si defines la función dentro del método onChange y no como una función por fuera, el `event` estará inferido automáticamente.
+
+```tsx title="MyComponent.tsx"
+import { useState } from 'react'
+
+function SomeComponent() {
+  const [text, setText] = useState<string>('')
+
+  return (
+    // dentro del onChange, el evento `e` será: e: ChangeEvent<HTMLInputElement>
+    <input type='text' value={text} onChange={(e) => setText(e.target.value)} />
+  )
+}
+```
+
+Pero tipando sería así:
+
+```tsx title="MyComponent.tsx"
+import { ChangeEvent, useState } from 'react'
+
+function SomeComponent() {
+  const [text, setText] = useState<string>('')
+
+  // debes importar obviamente de React el ChangeEvent.
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value)
+  }
+
+  return <input type='text' value={text} onChange={handleChange} />
+}
+```
+
+ChangeEvent está extendido de `SyntheticEvent`. También puedes usar `FormEvent<HTMLInputElement>`, con la diferencia que para obtener el value debe ser:
+`e.currentTarget.value`. También FormEvent está extendido de SyntheticEvent.
+
+Otra manera de definir la función sería así:
+
+```tsx title="MyComponent.tsx"
+// de manera inferida, el valor de `e` será `ChangeEvent<HTMLInputElement>`
+const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  setText(e.target.value)
+}
+```
+
+Respecto al método `onSubmit` de una etiqueta `form`, puedes utilizar `SyntheticEvent` o `FormEvent<HTMLFormElement>`.
+
+Eso sí, considera que si estás usando formularios no controlados, el querer acceder a un input con nombre personalizado, puede que no te sea tan fácil así nomas.
+Hay que agregar un detalle.
+
+```tsx title="MyComponent.tsx"
+const handleSubmit = (e: SyntheticEvent) => {
+  e.preventDefault();
+  const target = e.target as typeof e.target & {
+    name: { value: string };
+  };
+  console.log(target.name.value);
+};
+
+...
+<input name="name" type="text" />
+```
+
+Es solo una guía básica, así que con este punto de partida para los formularios y eventos, puedes hacer mucho más si sigues investigando y analizando los tipados que vienen en React.
+
+### Context
+
+Si llevas tiempo trabajando con React, los Context son pan de cada día. En algún momento habrás usado muchos contexts, luego pocos, luego muchos, etc. No importa si usas muchos. Es muy típica esa pregunta. Facebook en su aplicación web, utiliza muchos, como dijo una vez **Dan Abramov**, lo importante es que lo hagas bien y que no tengas problemas con los re-renders, pero eso es otro tema.
+
+En el caso de Context, lo importante es tipar el `value`.
+
+```tsx title="MyComponent.tsx"
+import { createContext, ReactNode, useContext, useState } from 'react'
+
+type MyContextType = {
+  name: string
+  changeName: (newName: string) => void
+}
+
+const MyContext = createContext<MyContextType>({} as MyContextType)
+
+type Props = {
+  children: ReactNode
+}
+
+function MyContextProvider(props: Props) {
+  const [name, setName] = useState<string>('')
+
+  const changeName = (newName: string) => setName(newName)
+
+  return <MyContext.Provider value={{ name, changeName }} {...props} />
+}
+
+function useMyContext() {
+  const context = useContext(MyContext)
+  if (context === undifined)
+    throw new Error('useMyContext must be used within a MyContextProvider')
+  return context
+}
+
+export { MyContextProvider, useMyContext }
+```
+
+Este es un ejemplo de uso típico de definir un Context y luego exportar el `Provider` y el `useContext`.
+
+### forwardRef
+
+Si te has envuelto en la necesidad de `forwardRef` por ejemplo, creando una librería UI con React y llega un momento en que queres utilizar un `ref` pero te diste cuenta que el componente definido no tiene `ref`, lo primero que he visto que mucha gente hace es pasar `ref` como una Prop.
+
+Aquí React inmediatamente te dirá que `ref` no es una prop y te dará una pista mencionando `forwardRef`.
+
+Comento esto por si nunca lo has utilizado.
+
+Así debería ser cómo utilices `forwardRef` con TypeScript:
+
+```tsx title="MyComponent.tsx"
+import { forwardRef, ReactNode } from 'react'
+
+type Props = {
+  children: ReactNode
+  status: 'loading' | 'success'
+}
+type Ref = HTMLDivElement
+
+const MyStatusBox = forwardRef<Ref, Props>(({ children, status }, ref) => {
+  return (
+    <div ref={ref} className={status}>
+      {children}
+    </div>
+  )
+})
+
+MyStatusBox.displayName = 'MyStatusBox'
+```
+
+### Portales
+
+Si has usado `ReactDOM.createPortal` esto te interesará.
+
+Es un ejemplo muy básico.
+
+```tsx title="MyComponent.tsx"
+import { ReactNode } from 'react'
+import ReactDOM from 'react-dom'
+
+type Props = {
+  children: ReactNode
+}
+
+function MyPortal({ children }: Props) {
+  const _rootDom = document.body
+
+  return ReactDOM.createPortal(children, _rootDom)
+}
+```
+
+Y bueno, eso! jejeje
+
+Es solo una guía básica, con algunos pequeños detalles, que permiten sobrevivir.
+
+Estás justo entrando a un trabajo que te piden TypeScript pero no has trabajado aún así? solo sabes React con JavaScript?
+Bueno, la idea de esta mini guía es que tengas algunas opciones para sobrevivir.
+
+Creo que el consejo más importante y significativo que te puedo dar, es el usar el MOUSE.
+
+Sí, el mouse, para inferir tipados.
+También la técnica del `typeof` es otra alternativa. Esto te salvará muchas veces cuando no sepas como tipar algo de una librería de terceros.
+Otra cosa es recordar que no todas las dependencias de NPM están tipadas, a veces tienes que instalar `@types/la_dependencia`. Y a veces, tampoco existe. Ahí creo que llego la hora de sufrir jajaja, porque si no encuentras una dependencia alternativa que si esté tipada, tendrás que hacerlo tú y eso ya es harina de otro costal. Espero nunca te pase. En mi caso, me está pasando ahora con `neo4j-graphql-js`. Pero pronto estará listo el tipado que se está generando comunitariamente.
+
+En fin, espero que te sirva un poco esta **Guía básica de Supervivencia en React con TypeScript**.
+
+Te recomiendo algunas lecturas más completas y adicionales para asuntos más complejos:
+
+- https://react-typescript-cheatsheet.netlify.app/
+- La misma pero en español: https://github.com/typescript-cheatsheets/react-typescript-cheatsheet-es
+
+Abrazos

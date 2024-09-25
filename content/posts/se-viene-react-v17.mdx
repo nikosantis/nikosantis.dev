@@ -1,0 +1,294 @@
+---
+title: 'Se viene React v17.0 sin nuevas funciones'
+publishedAt: '8/10/2020'
+description: 'En el blog oficial de React se ha publicado el primer candidato a lanzamiento para React 17, luego de dos años y medio de un importante lanzamiento anterior.'
+isOld: true
+---
+
+Hoy se ha publicado en el blog oficial de React el primer Release Candidate para React 17, luego de dos años y medio desde el último release importante (ha pasado bastante no?).
+
+## No tiene nuevas funciones
+
+La versión 17 de React es bastante inusual, como dicen en el blog, porque no agrega ninguna característica nueva para desarrolladores. Es decir, si esperábamos nuevos hooks para hacer otras cosas locas, no vendrá nada de esto.
+
+Esta nueva versión se está centrando principalmente en **facilitar la actualización de React**.
+
+No hay que asustarse al pensar que no están trabajando en nuevas funcionalidades, al contrario, pero no forman parte de esta versión.
+
+El enfoque está en **no dejar a nadie atrás**. React 17 es una versión **"trampolín"** que hace que sea más seguro insertar un árbol administraro por una versión de React dentro de un árbol administrado por una versión diferente de React.
+
+## Actualizaciones graduales
+
+Durante los últimos siete años, las actualizaciones de React han sido de "todo o nada". O te quedabas con una versión anterior o actualizas toda la aplicación a una nueva versión. No hubo intermedios.
+
+Esto había funcionado hasta ahora, pero React está llegando a los límites de esa estrategia de actualización (todo o nada). Algunos cambios de API, por ejemplo, la desaprobación de la _API de Contexto heredado_, son imposibles de realizar de una forma automatizada. Aunque la mayoría de las aplicaciones escritas hoy en día nunca las usan, aún se admiten en React. Se tendría que elegir entre admitirlas en React indefinitivamente o dejar algunas aplicaciones en una versión anterior de React, donde ambas opciones no son muy buenas.
+
+Por eso es que se han enfocado en otra opción.
+
+React 17 va a permitir actualizaciones graduales de React. Cuando actualices React 15 a 16 (o 16 a 17 😱), generalmente actualizará toda la aplicación de una vez. Esto funciona bien para muchas aplicaciones, pero puede volverse cada vez más desafiante si el código base se escribió hace más de unos años y no se mantiene. Aunque es posible usar dos versiones de React en una misma página, hasta React 17 esto ha sido frágil y ha causado problemas con los eventos.
+
+En React están solucionando muchos de estos problemas con React 17. Esto significa que cuando salga React 18 y las próximas futuras versiones, ahora habrán más opciones.
+
+La primera opción será actualizar toda la aplicación de una vez, como podría haber hecho antes. Pero también tendrá la opción de actualizar la aplicación pieza por pieza. Por ejemplo, se podrá decidir migrar la mayor parte de una aplicación a React 18, pero mantener un cuadro de diálogo cargado de forma diferida a una subruta en React 17.
+
+OJO: Esto no significa que se deben hacer mejoras graduales. Para la mayoría de las aplicaciones, actualizar todo de una vez sigue siendo la mejor solución. Cargar dos versiones de React, incluso si una de ellas se carga de forma Lazy a pedido, todavía no es lo ideal. Sin embargo, para aplicaciones más grandes que no se mantienen, es una opción que puede tener sentido y React 17 permitirá que estas aplicaciones no se queden atrás.
+
+Para habilitar las actualizaciones graduales, necesitamos realizar algunos cambios en el sistema de eventos de React. La versión 17 es importante porque estos cambios potencialmente se está rompiendo. En la práctica, solo se ha tenido que cambiar menos de 20 componentes de más de 100 mil, por lo que esperan, en React, que la mayoría de las aplicaciones puedan actualizarse a React 17 sin demasiados problemas. (ahora más en la práctica, puede que haya problemas igual no?)
+
+Hay un repositorio de ejemplo que demuestra cómo cargar de forma diferida una versión anterior de React si es necesario. Es una demo que utiliza CRA (create-react-app), pero debería ser posible seguir un enfoque similar con cualquier otra herramienta. [Aquí el demo.](https://github.com/reactjs/react-gradual-upgrade-demo/ 'Aquí el demo.')
+
+Algo importante que ellos mencionan:
+
+> Se han pospuesto otros cambios hasta después de React 17. Porque si el objetivo de esta versión es ayudar a la actualización y a no dejar a nadie atrás, pero la actualización se torna demasiado difícil, estaría totalmente frustrado el propósito.
+
+## Cambios en Event Delegation
+
+Técnicamente, siempre ha sido posible anidar aplicaciones desarrolladas con diferentes versiones de React, pero es bastante frágil debido a cómo funcionaba el sistema de eventos de React.
+
+En los componentes de React, usualmente se escriben controladores de eventos en línea.
+
+```jsx title="index.jsx"
+<button onClick={handleClick}>
+```
+
+El código equivalente en DOM vanilla es algo como:
+
+```js title="index.js"
+myButton.addEventListener('click', handleClick)
+```
+
+Sin imbargo, para la mayoría de los eventos, React no los adjunta a los nodos DOM en los que los declara. En cambio, React adjunta un controlador por tipo de evento directamente en el nodo `document`. A esto se le llama **event delegation**. Además de sus beneficios de rendimiento en árboles grandes de una aplicación, también facilita la edición de nuevas funciones como la **reproducción de eventos**.
+
+React ha estado delegando eventos automáticamente desde el primer lanzamiento. Cuando un evento DOM se dispara en el document, React determina a qué componente llamar, y luego el evento React "burbujea" hacia arriba a través de sus componentes. Pero detrás de escena, el evento nativo ya ha subido al nivel `document`, donde React instala sus controladores de eventos.
+
+Sin embargo, este es un problema para las actualizaciones graduales.
+
+Si tienes varias versiones de React en la página, todas se registran controladores de eventos en la parte superior. Esto rompe `e.stopProgataion()`: si un árbol anidado ha detenido la propagación de un evento, el árbol externo aún no lo recibirá. Esto hizo que fuera difícil anidar diferentes versiones de React. Esta preocupación, como mencionan ellos, no es hipotética; por ejemplo, el editor Atom se encontró con esto hace cuatro años.
+
+Es por eso (y luego de esta explicación anterior) que en React están cambiando la forma en que se adjunte los eventos al DOM debajo del capó.
+
+**En React 17, ya no se adjuntará controladores de eventos en el nivel `document`. En cambio, los adjuntará al contenedor DOM raíz en el que se representa su árbol:**
+
+```jsx title="index.jsx"
+const rootNode = document.getElementById('root')
+ReactDOM.render(<App />, rootNode)
+```
+
+En React 16 y versiones anteriores, React `document.addEventListener()` funcionaría para la mayoría de eventos. React 17 llamará a `rootNode.addEventListener()` debajo del capó en su lugar.
+
+Gracias a este importante cambio, ahora es más seguro incrustar un árbol de React administrado por una versión dentro de un árbol administrado por una versión de React diferente. Hay quer tener en cuenta que, para que esto funcione, ambas versiones deberían ser 17 o superior, por lo que es importante actualizar a la versión 17. En cierto modo, React 17 es un release de "trampolín", que hace factible adelantarse a las futuras actualizaciones.
+
+Este cambio también facilita la integración de React en aplicaciones creadas con otras tecnologías. Por ejemplo, si el "shell" externo de una aplicación está escrito en jQuery, pero el código más nuevo dentro de él está escrito con React, `e.stopPropagation()` dentro del código React ahora evitaría que alcance el código jQuery, como era de esperar. Esto también funciona en dirección contraria. Si ya no nos gustará React y deseáramos reescribir la aplicación, por ejemplo, en jQuery, se puede comenzar a convertir el shel externo de React a jQuery sin interrumpir la propagación del evento.
+
+En React han confirmado que numerosos problemas reportados a lo largo de los años relacionado con la integración de React con código que no es de React.
+
+En el caso de los **Portales**, React también escucha eventos de él, así que no es un problema.
+
+### Solucionar problemas potenciales
+
+Al igual que con cualquier cambio importante, es probable que sea necesario ajustar algún código. En Facebook, tuvieron que ajustar unos 10 módulos en total (de muchos miles) para trabajar con este cambio.
+
+Por ejemplo, si se agrega listeners manuales al DOM con `document.addEventListener(...)` se puede esperar que capturen todos los eventos React. En React 16 y versiones anteriores, incluso si llama `e.stopPropagation()` a un controlador de eventos React, los listeners `document` personalizados aún lo recibirían porque el evento nativo ya está en el nivel del document. Con React 17, la propagación se detendría (!según lo solicitado!), por que sus controladores `document` no dispararían:
+
+```js title="index.js"
+document.addEventListener('click', function () {
+  // este controlador no recibirá más clics
+  // de los componentes de React que llamen e.stopPropagation()
+})
+```
+
+Se puede corregir un código como este convirtiendo el listener para usar la fase de captura. Para hace esto, se puede pasar `{ capture: true }` como tercer argumento a `document.addEventListener`:
+
+```js title="index.js"
+document.addEventListener(
+  'click',
+  function () {
+    // ahora este controlador de evento usa la fase de captura
+    // por lo que recibe *todos* los eventos de clic que siguen
+  },
+  { capture: true }
+)
+```
+
+Hay que tener en cuenta cómo esta estrategia es más resistente en general; por ejemplo, probablemente solucionará los errores existentes en el código que ocurren cuando `e.stopPropagation()` se llame fuera de un controlador de eventos de React. En otras palabras, la propagación de eventos en React 17 funciona más cerca del DOM normal.
+
+---
+
+## Otros cambios importantes
+
+Se ha mantenido los cambios importantes en React 17 al mínimo. Por ejemplo, no elimina ninguno de los métodos que han quedado obsoletos en versiones anteriores. Sin embargo, incluye algunos otros cambios importantes que han sido relativamente seguros la experiencia de React. En total, han tenido que ajustar menos de 20 de cada 100.000+ de los componentes debido a ellos.
+
+### Alineando con los navegadores
+
+Se han realizado un par de cambios más pequeños relacionados con el sistema de eventos:
+
+- El evento `onScroll` **ya no burbujea** para evitar una confusión común.
+- Los eventos React `onFocus` y `onBlur` han cambiado al uso de eventos nativos `focusin` y `focusout` bajo el capó, que se ajustan más al comportamiento existente de React y, a veces, brindan información adicional.
+- Los eventos de la fase de captura (ej: `onClickCapture`) ahora utilizan listeners de fase de captura reales de navegador.
+
+Estos cambios alinean React más cerca del comportamiento del navegador y mejorar la interoperabilidad.
+
+### Sin agrupación de eventos
+
+React 17 elimina la optimización de "agrupación de ventos" de React. No mejora el rendimiento en los navegadores modernos y confunde incluso a los usuarios experimentados de React:
+
+```jsx title="index.jsx"
+function handleChange(e) {
+  setData((data) => ({
+    ...data,
+    // esto hace crash en React 16 y anteriores
+    text: e.target.value
+  }))
+}
+```
+
+Esto se debe a que React reutilizó los objetos de eventos entre diferentes eventos para el rendimiento en navegadores antiguos y estableció todos los campos de eventos `null` entre ellos. Con React 16 y versiones anteriores, se debe llamar a `e.persist()` para usar correctamente el evento o leer la propiedad que se necesita antes.
+
+**En React 17, este código funciona como era de esperar. La antigua optimización de agrupación de eventos se ha eliminado por completo, por lo que se puede leer los campos de eventos siempre que se necesite.**
+
+Este es un cambio de comportamiento, por lo que están marcando como roto, pero en la práctica no lo han visto romper nada en Facebook. (!Quizás incluso solucionó algunos errores!). Hay que tener en cuenta que `e.persist()` todavía está disponible en el objeto de evento React, pero ahora no hace nada.
+
+### Effect Cleanup Timing
+
+Están haciendo que la sincronización de la función de limpieza de `useEffect` sea más consistente.
+
+```jsx title="index.jsx"
+useEffect(() => {
+  // este es el efecto en sí
+  return () => {
+    // esto es un limpiador
+  }
+})
+```
+
+La mayoría de los efectos no necesitan retrasar las actualizaciones de la pantalla, por lo que React los ejecuta de forma asincrónica poco después de que la actualización se refleje en la pantalla. (Para los casos excepcionales en los que se necesite un efecto para bloquear el paint, por ejemplo, para medir y colocar una información sobre herramientas, hay que preferir `useLayoutEffect`).
+
+Sin embargo, cuando se desmonta un componente, las funciones de _limpieza_ del efecto se utilizan para ejecutarse sincrónicamente (similar a `componentWillUnmount` de manera sincrónica en las clases). Han descubierto que esto no es ideal para aplicaciones más grandes porque relentiza las transiciones de pantalla grande (por ejemplo, cambiar de pestaña).
+
+**En React 17, la función de limpieza de efectos siempre se ejecutará de forma asincrónica; por ejemplo, si el componente se está desmontando, la limpieza se ejecutará después de que se haya actualizado la pantalla.**
+
+Esto refleja cómo los efectos en sí se ejecutan más de cerca. En los raros casos en los que desee confiar en la ejecución sincrónica, se puede cambiar a `useLayoutEffect`.
+
+Además, React 17 siempre ejecutará todas las funciones de limpieza de efectos (para todos los componentes) antes de ejecutar cualquier efecto nuevo. React 16 solo garantizó este orden para los efectos dentro de un componente.
+
+### Problemas potenciales
+
+Solo han visto un par de componentes que se rompen con este cambio, aunque es posible que las bibliotecas reutilizables deban probarlo más a fondo. Un ejemplo de código con problemas puede verse así:
+
+```jsx title="index.jsx"
+useEffect(() => {
+  someRef.current.someSetupMethod()
+  return () => {
+    someRef.current.someCleanupMethod()
+  }
+})
+```
+
+El problema es que el `someRef.current` es mutable, por lo que cuando se ejecuta la función de limpieza, es posible que se haya configurado en `null`. La solución es capturar cualquier valor mutable _dentro_ del efecto:
+
+```jsx title="index.jsx"
+useEffect(() => {
+  const instance = someRef.current
+  instance.someSetupMethod()
+  return () => {
+    instance.someCleanupMethod()
+  }
+})
+```
+
+No esperan que esto sea un problema común porque la regla de eslint **eslint-plugin-react-hooks/exhaustive-deps** (!úsala!) siempre ha advertido sobre esto.
+
+### Errores consistentes para devolver undefined
+
+En React 16 y versiones anteriores, regresar `undefined` siempre ha sido un error:
+
+```jsx title="index.jsx"
+function Button() {
+  return // error: nada ha retornado
+}
+```
+
+Esto se debe en parte a que es fácil volver `undefined` sin querer:
+
+```jsx title="index.jsx"
+function Button() {
+  // hemos olvidado escribir return, por lo tanto este componente retorna undefined
+  // React muestra esto como un error en lugar de ignorarlo
+  ;<button />
+}
+```
+
+Anteriormente, React solo hacía esto para los componentes de clase y función, pero no verificaba los valores de retorno de `forwardRef` y los componentes `memo`. Esto se debió a un error de codificación.
+
+En React 17, el comportamiento de los componentes forwardRef y memo, es coherente con los componentes de clase y funciones regulares. Retornar undefined de ellos es un error.
+
+```jsx title="index.jsx"
+let Button = forwardRef(() => {
+  // hemos olvidado escribir return, por lo tanto este componente retorna undefined
+  // React 17 muestra esto como un error en lugar de ignorarlo
+  ;<button />
+})
+
+let Button = memo(() => {
+  // hemos olvidado escribir return, por lo tanto este componente retorna undefined
+  // React 17 muestra esto como un error en lugar de ignorarlo
+  ;<button />
+})
+```
+
+Para los casos en los que no se desee representar nada intencionalmente, se debe retornar `null` en su lugar.
+
+### Stack de componentes nativos
+
+Cuando el navegador arroja un error, el navegador proporciona un seguimiento del stack con los nombres de las funciones de JavaScript y sus ubicaciones. Sin embargo, los stack de JavaScript no suelen ser suficientes para diagnosticar un problema porque la jerarquía del árbol de React puede ser igualmente importante. Se desea saber no solo que `Button` arrojó un error, sino también en qué parte del árbol de React el `Button`se encuentra.
+
+Para resolver esto, React 16 comenzó a imprimir "stack de componentes" cuando se tiene un error. Aún así, solían ser inferiores a los stack de JavaScript nativos. En particular, no se podía hacer clic en la consola porque React no sabía dónde se declaró la función en el código fuente. Además, en su mayoría fueron inútiles en la producción. A diferencia de los stack de JavaScript minificados regulares que se pueden restaurar automáticamente a los nombres de las funciones originales con un mapa de origen, con los stack de componentes de React se tenía que elegir entre el stack de producción y tamaño de paquete.
+
+**En React 17, los stack de componentes se generan utilizando un mecanismo diferente que las une a los stack de JavaScript nativos normales. Esto permite obtener los seguimientos del stack de componentes de React completamente simbolizados en un entorno de producción.**
+
+La forma en que React implementa esto es algo poco ortodoxo. Actualmente, los navegadores no proporcionan una forma de obtener el marco del stack de una función (archivo de origen y ubicación). Entonces, cuando React detecta un error, ahora reconstruirá su stack de componentes lanzados (y capturando) un error temporal desde el interior de cada uno de los componentes anteriores, cuando sea posible. Esto agrega una pequeña penalización de rendimiento por fallas, pero solo ocurre una vez por tipo de componente.
+
+Esta parte constituye un cambio importante para que esto funcione, React vuelve a ejecutar partes de algunas de las funciones de React y los constructores de la clase React anteriores en la pila después de que se captura un error. Dado que las funciones de renderizado y los constructores de clases no deberían tener efectos secundarios (que también es importante para la renderización del servidor), esto no debería plantear ningún problema práctico.
+
+### Eliminación de exportaciones privadas
+
+Finalmente (sí, por fin dirás 🤪), el último cambio notable es que han eliminado algunos componentes internos de React que estaba expuestos anteriormente a otros proyectos. En particular, React Native para Web, solía depender de algunos componentes internos del sistema de eventos, pero esa dependencia era frágil y solía romperse.
+
+**En React 17, estas exportaciones privadas se han eliminado. Hasta donde saben, React Native para Web fue el único proyecto que las usó, y ya completaron una migración a un enfoque diferente que no depende de esas exportaciones privadas.**
+
+Esto significa que las versiones anteriores de React Native para Web, no serán compatibles con React 17, pero las versiones más nuevas funcionarán con él. En la práctica, esto no cambia mucho porque React Native para Web tuvo que lanzar nuevas versiones para adaptarse a los cambios internos de React de todos modos.
+
+Además, han eliminado los métodos auxiliares `ReactTestUtils.SimulateNative`. Nunca se han documentado, no hicieron exactamente lo que sus nombres implicaban y no funcionaron con los cambios que se hicieron en el sistema de eventos. Si se desea una forma conveniente de activar eventos nativos del navegador en los tests, ver [React Testing Library](https://testing-library.com/docs/dom-testing-library/api-events 'React Testing Library').
+
+## Para probar / Instalación
+
+Si quieres probar el release candidate React 17.0 pronto y así también plantear algún problema que puedas encontrar, debes tener en cuenta que es más probable que una versión candidata contenga errores que una versión estable, así que no la implementes todavía en producción.
+
+Para instalar React 17 RC con NPM, debes ejecutar:
+
+```bash
+npm install react@17.0.0-rc.2 react-dom@17.0.0-rc.2
+```
+
+Para instalar React 17 RC con Yarn, debes ejecutar:
+
+```bash
+yarn add react@17.0.0-rc.2 react-dom@17.0.0-rc.2
+```
+
+También se ha proporcionado compilaciones UMD de React a través de una CDN:
+
+```html
+<script
+  crossorigin
+  src="https://unpkg.com/react@17.0.0-rc.2/umd/react.production.min.js"
+></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@17.0.0-rc.2/umd/react-dom.production.min.js"
+></script>
+```
+
+Uff que largo.
+
+Fuente: https://reactjs.org/blog/2020/08/10/react-v17-rc.html (inglés)

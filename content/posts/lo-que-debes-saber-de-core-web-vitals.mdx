@@ -1,0 +1,138 @@
+---
+title: 'Lo que debes saber de Core Web Vitals'
+publishedAt: '4/26/2021'
+description: 'Lo que debes saber de Core Web Vitals para preparar tu sitio web al cambio de Google de mayo 2021.'
+isOld: true
+---
+
+Así como ha avanzando tan rápido este año y ya estamos pronto a entrar a mayo 2021, con eso, también **Google** comenzará a tomar en cuenta la **Experiencia de Usuario** respecto al posicionamiento en los resultados de búsqueda de Google.
+
+Los indicadores que ya se usaban para posicionar en resultados de búsqueda son:
+
+- Optimización para móviles
+- Navegación segura
+- Protocolo HTTPS
+- Directrices de anuncios intersticiales intrusivos
+
+Ahora se le sumarán nuevos indicadores, los que se les ha llamado **Core Web Vitals**.
+
+**¿Y esto es importante?**
+
+Si tu interés es el posicionamiento de tu sitio web, blog, web app, etc., si debe ser importante para tí.
+
+Si bien, no tienes mucho interés en el posicionamiento, porque es una aplicación web privada, pero si te interesa la experiencia de los usuarios, también debe ser importante para tí.
+
+Y si pretendes que lo desarrollado, lo utilicen personas, también!
+
+Obvio que es importante, y es algo de lo que deberíamos preocuparnos. Ojalá que fuera incluso antes de lanzar el sitio web a producción.
+
+Pero qué son las Core Web Vitals?
+
+## Core Web Vitals
+
+La calidad de la experiencia de los usuario es un punto clave para el éxito de cualquier sitio web. No importa si eres desarrollador, administrador, gerente. Las Core Web Vitals pueden ayudarte a cuántificar la experiencia de tu sitio web e identificar oportunidades para mejorar.
+
+Las Web Vitals es una iniciativa de Google para proporcionar una guía unificada para las señales de calidad que son esenciales para brindar una excelente experiencia de usuario en la web.
+
+El equipo de Google ha proporcionado una serie de herramientas a lo largo de los años para medir e informar sobre el rendimiento. Ya mucha gente es experta en el uso de estas herramientas, mientras que a otras personas les resulta difícil mantenerse al día con la abundancia de herramientas y métricas (si le sumamos todas las otras que no son de Google 🥴).
+
+No deberías ser un gurú del rendimiento y optimización para comprender la calidad de experiencia que le das a los usuarios.
+
+En este contexto, la iniciativa Web Vitals tiene como objetivo simplificar el panorama y ayudar a que los sitios web se centren en las métricas que más importan, Core Web Vitals.
+
+### Elementos Vitales
+
+Core Web Vitals es el subconjunto de Web Vitals que se aplican a todas las páginas web. Cada una de las Core Web Vitals representa una faceta distinta de la experiencia del usuario, se puede medir y refleja la experiencia del mundo real de un resultado crítico centrado en el usuario.
+
+Las métricas que componen Core Web Vitals evolucionarán con el tiempo. El conjunto actual para 2020 (y ya 2021), se centra en tres aspectos de la experiencia del usuario: **carga**, **interactividad** y **estabilidad visual**, e incluye las siguientes métricas (y sus respectivos umbrales).
+
+- **Largest Contentful Paint (Renderizado del mayor elemento con contenido)**: Mide el rendimiento de **carga**. Para proporcionar una buena experiencia de usuario, LCP debe ocurrir dentro de los 2.5 segundos desde que la página comienza a cargarse por primera vez.
+
+- **First Input Delay (Latencia de la primera interacción)**: mide la **interactividad**. Para brindar una buena experiencia de usuario, las páginas deben tener un FID de menos de 100 milisegundos.
+
+- **Cumulative Layout Shift (Cambios de diseño acumulados)**: mide la **estabilidad visual**. Para proporcionar una buena experiencia de usuario, las páginas deben mantener un CLS de menos de 0,1.
+
+<Image
+  src='/images/core-web-vitals.png'
+  alt='Core Web Vitals'
+  fill
+  width='848'
+  height='287'
+/>
+
+|         | Rápidas 🟢    | Necesitan una mejora 🟠 | Lentas 🔴    |
+| ------- | ------------- | ----------------------- | ------------ |
+| **LCP** | {'<='} 2,5 s  | {'<='} 4 s              | {'>'} 4 s    |
+| **FID** | {'<='} 100 ms | {'<='} 300 ms           | {'>'} 300 ms |
+| **CLS** | {'<='} 0,1    | {'<='} 0,25             | {'>'} 0,25   |
+
+Para cada una de las métricas anteriores, para asegurarse de que se está alcanzando el objetivo recomendado para la mayoría de sus usuarios, un buen umbral para medir es el percentil 75 de cargas de página, segmentado en dispositivos móviles y de escritorio.
+
+### Herramientas para medir Core Web Vitals
+
+Bueno, pero cómo podemos aplicar Core Web Vitals a nuestros sitios webs?
+
+El equipo de Google cree que los Core Web Vitals son fundamentales para todas las experiencias web, por lo tanto, también se ha comprometido a que todas sus herramientas entreguen también estas métricas.
+
+Las herramientas que se pueden utilizar son:
+
+[Lighthouse](https://github.com/GoogleChrome/lighthouse 'Lighthouse'), [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/ ' PageSpeed Insights'), [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools 'Chrome DevTools'), [Search Console](https://search.google.com/search-console/about 'Search Console'), [la herramienta de medición de web.dev](https://web.dev/measure/ 'la herramienta de medición de web.dev'), [la extensión Web Vitals Chrome](https://chrome.google.com/webstore/detail/web-vitals/ahfhijdlegdabablpippeagghigmibma 'la extensión Web Vitals Chrome') y una nueva (!) [API de informes de Chrome UX](https://developers.google.com/web/tools/chrome-user-experience-report 'API de informes de Chrome UX').
+
+Genial no? Google nos entrega varias herramientas, pero puede que aún sea un poco nebuloso este tema para tí si es primera vez que lees sobre esto.
+
+_Pero recuerda: en pocos días más, a partir de mayo 2021, tenemos que preocuparnos de Core Web Vitals para el posicionamiento._
+
+Bueno, para hacer esto más sencillo, la herramienta más básica, que tiene un contexto más de "pruebas de laboratorio" que brinda información sobre cómo un usuario potencial probablemente experimentará el sitio web y ofrecerá resultados reproducibles para la depuración.
+
+Para utilizar esta herramienta necesitas usar el navegador Chrome (y tenerlo actualizado).
+
+Solo tienes que abrir las herramientas de desarrollo. Para hacer esto, debes ir a los 3 puntitos de arriba a la derecha e ir a la parte del menú que indica "más herramientas", y luego "Herramientas del desarrollador".
+
+Al abrirse el nuevo diálogo dentro del navegador, aparecerán varias opciones en la parte superior que dice: Elements, Console, Sources, etc. Casi al final aparece **Lighthouse**.
+
+Y ya con eso, solo basta seleccionar las categorías que necesitas medir y que tipo de dispositivo, Mobile o Desktop. Lighthouse no solo mide Core Web Vitals, sino que mide también otras cosas importantes y aparte, genera un pequeño reporte de cómo podríamos corregir cada uno de los puntos negativos.
+
+Una recomendación, es que utilices el Navegador en modo incógnito, porque si tienes algunas extensiones instaladas en tu navegador, puede que afecten la medición.
+
+Usar Lighthouse es la manera más rápida de poder acceder a esta información.
+
+Esta es una herramienta automatizada de auditoría de sitios web que ayuda a los desarrolladores a diagnosticar problemas e identificar oportunidades para mejorar la experiencia del usuario de sus sitios. Mide varias dimensiones de la calidad de la experiencia del usuario en un entorno de laboratorio, incluido el rendimiento y la accesibilidad. La última versión de Lighthouse incluye auditorías adicionales, nuevas métricas y una puntuación de rendimiento recién compuesta.
+
+La segunda es [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/ ' PageSpeed Insights').
+
+En ambas opciones se utiliza la misma herramienta, Lighthouse por detrás, con resultados similares.
+
+Hay otras herramientas que he nombrado arriba, y sin duda, si le tomas importancia a Core Web Vitals, lo más seguro que en algún momento deberás interactuar con cada una de estas. No obstante, ya sea con Lighthouse de Chrome o PageSpeed Insights, cualquiera de ellas, es el camino más rápido para llegar a estas métricas.
+
+La gran mayoría de los sitios tendrá malos puntajes, y es porque no era un punto importante o tan importante hace alunos años, no obstante, no es algo para quedarse tranquilos. El objetivo de tu sitio web es que lo utilicen personas y si lo utilizan personas, la experiencia de tus usuarios debe ser de buena calidad.
+
+Ahora la pregunta del millón de dólares: cómo puedo mejorar mis Core Web Vitals?
+
+Bueno, si te parece chino la información que te arroja Lighthouse y no sabes qué hacer con eso, puedes buscar personas capacitadas en optimización y performance web y también comenzar a evaluar si con el desarrollo actual de tu sitio web, es posible lograr un buen rendimiento.
+
+Obviamente esto lo harás si realmente te interesa mejorar tu puntaje, no obstante, como ya he dicho, si te interesa que tu sitio web tenga mejor posición y/o te intersa que la experiencia de usuario sea agradable, preocúpate.
+
+Y sabes, yo veo una gran oportunidad.
+
+Muchos sitios web han tenido que utilizar diversas estrategias de posicionamiento para poder luchar con la compentencia, generando contenido, palabras claves, etc, etc, etc. Y aún haciendo todo esto, no han podido ganar posición. Bueno, ahora, si esos sitios no cambian (siempre cambiar considerará un esfuerzo), puede ser que sea la oportunidad para lograr superar esas posiciones.
+
+Pero igual debo mencionar que esta información ya se sabía desde el 2020, e incluso antes, ya se estaban estudiando estos temas, por ende, hay una cantidad importante de sitios web que ya tienen solucionado los temas de Core Web Vitals.
+
+Por ejemplo, mi sitio web, este blog, el cual estás leyendo, siempre ha tenido buen puntaje, te invito a analizarlo [aquí](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fnikosantis.dev%2F&tab=mobile 'aquí').
+
+En Desktop llego al 100 y en mobile siempre sobre 90 (pronto mejoraré este 90).
+
+En fin, hay muchas que puedes hacer.
+
+En mi caso te comento que mi sitio web está desarrollado con Nextjs, con Webpack 5, usando TypeScript. Tengo el código de este sitio web publicado en mi github, libre acceso, no hay nada que esconder.
+
+Así que si te sirve, genial!
+
+Espero que este post te motive a mejorar tu sitio web, mejorar tus desarrollos y también, que todos comencemos a avanzar a una mejor experiencia de usuario en la web.
+
+Saludos!!!
+
+Fuentes:
+
+- [Web Vitals](https://web.dev/vitals/ 'Web Vitals')
+- [Herramientas para Core Web Vitals](https://web.dev/vitals-tools/ 'Herramientas para Core Web Vitals')

@@ -1,0 +1,286 @@
+---
+title: '¿Cómo usar Standard en Next?'
+publishedAt: '03/09/2020'
+description: 'Si alguna vez escuchaste, leíste o usaste Standardjs, te comparto una manera de cómo implementarlo en un proyecto con Nextjs.'
+isOld: true
+---
+
+**Standard** qué 🤨???
+
+Si no conoces standard, te invito a seguir leyendo.
+
+Y si ya lo conoces, igual 🤪.
+
+_(Este post ha sido actualizado para que no tengas problemas con las dependencias)_
+
+Standard es una _guía de estilos JavaScript, con linter y corrección automática de código_.
+
+Podríamos considerar que se "parece" a **Prettier**, pero, en términos concretos, no son lo mismo.
+
+Prettier, es un formateador de código, y tambien una guía de estilos, pero no es un Linter.
+
+Standard si es un linter, o por lo menos, tiene reglas de eslint.
+
+Ya hablaremos de Prettier en otra ocasión...
+
+En su sitio web, standard dice que no necesita configuración, y es verdad, pero va a depender el uso que se le de.
+
+Standard, formatea tu código, y te ayuda con los problemas de estilo y errores en tu código.
+
+Digamos que es como un asistente, que te ayuda con tu código.
+
+Ahora bien, esa ayuda, está basada en ciertas reglas que se deben cumplir:
+
+- 2 espacios como sangría
+- comillas simples en strings
+- no dejar variables sin uso
+- no usar punto y coma (esto es una de mis principales razones de porque lo uso 😀)
+- espacios entre elementos de una función o elementos nativos de javaScript
+- entre otras reglas
+
+Standard se puede instalar de manera global en tu equipo, pero no lo recomiendo. Siempre es mejor hacerlo a nivel local del proyecto, pues, de esta manera evitas problemas locos que se pueden generar ahí en un proyecto determinado, donde Eslint, Prettier y agregándole Standard, se ponen a pelear (si te ha pasado, ya sabes de lo que hablo jajaja).
+
+Pero bueno, no te voy a enseñar sobre Standard, sino más bien, te mostraré cómo se puede usar en un proyecto de Nextjs.
+
+Lo primero que debes hacer es iniciar un proyecto con Create Next App.
+
+```bash
+npx create-next-app
+```
+
+Inmediamente, la terminal que uses, te preguntará por el nombre de tu proyecto:
+
+```bash
+? What is your project named?
+```
+
+Aunque si quieres evitar este paso, puedes usar
+
+```bash
+npx create-next-app mi-nueva-app
+```
+
+Es decir, puedes poner el nombre de tu proyecto desde antes.
+
+Sigamos...
+
+Lo que hará npx, es instalar en tu nueva carpeta (que será el nombre de tu proyecto escogido), las dependencias necesarias para poder comenzar tu proyecto, que son 3.
+
+React
+React-Dom
+Next
+
+Por lo que si no quisieras usar create-next-app puedes instalar tu mismo en tu proyecto con Yarn o NPM ya inicializado.
+
+```bash
+yarn add react react-dom next
+```
+
+o
+
+```bash
+npm install react react-dom next
+```
+
+Solo recuerda, que tendrás que agregar otras cosas extras para que funcione todo bien, que son más que nada, la carpeta "/pages", la carpeta "/public" y por su puesto, tu .gitignore y README.md.
+
+Ahora bien, como usamos NPX en el ejemplo, ya dentro tendrá todo lo necesario.
+
+Ahora instalaremos standard y otras cosas más.
+
+Considera lo siguiente. Si estamos usando Next, significa que estamos utilizando React también, eso significa que usaremos JSX en nuestros componentes.
+
+Recordemos que JSX es una sintaxis de javaScript que se usa en React, por ende, si vamos a usar standardjs, debe ser para JSX.
+
+Si no sabes mucho de lo que he estado escribiendo, pronto podrás comprobar a que me refiero.
+
+Vamos a usar las reglas de standard para react: eslint-config-standard-react
+
+Siguiendo la documentación, nos indica que debemos instalar todo esto como dependencias de desarrollo:
+
+```bash
+yarn add -D eslint babel-eslint eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react
+```
+
+o
+
+```bash
+npm install -D eslint babel-eslint eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react
+```
+
+Son bastantes dependencias, pero vamos en orden.
+
+Primero está eslint, que es finalmente para que todo funcione.
+
+Luego viene babel-eslint. Te cuento un secreto. Si no lo instalas, va a funcionar igual, pero, en la documentación de standard, ellos lo recomiendan. Por qué?
+Standard soporta las ultimas características de ECMAscript, ES8 (ES2017) incluyendo todas las características del lenguaje de las propuestas que estan en "Stage 4" del proceso de propuestas.
+
+No obstante, si quieres usar características experimentales de javaScript, babel-eslint es quien te ayuda, pero, Babel ha actualizado esta dependencia a otra nueva que es:
+
+```bash
+@babel/eslint-parser
+```
+
+Qué enredado, si quieres profundizar sobre esto puedes leer el [estado de babel-eslint](https://babeljs.io/blog/2020/07/13/the-state-of-babel-eslint 'estado de babel-eslint') pero no perdamos tiempo en esto por ahora. Así que dejemoslo como ellos recomiendan.
+
+También está eslint-config-standard, que es finalmente, las reglas de standard y eslint-config-standard-react las reglas de standard para react, como también los plugins eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react.
+
+Claramente el primer plugin hace referencia a standard, luego viene promise, para las promesas, luego import, para la sintaxis import/export, node para el entorno de node, y finalmente el plugin para react.
+
+Ahora, debemos agregar el archivo de configuración de reglas de eslint: .eslintrc
+
+```json title=".eslintrc.json"
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-react"]
+}
+```
+
+Ahora que hemos instalado todo esto y creado el archivo de configuración de eslint, vamos al archivo index.js dentro de la carpeta /pages.
+
+Sé lo que pasará.
+
+Todo te saldrá con muchas líneas rojas de errores debajo del ejemplo básico que viene incluido en el proyecto de Next.
+
+El error es este:
+
+```jsx
+'React' must be in scope when using JSX eslint(react/react-in-jsx-scope)
+```
+
+Esto es, porque en Next, no es necesario importar React en cada componente (algo que en React debemos hacer constantemente).
+
+Si quieres ver con más detalles los errores, te recomiendo instalar la extensión (si es que usas VSCODE, que es mi otra recomendación), [Error Lens.](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens 'Error Lens')
+
+```jsx
+import React from 'react'
+```
+
+No es necesario hacerlo en Next, por lo que para evitar este error haremos el primer cambio en nuestro archivo de configuración de eslint.
+
+```json title=".eslintrc.json"
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-react"],
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
+}
+```
+
+Listo!!! ahora, se ha arreglado ese error que teníamos de tener React en el scope de nuestro código, que se exige al usar JSX.
+
+Ahora, cada vez que escribas código, se autoformateará. Por ejemplo si escribes el siguiente componente Title (creamos la carpeta "components" en la raíz del proyecto y dentro el archivo title.js):
+
+```jsx
+export default function Title({ className, children }) {
+  return <h1 className={className}>{children}</h1>
+}
+```
+
+Oppss!! 😱 otro error!!!
+
+```jsx
+'children' is missing in props validation eslint(react/prop-types)
+```
+
+Claro, porque por defecto, otra regla de React que trae el pluging React Eslint, es que cada prop se debe validar con propTypes.
+
+Si somos correctos, esto debería mantenerse, aunque se puede dejar que este error no aparezca si cambiamos una regla así:
+
+```json title=".eslintrc.json"
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-react"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
+  }
+}
+```
+
+Así se puede arreglar, no obstante, como dije, no es lo correcto, lo mejor sería que se pudiera agregar la validación de propTypes, pero eso lo dejaremos para otra publicación.
+
+Y listo!!!
+
+Ahora recapitulemos la implementación de Standardjs en tu proyecto de Next.
+
+Primero debes iniciar un proyecto Next o también, en un proyecto que ya esté andando.
+
+Luego debes instalar las dependencias de desarrollo de standard para react.
+
+```bash
+yarn add -D eslint babel-eslint eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react
+```
+
+Luego agregar el archivo de configuración .eslintrc.
+
+```json title=".eslintrc.json"
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-react"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
+  }
+}
+```
+
+Recuerda que la validación de "prop-types" es muy buena, y deberías usarla, pero para efectos de este proyecto de prueba, lo haremos así.
+
+Y listo, ya tienes configurado en tu proyecto de next, lo que necesitas para trabajar con standardjs.
+
+Gracias por leer.
+
+Puedes encontrar este ejemplo en mi **[github](https://github.com/nikosantis/next-with-standardjs 'github')**
+
+**BONUS:**
+
+Te recomiendo agregar otro plugin de eslint para ayudarte con los hooks de React.
+
+```bash
+yarn add -D eslint-plugin-react-hooks
+```
+
+Y el archivo de configuración debería quedar así:
+
+```json title=".eslintrc.json"
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-react"],
+  "plugins": ["react-hooks"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}
+```
+
+Y listo 😀!!!

@@ -1,0 +1,92 @@
+---
+title: 'Cambiando a TailwindCSS'
+publishedAt: '6/16/2021'
+description: 'Actualizando mi blog con TailwindCSS y la última versión de Nextjs.'
+isOld: true
+---
+
+Siempre trato de mantenerme actualizado con las nuevas tecnologías relacionadas a lo cotidiano de mi trabajo y utilizo tanto mi blog como los sitios web que voy trabajando en el momento, de esta manera, trato de formar una opinión sobre lo que disfruto usar. En mi caso, es mucho más fácil aprender construyendo cosas reales.
+
+En este caso, luego de varias pruebas en diversos sitios, me he decidido actualizar mi blog.
+
+Aquí el stack:
+
+- Next.js (actualizado a `v11.1.2`) _Si estás visitando hoy el sitio, ahora uso la versión v12.0.7, reciénmente lanzada_
+- Tailwind CSS (anteriormente `styled-jsx` con sass)
+- TypeScript (ya lo había actualizado antes de este post)
+- Posts locales con MDX
+- Desplegado en [Vercel](https://vercel.com/home 'Vercel')
+
+Siempre trato de tener Next.js actualizado porque en cada nueva versión que se va lanzando, aparecen nuevas funcionalidades que vienen a mejorar el rendimiento. Así que siempre mi blog lo tengo en la última versión. Además, Next.js nos hace las cosas bastante fácil, no hay muchas cosas complejas al momento de actualizarse.
+
+Sobre Next.js no hay mucho más que mencionar, ya que la versión antes de esta cambio, la tenía en `v11.0.1`, no obstante, igual hay varios detalles que agregaron, que en su gran mayoría de cambios, son relacionados al rendimiento al momento de realizar el build. [Más detalles aquí](https://nextjs.org/blog/next-12 'Nextjs v12.0.7').
+
+## Tailwind css
+
+Llevo todo este año encariñándome más y más con Tailwind, aunque debo decir, que al inicio me parecía muy horrible.
+
+_Este no es un post de cómo usar Tailwind ni nada por el estilo, es solo un pequeño review de cómo me he sentido usándo Tailwind._
+
+Si llevas bastante tiempo en el mundo del frontend, puede que hayas o sigas utilizando el caballito de batalla que me ha salvado en muchas ocasiones, el famoso Bootstrap. He conversado con muchas personas que con mucha comodidad, lo siguen utilizando (aunque esperaría que por lo menos se pudieran actualizar a la `v5` ya!). Y es que siempre los cambios son difíciles.
+
+Pero volvamos a Tailwind.
+
+Al principio me pareció horrible, debo decirlo. Lo probé varias veces en diferentes sitios testeando sus diferentes funcionalidades y herramientas. Si bien, lo encontraba bastante bueno, no era de mi gusto propio y lo estuve dejando de lado.
+
+Hay mucha gente desarrolladora (en especial frontends), que han tenido este mismo sentimiento con Tailwind, y no puedo no sentirme parte de ese sentimiento.
+
+Si aún no te has decidido, te invito a leer ya un post bastante antiguo (2017) del creador de Tailwind. [Aquí el post](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/ 'Adam Wathan').
+
+Como decía, lo probé bastante, sin convencerme mucho, hasta que comencé a batallar en una investigación de "cómo crear una librería componentes React con estilo, que tenga un buen rendimiento, que pese poco y que sea sencilla de implementar". Durante esta investigación pasé por varias librerías, desde **Styled Components** (que hace unos años me encantaba, al igual que Emotion, pero al poco tiempo dejé de usar), como también mi amado **Styled-jsx** (sí, muy fan de Vercel), como también simplemente CSS Modules con SASS.
+Claramente era muy sencillo hacerlo con Styled Components, porque solo bastaba un buen _bundler_ (webpack, rollup, etc) usando un compilador de JavaScript (babel) o TypeScript, pero el rendimiento y la locura de nombres de componentes, y tener que complicar las cosas con TypeScript, me comenzaron a molestar un poco.
+Luego vino el viaje de agregar mayor complejidad usando otras librerías que ya necesitan otros esfuerzos al momento de compilar (como styled-jsx o CSS Modules), que claro, usando Create React App o Next.js uno piensa que es bastante sencillo, porque ahí es fácil usarlos, pero al momento de tener que preparar una librería con una personalización más compleja y detallada según los requerimientos de cada persona, el tema se ponía mucho más dificil.
+
+Al mismo tiempo, me fui dando cuenta que la comunidad entorno a React como Vue, hablaban mucho de Tailwind y siempre había alguno que otro ejemplo usándo esta cosa horrible que no quería usar. Así que comencé un viaje personal en tener una opinión más formada de Tailwind.
+
+Bueno, el veredicto es claro: me encanta usar Tailwind ahora jajajaj.
+
+Pero debo mencionar que tuve que modificar mi modelo mental de CSS, con la propia curva de aprendizaje de Tailwind y aprenderme los nombres específicos para poder usar bien este framework de CSS.
+
+Por ejemplo, tener que pasar de esto:
+
+```css title="CSS"
+.nombre-de-clase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+a esto:
+
+```html title="HTML"
+<div className="flex items-center justify-center" />
+```
+
+Aquí al principio me pareció similar a Bootstrap, incluso algunos nombres de las clases eran muy similares, pero al poco tiempo me fui dando cuenta de una diferencia bastante importante. Las clases de Tailwind era utilitarias. De hecho, en el mismo sitio de Tailwind CSS, en los conceptos básicos, habla de "Utiliy First".
+
+Las clases de Tailwind son muy intuitivas y su documentación lo hace muy fácil para seguir aprendiendo (aunque Adam ha indicado que pronto se viene la nueva versión y la documentación será mucho más fácil de entender, de lo que ya era). Si ya llegaste leyendo hasta acá, ya te puedo decir que ya lanzaron la nueva versión de Tailwind y así también su documentación: [TailwindCSS](https://tailwindcss.com/ 'TailwindCSS')
+
+El trabajo que realiza Tailwind es muy bueno y al poco tiempo de subirte a la máquina, ya todo comienza a fluir mucho más rápido.
+
+## Modo oscura (Dark Mode)
+
+Tailwind nos ayuda a que el Dark Mode sea mucho menos sufrible. En la configuración de Tailwind, te permite activar o no el uso de Dark Mode.
+
+```html title="HTML"
+<div className="bg-white dark:bg-gray-800" />
+```
+
+Aunque si estás trabajando en Nextjs, mi recomendación es que sumes Tailwind + `next-themes`, así evitaras dolores de cabeza y el clásico "flash" que se genera al abrir el sitio web en el navegador. Esta recomendación te ayudará a solucionarlo.
+
+## Visual Studio Code
+
+Una última cosa. Si quieres tener una experiencia mucho mejor, te recomiendo usar la extensión en VSCODE.
+
+[Editor Setup TailwindCSS](https://tailwindcss.com/docs/editor-setup 'Editor Setup TailwindCSS').
+
+Creo que lo mejor que puedes hacer, es intentar usarlo.
+
+Estoy preparando unos videos tutoriales con proyectos en Nextjs usando TailwindCSS para aportar un poco más, pero mientras, te dejo la diversión de explorar.
+
+Gracias por leer.
