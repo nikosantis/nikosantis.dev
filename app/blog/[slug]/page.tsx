@@ -20,6 +20,10 @@ export async function generateMetadata({
     description: post.description,
     alternates: {
       canonical: `/blog/${post._meta.path}`
+    },
+    openGraph: {
+      type: 'article',
+      publishedTime: new Date(post.publishedAt).toISOString()
     }
   }
 }

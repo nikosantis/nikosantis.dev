@@ -22,7 +22,10 @@ export const metadata: Metadata = {
     url: 'https://nikosantis.dev'
   },
   creator: 'Nikolas Santis',
-  publisher: 'Nikolas Santis'
+  publisher: 'Nikolas Santis',
+  openGraph: {
+    type: 'website'
+  }
 }
 
 export default function RootLayout({
