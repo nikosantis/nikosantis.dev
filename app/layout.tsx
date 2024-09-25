@@ -16,7 +16,13 @@ export const metadata: Metadata = {
   },
   title: 'Nikolas Santis | Desarrollador Fullstack | React, Next.js, Node.js',
   description:
-    'Soy Nikolas Santis, un desarrollador fullstack con más de 14 años de experiencia, especializado en convertir ideas innovadoras en soluciones web escalables usando tecnologías como React, Next.js, y Node.js. Trabajo remoto desde Villa Alemana, Chile, creando productos de alto rendimiento y optimizando la experiencia de usuario.'
+    'Soy Nikolas Santis, un desarrollador fullstack con más de 14 años de experiencia, especializado en convertir ideas innovadoras en soluciones web escalables usando tecnologías como React, Next.js, y Node.js. Trabajo remoto desde Villa Alemana, Chile, creando productos de alto rendimiento y optimizando la experiencia de usuario.',
+  authors: {
+    name: 'Nikolas Santis',
+    url: 'https://nikosantis.dev'
+  },
+  creator: 'Nikolas Santis',
+  publisher: 'Nikolas Santis'
 }
 
 export default function RootLayout({
