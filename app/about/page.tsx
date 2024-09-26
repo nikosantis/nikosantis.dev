@@ -79,9 +79,8 @@ export default function Page() {
           <strong>comunicación clara</strong> y una{' '}
           <strong>colaboración efectiva</strong> con los equipos. Me enorgullece
           haber liderado proyectos que han tenido un impacto positivo, como el
-          desarrollo de aplicaciones de alto rendimiento para sectores como
-          [sector específico], y haber ayudado a startups a lanzar productos
-          exitosos al mercado.
+          desarrollo de aplicaciones de alto rendimiento, y haber ayudado a
+          startups a lanzar productos exitosos al mercado.
         </p>
         <p>
           Una lección importante que aprendí a lo largo de mi carrera es la
