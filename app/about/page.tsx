@@ -75,7 +75,7 @@ export default function Page() {
         <h2>Filosofía Profesional</h2>
         <p>
           Con más de 14 años en el desarrollo de software, he aprendido que el
-          éxito no solo depende de las habilidades técnicas, sino también de una
+          éxito no solo depende de las habilidades técnicas, sino también de una{' '}
           <strong>comunicación clara</strong> y una{' '}
           <strong>colaboración efectiva</strong> con los equipos. Me enorgullece
           haber liderado proyectos que han tenido un impacto positivo, como el
