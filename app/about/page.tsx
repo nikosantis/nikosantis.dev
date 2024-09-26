@@ -50,7 +50,7 @@ export default function Page() {
           <strong>Core Web Vitals</strong> como elementos esenciales para una UX
           de alto nivel. La <strong>calidad del software</strong> y la
           experiencia intuitiva del usuario final son pilares fundamentales en
-          mi desarrollo, y siempre aplico prácticas rigurosas de testing y
+          mi desarrollo, y siempre aplico prácticas rigurosas de testing y{' '}
           <strong>metodologías ágiles</strong> para asegurar productos sólidos y
           eficientes.
         </p>
