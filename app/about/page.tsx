@@ -21,11 +21,10 @@ export default function Page() {
           Soy un desarrollador de software fullstack con más de 14 años de
           experiencia. Mi práctica abarca desde el frontend, donde me
           especializo en <strong>React</strong> y <strong>Next.js</strong>,
-          hasta el backend con tecnologías como
-          <strong>Node.js</strong>, <strong>Express</strong>, y{' '}
-          <strong>NestJS</strong>, junto con el uso de{' '}
-          <strong>frameworks ORM</strong> para la gestión eficiente de bases de
-          datos.
+          hasta el backend con tecnologías como <strong>Node.js</strong>,{' '}
+          <strong>Express</strong>, y <strong>NestJS</strong>, junto con el uso
+          de <strong>frameworks ORM</strong> para la gestión eficiente de bases
+          de datos.
         </p>
         <p>
           Trabajo desde{' '}
