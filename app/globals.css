@@ -1,24 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/** biome-ignore-all lint/suspicious/noUnknownAtRules: tailwindcss rules */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-@layer base {
-  body {
-    @apply antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
+:root {
+  --shiki-token-constant: oklch(53.18% 0.2399 256.9900584162342);
+  /* --shiki-token-string: var(--ds-green-900);
+  --shiki-token-comment: var(--ds-gray-900);
+  --shiki-token-keyword: var(--ds-pink-900);
+  --shiki-token-parameter: var(--ds-amber-900);
+  --shiki-token-function: var(--ds-purple-900);
+  --shiki-token-string-expression: var(--ds-green-900);
+  --shiki-token-punctuation: var(--ds-gray-1000);
+  --shiki-token-link: var(--ds-green-900); */
+}
 
-  :root {
-    --shiki-token-constant: oklch(53.18% 0.2399 256.9900584162342);
-    /* --shiki-token-string: var(--ds-green-900);
-    --shiki-token-comment: var(--ds-gray-900);
-    --shiki-token-keyword: var(--ds-pink-900);
-    --shiki-token-parameter: var(--ds-amber-900);
-    --shiki-token-function: var(--ds-purple-900);
-    --shiki-token-string-expression: var(--ds-green-900);
-    --shiki-token-punctuation: var(--ds-gray-1000);
-    --shiki-token-link: var(--ds-green-900); */
-  }
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --text-xxs: 0.625rem;
+  --text-xxs--line-height: 1rem;
+}
+
+body {
+  @apply antialiased;
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
 .prose pre {
