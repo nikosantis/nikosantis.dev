@@ -1,6 +1,8 @@
-import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+import { ChevronRightIcon } from "lucide-react";
+
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/lib/posts";
 
@@ -57,11 +59,6 @@ function GetLastPosts() {
 									<ChevronRightIcon />
 								</div>
 							</Link>
-							{!post.isOld && (
-								<div className="absolute left-0 top-0 inline-flex bg-neutral-500 px-3 py-1 dark:bg-neutral-600">
-									<span className="text-xxs leading-none text-white">New</span>
-								</div>
-							)}
 						</div>
 					);
 				})}

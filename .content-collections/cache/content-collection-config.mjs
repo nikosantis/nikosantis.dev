@@ -1,15 +1,17 @@
 // content-collections.ts
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { transformMDX } from "@fumadocs/content-collections/configuration";
+import * as z from "zod";
 var posts = defineCollection({
   name: "posts",
   directory: "content/posts",
   include: ["*.mdx"],
-  schema: (z) => ({
+  schema: z.object({
     title: z.string(),
     description: z.string(),
     publishedAt: z.string(),
-    isOld: z.boolean().optional()
+    isOld: z.boolean().optional(),
+    content: z.string()
   }),
   transform: async (document, context) => {
     const mdx = await transformMDX(document, context);

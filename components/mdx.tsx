@@ -1,9 +1,10 @@
-import { MDXContent } from "@content-collections/mdx/react";
-import { LinkIcon } from "lucide-react";
-import type { MDXComponents } from "mdx/types";
 import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import type React from "react";
+
+import { MDXContent } from "@content-collections/mdx/react";
+import { LinkIcon } from "lucide-react";
+import type { MDXComponents } from "mdx/types";
 import slugify from "slugify";
 
 import { cn } from "@/lib/utils";

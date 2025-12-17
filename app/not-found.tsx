@@ -1,5 +1,6 @@
-import { HomeIcon } from "lucide-react";
 import Link from "next/link";
+
+import { HomeIcon } from "lucide-react";
 
 export default function NotFound() {
 	return (

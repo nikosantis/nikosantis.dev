@@ -1,6 +1,7 @@
-import { ChevronRightIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+
+import { ChevronRightIcon } from "lucide-react";
 
 import { getPosts } from "@/lib/posts";
 
@@ -41,11 +42,11 @@ export default function Page() {
 									<ChevronRightIcon />
 								</div>
 							</Link>
-							{!isOld && (
+							{/* {!isOld && (
 								<div className="absolute left-0 top-0 inline-flex bg-neutral-500 px-3 py-1 dark:bg-neutral-600">
 									<span className="text-xxs leading-none text-white">New</span>
 								</div>
-							)}
+							)} */}
 						</div>
 					);
 				})}
