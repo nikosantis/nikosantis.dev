@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-	alternates: {
-		canonical: "/about",
-	},
-	title: "Sobre Nikolas Santis | Desarrollador Fullstack",
+	alternates: { canonical: "/about" },
+	title:
+		"Sobre Nikolas Santis | Senior Software Engineer (React, Next.js, Node.js)",
 	description:
-		"Soy Nikolas Santis, un desarrollador fullstack con más de 14 años de experiencia, especializado en React, Next.js, y Node.js. Descubre su enfoque en el desarrollo de soluciones web escalables, la optimización de la experiencia de usuario y su vida como padre trabajando remotamente desde Villa Alemana, Chile.",
+		"Soy Nikolas Santis, Senior Software Engineer con más de 15 años de experiencia. Especializado en React, Next.js y TypeScript, con backend en Node.js (Express, NestJS, Hono). Enfocado en performance, escalabilidad, calidad del software y Core Web Vitals. Trabajo remoto desde Chile.",
 };
 
 export default function Page() {
@@ -16,119 +15,85 @@ export default function Page() {
 			<h1 className="mb-12 text-2xl font-medium tracking-tighter">
 				¡Hola! Soy <strong>Nikolas Santis</strong> 👋
 			</h1>
+
 			<div className="prose prose-neutral dark:prose-invert">
 				<p>
-					Soy un desarrollador de software fullstack con más de 14 años de
-					experiencia. Mi práctica abarca desde el frontend, donde me
-					especializo en <strong>React</strong> y <strong>Next.js</strong>,
-					hasta el backend con tecnologías como <strong>Node.js</strong>,{" "}
-					<strong>Express</strong>, y <strong>NestJS</strong>, junto con el uso
-					de <strong>frameworks ORM</strong> para la gestión eficiente de bases
-					de datos.
+					Soy <strong>Senior Software Engineer</strong> con más de{" "}
+					<strong>15 años</strong> de experiencia construyendo sistemas web de
+					alto impacto, desde MVPs hasta aplicaciones de gran escala.
 				</p>
+
 				<p>
-					Trabajo desde{" "}
+					Mi especialización está en <strong>frontend moderno</strong> con{" "}
+					<strong>React</strong>, <strong>Next.js</strong> y{" "}
+					<strong>TypeScript</strong>, junto con un sólido background en{" "}
+					<strong>backend con Node.js</strong> (Express, NestJS, Hono). También
+					trabajo de cerca con la capa de datos, diseñando modelos y cuidando
+					performance de consultas cuando el producto lo requiere.
+				</p>
+
+				<p>
+					Trabajo de forma remota desde{" "}
 					<Link
 						href="https://maps.app.goo.gl/k9FnEM5in6pUKoze9"
 						target="_blank"
 						title="Villa Alemana, Chile"
 					>
 						Villa Alemana, Chile 🇨🇱
-					</Link>{" "}
-					y he tenido la suerte de colaborar con equipos alrededor del mundo de
-					manera remota. Esto me ha permitido desarrollar una gran
-					adaptabilidad, gestionando tanto proyectos como mi tiempo con
-					eficacia.
-				</p>
-				<p>
-					He trabajado en una amplia gama de proyectos, desde la transformación
-					digital de empresas hasta el lanzamiento de{" "}
-					<strong>MVPs innovadores</strong> y el desarrollo de aplicaciones a
-					gran escala. Un enfoque clave de mi trabajo es la{" "}
-					<strong>optimización de la performance</strong> y la mejora de la
-					experiencia de usuario, donde implemento los{" "}
-					<strong>Core Web Vitals</strong> como elementos esenciales para una UX
-					de alto nivel. La <strong>calidad del software</strong> y la
-					experiencia intuitiva del usuario final son pilares fundamentales en
-					mi desarrollo, y siempre aplico prácticas rigurosas de testing y{" "}
-					<strong>metodologías ágiles</strong> para asegurar productos sólidos y
-					eficientes.
-				</p>
-				<p>
-					Mi compromiso con la <strong>innovación</strong> y la{" "}
-					<strong>colaboración</strong> me ha llevado a crear soluciones
-					tecnológicas que marcan una diferencia, y mi enfoque en el{" "}
-					<strong>aprendizaje continuo</strong> me ha permitido mantenerme
-					actualizado con las últimas tendencias del sector.
-				</p>
-				<h2>Mi Familia y el Equilibrio</h2>
-				<p>
-					En lo personal, soy <strong>esposo</strong> y <strong>padre</strong>{" "}
-					de un increíble niño de un año. Criarlo ha sido una de las mayores
-					bendiciones y desafíos en mi vida. El equilibrio entre ser padre,
-					colaborar en proyectos remotos y continuar creciendo profesionalmente
-					ha requerido mucho esfuerzo, pero me siento increíblemente agradecido
-					de poder estar presente en cada momento importante. Mi esposa ha sido
-					un apoyo fundamental en todo este proceso, y juntos hemos construido
-					una vida que valoro profundamente.
-				</p>
-				<h2>Filosofía Profesional</h2>
-				<p>
-					Con más de 14 años en el desarrollo de software, he aprendido que el
-					éxito no solo depende de las habilidades técnicas, sino también de una{" "}
-					<strong>comunicación clara</strong> y una{" "}
-					<strong>colaboración efectiva</strong> con los equipos. Me enorgullece
-					haber liderado proyectos que han tenido un impacto positivo, como el
-					desarrollo de aplicaciones de alto rendimiento, y haber ayudado a
-					startups a lanzar productos exitosos al mercado.
-				</p>
-				<p>
-					Una lección importante que aprendí a lo largo de mi carrera es la
-					importancia del{" "}
-					<strong>
-						equilibrio entre la eficiencia y la atención al detalle
-					</strong>
-					. Siempre procuro mantener una mentalidad de crecimiento, enfocándome
-					en crear productos que no solo funcionen bien, sino que también
-					aporten valor real a los usuarios.
+					</Link>
+					, colaborando con equipos en distintos contextos técnicos y de
+					negocio. Me siento cómodo operando en ambientes de alto tráfico, con
+					foco en estándares de calidad, comunicación clara y entregas
+					consistentes.
 				</p>
 
-				<h2>Reflexión sobre el Burnout</h2>
+				<h2>En qué aporto</h2>
+				<ul>
+					<li>
+						<strong>Performance y UX</strong>: optimización de tiempos de carga
+						y responsividad, con énfasis en <strong>Core Web Vitals</strong>.
+					</li>
+					<li>
+						<strong>Arquitectura frontend</strong>: diseño y evolución de
+						componentes y flujos complejos, cuidando mantenibilidad y
+						escalabilidad.
+					</li>
+					<li>
+						<strong>Calidad y confiabilidad</strong>: testing, buenas prácticas
+						y automatización para reducir regresiones y mejorar la velocidad de
+						iteración.
+					</li>
+					<li>
+						<strong>Colaboración técnica</strong>: trabajo cercano con producto,
+						diseño y backend para alinear decisiones técnicas con impacto real.
+					</li>
+				</ul>
 
+				<h2>Otros ecosistemas</h2>
 				<p>
-					Hace aproximadamente dos años, pasé por un episodio de burnout. Fue un
-					momento difícil en mi carrera, que me enseñó la importancia del
-					autocuidado y de reconocer los límites. Desde entonces, he aprendido a
-					establecer un equilibrio más saludable entre el trabajo y la vida
-					personal, lo que me ha permitido ser más productivo y estar más
-					presente tanto en mis proyectos como con mi familia.
+					A lo largo de mi carrera también he colaborado con otros stacks
+					(Java/Spring Boot, Python, Go y .NET). No los presento como mi foco
+					principal, pero sí como experiencia que me permite{" "}
+					<strong>adaptarme rápidamente</strong> cuando el proyecto lo requiere.
 				</p>
 
-				<h2>Más Allá del Código</h2>
+				<h2>Más allá del código</h2>
 				<p>
-					Además de ser un apasionado por la tecnología, mi vida personal juega
-					un papel fundamental en mi día a día. La flexibilidad de trabajar
-					remotamente me ha permitido encontrar un equilibrio entre mis
-					responsabilidades como padre, esposo, y profesional, algo que valoro
-					profundamente. Cuando no estoy programando, disfruto pasar tiempo con
-					mi familia, quienes son mi principal fuente de inspiración.
-				</p>
-				<p>
-					También disfruto sumergiéndome en videojuegos, libros y series, lo que
-					me ayuda a mantener una perspectiva balanceada entre lo profesional y
-					lo personal. Mi familia y estos momentos me permiten recargar energías
-					y seguir inspirado para enfrentar nuevos desafíos.
+					Fuera del trabajo, mi familia es mi principal fuente de equilibrio.
+					También disfruto videojuegos, libros y series, lo que me ayuda a
+					mantener energía y perspectiva para enfrentar nuevos desafíos.
 				</p>
 
 				<p>
-					Si estás buscando a alguien con experiencia para crear o escalar tu
-					producto web, me encantaría saber más sobre tu proyecto. No dudes en{" "}
+					Si estás buscando a alguien para <strong>crear o escalar</strong> un
+					producto web con foco en performance y calidad, me encantaría conocer
+					más sobre tu proyecto. Puedes{" "}
 					<Link
 						href="https://www.linkedin.com/in/nikosantis/"
 						target="_blank"
 						title="Mi perfil en LinkedIn"
 					>
-						contactarme
+						contactarme por LinkedIn
 					</Link>
 					.
 				</p>

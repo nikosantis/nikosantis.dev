@@ -11,7 +11,7 @@
 		"preview": "next build && next start"
 	},
 	"dependencies": {
-		"@fumadocs/content-collections": "1.2.4",
+		"@fumadocs/content-collections": "1.2.5",
 		"@tailwindcss/typography": "0.5.19",
 		"@types/mdx": "2.0.13",
 		"@vercel/analytics": "1.6.1",
@@ -26,8 +26,8 @@
 		"zod": "4.2.1"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.3.10",
-		"@content-collections/core": "0.13.0",
+		"@biomejs/biome": "2.3.11",
+		"@content-collections/core": "0.13.1",
 		"@content-collections/mdx": "0.2.2",
 		"@content-collections/next": "0.2.10",
 		"@tailwindcss/postcss": "^4.1.18",

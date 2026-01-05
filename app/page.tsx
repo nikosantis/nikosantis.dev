@@ -15,9 +15,20 @@ export default function Page() {
 
 			<div className="prose prose-neutral dark:prose-invert">
 				<p>
-					Soy un desarrollador de software con más de 14 años de experiencia,
-					especializado en convertir ideas innovadoras en soluciones web usando
-					tecnologías como React y Next.js, Trabajo desde{" "}
+					Soy <strong>Senior Software Engineer</strong> con más de 15 años de
+					experiencia construyendo sistemas web de alto impacto, desde MVPs
+					hasta aplicaciones de gran escala.
+				</p>
+
+				<p>
+					Me especializo en{" "}
+					<strong>frontend moderno con React, Next.js y TypeScript</strong>, con
+					un sólido background en <strong>backend con Node.js</strong>, siempre
+					con foco en performance, escalabilidad y calidad del software.
+				</p>
+
+				<p>
+					Trabajo desde{" "}
 					<Link
 						href="https://maps.app.goo.gl/k9FnEM5in6pUKoze9"
 						target="_blank"
@@ -25,12 +36,13 @@ export default function Page() {
 					>
 						Villa Alemana, Chile 🇨🇱
 					</Link>
-					, colaborando remotamente en una variedad de proyectos y apoyando a
-					distintos equipos en mi rol.
+					, colaborando de forma remota con equipos y proyectos en distintos
+					contextos técnicos y de negocio.
 				</p>
+
 				<p>
-					Aquí comparto mis proyectos, aprendizajes y reflexiones sobre el mundo
-					del desarrollo.
+					En este espacio comparto proyectos, aprendizajes y reflexiones sobre
+					desarrollo de software, arquitectura frontend y performance web.
 				</p>
 			</div>
 

@@ -5,6 +5,7 @@ import { withContentCollections } from "@content-collections/next";
 const nextConfig: NextConfig = {
 	reactCompiler: true,
 	transpilePackages: ["geist"],
+	cacheComponents: true,
 	bundlePagesRouterDependencies: true,
 	logging: {
 		fetches: {

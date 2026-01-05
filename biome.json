@@ -41,8 +41,7 @@
 							":BLANK_LINE:",
 							[":PACKAGE:"],
 							":BLANK_LINE:",
-							["@/lib/**", "!@/emails/**", "!:ALIAS:"],
-							["@/emails/**", "!:ALIAS:"],
+							["@/lib/**", "!:ALIAS:"],
 							":ALIAS:",
 							"PATH"
 						]
